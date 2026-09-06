@@ -1,0 +1,84 @@
+# Keeps the music right without anyone doing anything.
+#
+# It runs every fifteen minutes and, almost always, finds everything already correct
+# and does nothing. It only acts when reality differs from the schedule: after a power
+# cut, when a slot changes, or when somebody moves a volume by hand.
+#
+# SWITCHED ON 2026-09-06. To turn it off again, put a # in front of the two schedule
+# lines below and commit. Running it by hand from the Actions tab still works either way.
+
+name: Store music
+
+on:
+  workflow_dispatch:
+    inputs:
+      live:
+        description: "Actually change the music? Leave as no to see what it would do."
+        required: true
+        default: "no"
+        type: choice
+        options: ["no", "yes"]
+
+  # Every fifteen minutes, deliberately off the quarter hours. GitHub is busiest at
+  # :00, :15, :30 and :45 and was skipping them entirely. Put a # in front of both
+  # lines below to turn it off.
+  schedule:
+    - cron: "2,17,32,47 * * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  music:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # No outside packages. Nothing to install.
+
+      - name: Check the schedule itself
+        run: python test_schedule.py
+
+      - name: Work out the mode
+        id: mode
+        env:
+          IN_LIVE: ${{ inputs.live }}
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ] || [ "$IN_LIVE" = "yes" ]; then
+            echo "flag=--live" >> "$GITHUB_OUTPUT"
+            echo "Mode: live"
+          else
+            echo "flag=" >> "$GITHUB_OUTPUT"
+            echo "Mode: dry run"
+          fi
+
+      - name: Set the music
+        env:
+          SONOS_CLIENT_ID: ${{ secrets.SONOS_CLIENT_ID }}
+          SONOS_CLIENT_SECRET: ${{ secrets.SONOS_CLIENT_SECRET }}
+          SONOS_TOKEN_HOME: ${{ secrets.SONOS_TOKEN_HOME }}
+          SONOS_TOKEN_WEST_HARLEM: ${{ secrets.SONOS_TOKEN_WEST_HARLEM }}
+          SONOS_TOKEN_CENTRAL_HARLEM: ${{ secrets.SONOS_TOKEN_CENTRAL_HARLEM }}
+          SONOS_TOKEN_HELLS_KITCHEN: ${{ secrets.SONOS_TOKEN_HELLS_KITCHEN }}
+          SONOS_HOUSEHOLD_HOME: ${{ secrets.SONOS_HOUSEHOLD_HOME }}
+          SONOS_GROUP_HOME: ${{ secrets.SONOS_GROUP_HOME }}
+          SONOS_HOUSEHOLD_WEST_HARLEM: ${{ secrets.SONOS_HOUSEHOLD_WEST_HARLEM }}
+          SONOS_GROUP_WEST_HARLEM: ${{ secrets.SONOS_GROUP_WEST_HARLEM }}
+          SONOS_HOUSEHOLD_CENTRAL_HARLEM: ${{ secrets.SONOS_HOUSEHOLD_CENTRAL_HARLEM }}
+          SONOS_GROUP_CENTRAL_HARLEM: ${{ secrets.SONOS_GROUP_CENTRAL_HARLEM }}
+          SONOS_HOUSEHOLD_HELLS_KITCHEN: ${{ secrets.SONOS_HOUSEHOLD_HELLS_KITCHEN }}
+          SONOS_GROUP_HELLS_KITCHEN: ${{ secrets.SONOS_GROUP_HELLS_KITCHEN }}
+        run: python run.py ${{ steps.mode.outputs.flag }} | tee run-output.txt
+
+      - name: Say what happened, only when there is something to say
+        if: always()
+        run: |
+          if grep -q "SOMETHING NEEDS ATTENTION" run-output.txt; then
+            { echo "## Something needs attention"; echo ""; echo '```'; cat run-output.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          elif grep -q " -> " run-output.txt || grep -q "changed to" run-output.txt || grep -q "stopped it" run-output.txt; then
+            { echo "## Changes made"; echo ""; echo '```'; cat run-output.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          fi

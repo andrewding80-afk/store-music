@@ -1,0 +1,206 @@
+{
+  "_comment": "The whole schedule lives here. Editing this file is how the music changes. Nothing in the code knows about a store, a time or a playlist name.",
+  "timezone": "America/New_York",
+  "stores": [
+    {
+      "id": "home",
+      "name": "Home (TV Room + 4)",
+      "household": "KEPT_IN_GITHUB_SECURE_STORAGE",
+      "group": "KEPT_IN_GITHUB_SECURE_STORAGE",
+      "enabled": true,
+      "speaker_volumes": {
+        "Daytime": {
+          "TV Room": 25,
+          "Kitchen": 33,
+          "Bedroom": 25,
+          "Sunroom": 20,
+          "Dressing Room": 56
+        },
+        "Evening": {
+          "TV Room": 22,
+          "Kitchen": 29,
+          "Bedroom": 22,
+          "Sunroom": 17,
+          "Dressing Room": 49
+        },
+        "Night": {
+          "Bedroom": 18,
+          "Kitchen": 18,
+          "TV Room": 0,
+          "Sunroom": 0,
+          "Dressing Room": 0
+        }
+      },
+      "slots": [
+        {
+          "name": "Daytime",
+          "from": "09:00",
+          "to": "18:00",
+          "volume": 30,
+          "playlist_pool": [
+            "BACH",
+            "BEETHOVEN",
+            "CHOPIN",
+            "COUPERIN",
+            "HANDEL",
+            "HAYDN",
+            "MOZART",
+            "RAMEAU",
+            "TELEMANN",
+            "VIVALDI"
+          ]
+        },
+        {
+          "name": "Evening",
+          "from": "18:00",
+          "to": "23:00",
+          "volume": 26,
+          "playlist_pool": [
+            "Jacques Loussier Playlist",
+            "The Expat: Lowkey Jazz",
+            "The Expat: Chill RnB",
+            "Paul Mauriat and Friends",
+            "Peggy Lee Radio",
+            "Vintage Movie Tracks"
+          ]
+        },
+        {
+          "name": "Night",
+          "from": "23:00",
+          "to": "24:00",
+          "volume": 18,
+          "playlist_pool": [
+            "BY A LAKE",
+            "SHUMANN RESONANCE",
+            "AMBIENT CALM"
+          ],
+          "volume_by_playlist": {
+            "AMBIENT CALM": 15
+          }
+        }
+      ],
+      "_home_comment": "Daytime must be Calm Radio only. Spotify plays in one place at a time, and during the day Andrew is out and using Spotify himself, so a scheduled job on Spotify would cut him off. His Calm Radio stations are the ones named in capitals. Evening and night are unrestricted because he is home and not playing Spotify elsewhere. From midnight the music stops until the nine in the morning start, asked for 2026-09-06.",
+      "stop_when_closed": true
+    },
+    {
+      "id": "west-harlem",
+      "name": "West Harlem, 3600 Broadway",
+      "household": "PENDING_AUTHORISATION",
+      "group": "",
+      "enabled": false,
+      "stop_when_closed": true
+    },
+    {
+      "id": "central-harlem",
+      "name": "Central Harlem, 370 Malcolm X",
+      "household": "PENDING_AUTHORISATION",
+      "group": "",
+      "enabled": false,
+      "stop_when_closed": true
+    },
+    {
+      "id": "hells-kitchen",
+      "name": "Hell's Kitchen, 354 West 44th",
+      "household": "PENDING_AUTHORISATION",
+      "group": "",
+      "enabled": false,
+      "stop_when_closed": true
+    }
+  ],
+  "_slots_comment": "All three stores run the same hours, confirmed 2026-09-05. Times are 24 hour. Music runs 11:30 to 23:00; outside those hours nothing plays.",
+  "slots": [
+    {
+      "name": "Lunch rush",
+      "from": "11:30",
+      "to": "13:30",
+      "playlist": "Jazz Trumpet (copy)",
+      "volume": 28
+    },
+    {
+      "name": "Dead stretch",
+      "from": "13:30",
+      "to": "16:00",
+      "playlist": "Instrumental Jazz Standards (2)",
+      "volume": 22
+    },
+    {
+      "name": "Early evening",
+      "from": "16:00",
+      "to": "18:00",
+      "playlist": "FOH Jazz (From Joel)",
+      "volume": 26
+    },
+    {
+      "name": "Dinner peak",
+      "from": "18:00",
+      "to": "21:00",
+      "playlist": "NEEDS A VOCAL PLAYLIST",
+      "volume": 30
+    },
+    {
+      "name": "Last service",
+      "from": "21:00",
+      "to": "23:00",
+      "playlist": "Feel Good Jazz (copy)",
+      "volume": 24
+    }
+  ],
+  "_volume_comment": "Volumes are a starting guess, not Andrew's current settings. He sets these per alarm today and those numbers should replace these.",
+  "_seasons_comment": "A season swaps the playlist for named slots. Anything not listed keeps its default. Seasonal change should be felt and not noticed.",
+  "seasons": {
+    "winter": {
+      "from": "12-01",
+      "to": "02-28",
+      "overrides": {}
+    },
+    "spring": {
+      "from": "03-01",
+      "to": "05-31",
+      "overrides": {}
+    },
+    "summer": {
+      "from": "06-01",
+      "to": "08-31",
+      "overrides": {}
+    },
+    "autumn": {
+      "from": "09-01",
+      "to": "11-30",
+      "overrides": {}
+    }
+  },
+  "_holidays_comment": "Holidays outrank seasons, which outrank the default. Christmas never starts before the first week of December, and the 50/50 mix of Christmas and non-Christmas tracks is built into the playlist itself, not by the software.",
+  "holidays": [
+    {
+      "name": "Christmas",
+      "from": "12-01",
+      "to": "12-25",
+      "overrides": {
+        "Lunch rush": "December Lunch 50-50",
+        "Dead stretch": "December Afternoon 50-50",
+        "Early evening": "December Evening 50-50",
+        "Dinner peak": "December Dinner 50-50",
+        "Last service": "December Late 50-50"
+      }
+    },
+    {
+      "name": "New Year's Eve",
+      "from": "12-31",
+      "to": "12-31",
+      "overrides": {
+        "Early evening": "Big Band Celebration",
+        "Dinner peak": "Big Band Celebration",
+        "Last service": "Big Band Celebration"
+      }
+    },
+    {
+      "name": "Valentine's Day",
+      "from": "02-14",
+      "to": "02-14",
+      "overrides": {
+        "Dinner peak": "Jazz Vocals Romantic"
+      }
+    }
+  ],
+  "_rules_comment": "Standing rules, kept here so they are visible to anyone editing this file. Never sad, never sombre, always positive. Five items of taste only: instrumental jazz, big band, classic jazz vocals. Nothing experimental. The music is never handed to staff."
+}
