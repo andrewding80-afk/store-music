@@ -395,7 +395,7 @@ for _when, _why in (('2026-09-07T23:00', 'eleven sharp'),
 check_home('2026-09-08T00:00', None, 'midnight, it stops')
 
 # The three names Andrew asked for, so a typo in the settings file is caught.
-ok_night_names = sorted(_night_pool) == sorted(['BY A LAKE', 'SHUMANN RESONANCE', 'AMBIENT CALM'])
+ok_night_names = sorted(_night_pool) == sorted(['BY A LAKE', 'SCHUMANN RESONANCE', 'AMBIENT CALM'])
 if not ok_night_names:
     failures.append('the late night list is not the three Andrew asked for: %r' % _night_pool)
 print('%s the late night list is the three he asked for' % ('PASS' if ok_night_names else 'FAIL'))
