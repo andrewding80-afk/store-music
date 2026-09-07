@@ -1,6 +1,7 @@
 # Keeps the music right without anyone doing anything.
 #
-# It runs every fifteen minutes and, almost always, finds everything already correct
+# It is started every hour, one minute past, by a reminder in Claude leaving a
+# comment on the trigger issue, and almost always, finds everything already correct
 # and does nothing. It only acts when reality differs from the schedule: after a power
 # cut, when a slot changes, or when somebody moves a volume by hand.
 #
@@ -25,11 +26,21 @@ on:
   schedule:
     - cron: "2,17,32,47 * * * *"
 
+  # The reliable trigger, added 2026-09-07. GitHub's own timer above only fires
+  # about once every four hours on this account, which is why the music did not
+  # start at nine that morning. A reminder in Claude now leaves a comment on the
+  # trigger issue once an hour, one minute past, and that comment starts a run.
+  # Only comments from the owner of this repository do anything.
+  issue_comment:
+    types: [created]
+
 permissions:
   contents: read
 
 jobs:
   music:
+    # A comment from anybody else is ignored. This repository is public.
+    if: github.event_name != 'issue_comment' || github.event.comment.user.login == github.repository_owner
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -48,7 +59,7 @@ jobs:
         env:
           IN_LIVE: ${{ inputs.live }}
         run: |
-          if [ "${{ github.event_name }}" = "schedule" ] || [ "$IN_LIVE" = "yes" ]; then
+          if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event_name }}" = "issue_comment" ] || [ "$IN_LIVE" = "yes" ]; then
             echo "flag=--live" >> "$GITHUB_OUTPUT"
             echo "Mode: live"
           else

@@ -558,8 +558,13 @@ print('--- nothing in the settings file names Andrew or his house ---')
 # GitHub's secure storage instead, and are put back at the moment a job runs. Nothing is
 # secret about them, but there is no reason for a settings file to say whose house it is.
 import os as _os
+# Read the file itself, not the loaded settings, because loading puts the real
+# identifiers back from ids.json or from the job. The question here is what is written
+# in the file that anyone can read.
+import json as _json
+_raw_cfg = _json.load(open(schedule.CONFIG, encoding='utf-8'))
 _named = []
-for _st in cfg['stores']:
+for _st in _raw_cfg['stores']:
     for _field in ('household', 'group'):
         _v = str(_st.get(_field) or '')
         if _v.startswith('Sonos_') or _v.startswith('RINCON_'):

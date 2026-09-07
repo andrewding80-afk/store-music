@@ -68,11 +68,22 @@ def stored_id_names(store_id):
     return HOUSEHOLD_PREFIX + key, GROUP_PREFIX + key
 
 
+IDS_FILE = os.path.join(os.path.dirname(__file__), 'ids.json')
+
+
 def _apply_stored_ids(cfg):
+    # On a machine of Andrew's own, the identifiers sit in ids.json beside this file,
+    # which is on the ignore list. On GitHub they arrive as settings on the job. A
+    # setting on the job wins over the file, so nothing surprising happens if both exist.
+    local = {}
+    if os.path.exists(IDS_FILE):
+        with open(IDS_FILE, encoding='utf-8') as f:
+            local = json.load(f)
     for store in cfg.get('stores', []):
         household_name, group_name = stored_id_names(store['id'])
+        mine = local.get(store['id'], {})
         for field, name in (('household', household_name), ('group', group_name)):
-            value = os.environ.get(name)
+            value = os.environ.get(name) or mine.get(field)
             if value:
                 store[field] = value
     return cfg

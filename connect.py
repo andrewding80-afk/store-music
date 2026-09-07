@@ -10,7 +10,6 @@ import http.server
 import sys
 import threading
 import urllib.parse
-import webbrowser
 
 import sonos
 
@@ -58,12 +57,17 @@ def main():
     server = http.server.HTTPServer(('localhost', PORT), Catcher)
     threading.Thread(target=server.handle_request, daemon=True).start()
 
-    print('Opening your browser. Sign in to the Sonos account for: %s' % store_id)
-    print('If it does not open, paste this in yourself:')
+    # This used to open the browser by itself, and that was the bug. It opened the
+    # ordinary browser, which was already signed in to Sonos, so that window approved
+    # silently before Andrew had finished with the private one. Whichever tab arrived
+    # first won, and it was never the one he was looking at. Now nothing opens on its
+    # own and the only approval that can happen is the one he does deliberately.
+    print()
+    print('Copy the link below and paste it into the window you want to sign in from.')
+    print('Nothing will open by itself.')
     print()
     print('  %s' % url)
     print()
-    webbrowser.open(url)
 
     print('Waiting for you to approve...')
     for _ in range(300):

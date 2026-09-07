@@ -92,11 +92,21 @@
     },
     {
       "id": "central-harlem",
-      "name": "Central Harlem, 370 Malcolm X",
-      "household": "PENDING_AUTHORISATION",
-      "group": "",
+      "name": "Central Harlem, 370 Malcolm X (two speakers)",
+      "household": "KEPT_IN_GITHUB_SECURE_STORAGE",
+      "group": "KEPT_IN_GITHUB_SECURE_STORAGE",
       "enabled": false,
-      "stop_when_closed": true
+      "stop_when_closed": true,
+      "_note": "Connected 2026-09-07 through contact@thenoodle.nyc. Switched off until the playlists are saved as favourites in the shop, which needs someone on its wifi."
+    },
+    {
+      "id": "central-harlem-b",
+      "name": "Central Harlem, the single One SL (separate system)",
+      "household": "KEPT_IN_GITHUB_SECURE_STORAGE",
+      "group": "KEPT_IN_GITHUB_SECURE_STORAGE",
+      "enabled": false,
+      "stop_when_closed": true,
+      "_note": "The One SL registered February 2026 was set up as its own system rather than added to the existing one, so it plays on its own. Same sign-in as central-harlem. If it is merged into the other system in the shop, delete this entry."
     },
     {
       "id": "hells-kitchen",
