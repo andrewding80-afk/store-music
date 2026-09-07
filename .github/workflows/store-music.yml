@@ -54,6 +54,9 @@ jobs:
       - name: Check the schedule itself
         run: python test_schedule.py
 
+      - name: Check the in-shop setup kit
+        run: python test_instore.py
+
       - name: Work out the mode
         id: mode
         env:
