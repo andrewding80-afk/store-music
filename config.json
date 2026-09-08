@@ -113,10 +113,11 @@
     {
       "id": "hells-kitchen",
       "name": "Hell's Kitchen, 354 West 44th",
-      "household": "PENDING_AUTHORISATION",
-      "group": "",
-      "enabled": false,
-      "stop_when_closed": true
+      "household": "KEPT_IN_GITHUB_SECURE_STORAGE",
+      "group": "KEPT_IN_GITHUB_SECURE_STORAGE",
+      "enabled": true,
+      "stop_when_closed": true,
+      "_note": "Owned by contact@thenoodle.nyc, same sign-in as Central Harlem, found in the shop 2026-09-08. Speaker renamed the same day to Dining Room THPN-HK. Connected and switched on that visit."
     }
   ],
   "_slots_comment": "All three stores run the same hours, confirmed 2026-09-05. Times are 24 hour. Music runs 11:30 to 23:00; outside those hours nothing plays.",
@@ -125,35 +126,35 @@
       "name": "Lunch rush",
       "from": "11:30",
       "to": "13:30",
-      "playlist": "Jazz Trumpet (copy)",
+      "playlist": "Jazz Trumpet",
       "volume": 28
     },
     {
       "name": "Dead stretch",
       "from": "13:30",
       "to": "16:00",
-      "playlist": "Instrumental Jazz Standards (2)",
+      "playlist": "Instrumental Jazz Standards",
       "volume": 22
     },
     {
       "name": "Early evening",
       "from": "16:00",
       "to": "18:00",
-      "playlist": "FOH Jazz (From Joel)",
+      "playlist": "FOH Jazz",
       "volume": 26
     },
     {
       "name": "Dinner peak",
       "from": "18:00",
       "to": "21:00",
-      "playlist": "NEEDS A VOCAL PLAYLIST",
+      "playlist": "Jazz Classics Blue Note Edition",
       "volume": 30
     },
     {
       "name": "Last service",
       "from": "21:00",
       "to": "23:00",
-      "playlist": "Feel Good Jazz (copy)",
+      "playlist": "Feel Good Jazz",
       "volume": 24
     }
   ],
