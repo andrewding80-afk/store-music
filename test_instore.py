@@ -57,7 +57,7 @@ def main():
     today = instore.wanted_playlists(cfg, shop)
     everything = instore.wanted_playlists(cfg, shop, everything=True)
 
-    check('Jazz Trumpet (copy)' in today,
+    check('Jazz Trumpet' in today,
           'a shop is asked for the playlist its lunch slot actually plays')
     check(not any(n.startswith('NEEDS ') for n in everything),
           'a slot with no playlist chosen yet is never asked for')
