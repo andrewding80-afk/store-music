@@ -70,12 +70,28 @@ def main():
     wanted = want['playlist']
 
     # 1. He stopped it during the slot. The right playlist is still loaded.
-    STATE.update(playing=False, container=wanted, played=[])
+    STATE.update(playing=False, container=wanted, played=[], volumes=[])
     lines, trouble, pending, acted = run.check_store(cfg, store, when, True)
     text = '\n'.join(lines)
     check(not STATE['played'], 'it does not start the music again after he stops it')
     check(not trouble, 'and it does not call that a fault')
     check('leaving it off' in text, 'and it says plainly why it did nothing')
+    check(not STATE['volumes'], 'and it leaves the volumes exactly where he put them')
+
+    # 1b. He stopped it, and the deck has since dealt a different member of the same
+    # slot. Happened for real on the evening of 2026-09-08: the pause was overridden
+    # within the minute, because the loaded playlist was compared with the one dealt
+    # rather than with the slot's whole list. Run #152 recorded it.
+    others = [n for n in want.get('slot_playlists', []) if n != wanted]
+    check(bool(others), 'the slot has more than one playlist, so this case can be tried')
+    if others:
+        STATE.update(playing=False, container=others[0], played=[], volumes=[])
+        lines, trouble, pending, acted = run.check_store(cfg, store, when, True)
+        text = '\n'.join(lines)
+        check(not STATE['played'],
+              'a pause holds even when the deal has moved to a different member of the slot')
+        check(not STATE['volumes'], 'and the volumes are still left alone')
+        check('leaving it off' in text, 'and it still says why')
 
     # 2. The slot has changed since he stopped it. Something else is loaded.
     STATE.update(playing=False, container='SOMETHING ELSE ENTIRELY', played=[])
@@ -107,3 +123,4 @@ def main():
 
 if __name__ == '__main__':
     sys.exit(main())
+</content>

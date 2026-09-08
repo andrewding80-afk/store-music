@@ -269,15 +269,25 @@ def check_store(cfg, store, now, live):
     #
     # There is no memory between runs and none is needed. This job never leaves a
     # system paused in the middle of a slot, it only stops things at closing time. So
-    # paused, with this slot's own playlist still loaded, can only have been a person.
-    # And the moment the slot changes, the loaded playlist no longer matches the one
-    # wanted, so the music starts again on its own. Off means off until the next
-    # change of slot, and nothing has to be remembered or cleared.
+    # paused, with music belonging to this slot still loaded, can only have been a
+    # person. And when the slot changes, the loaded playlist belongs to the old slot
+    # rather than the new one, so the music starts again on its own. Off means off
+    # until the next change of slot, and nothing has to be remembered or cleared.
+    # That recovery relies on no two home slots sharing a playlist, which is true and
+    # is cheap to keep true.
+    #
+    # Belonging means any member of the slot's list, not only the one dealt for this
+    # moment. The first version compared with the single dealt pick, and on the
+    # evening of 2026-09-08 a pause at home was overridden within the minute because
+    # the deal named a different member of the same evening list. Run #152 has it in
+    # writing. Widened the same night.
     #
     # Only for systems that ask for it. A silent shop during service is a fault and
     # must stay one.
+    slot_music = set(name.strip()
+                     for name in (want.get('slot_playlists') or [want['playlist']]))
     stopped_by_hand = bool(not is_playing and container
-                           and container.strip() == want['playlist'].strip())
+                           and container.strip() in slot_music)
     if stopped_by_hand and store.get('leave_off_if_stopped_by_hand'):
         lines.append('    turned off by hand during this slot, so leaving it off')
         lines.append('    it starts again by itself at the next change of slot')

@@ -243,6 +243,7 @@ def decide(cfg, now, store=None):
             'reason': 'Outside service hours. Nothing should be playing.',
             'needs_attention': None,
             'speakers': None,
+            'slot_playlists': [],
         }
 
     # A slot may name one playlist, a different one for each day of the week, or a list
@@ -259,6 +260,20 @@ def decide(cfg, now, store=None):
     else:
         playlist = slot['playlist']
         source = 'the default for this slot'
+
+    # Every name that belongs to this slot, not only the one picked for this moment.
+    # The leave-it-off rule needs the whole list. Found the hard way on the evening of
+    # 2026-09-08: a pause at home was overridden within the minute, because the paused
+    # playlist was compared with the single dealt pick and the deal named a different
+    # member of the same evening list. Any member of the slot's list is this slot's
+    # own music.
+    belongs = set()
+    if by_day:
+        belongs.update(v for v in by_day.values() if v)
+    if pool:
+        belongs.update(pool)
+    if slot.get('playlist'):
+        belongs.add(slot['playlist'])
 
     season_name, season = active_season(cfg, now.date())
     if season and slot['name'] in season.get('overrides', {}):
@@ -277,9 +292,13 @@ def decide(cfg, now, store=None):
         playlist = own[slot['name']]
         source = "what %s calls it" % (store.get('name') or store.get('id'))
 
+    # Whatever won the argument above belongs to the slot too, so an override name
+    # still counts as this slot's own music.
+    belongs.add(playlist)
+
     # A system may set each speaker separately rather than the whole group at one level.
     # Only speakers named here get their own number. Everything else on that system is
-    # set to the slot volume, so no speaker is ever left at yesterday's level.
+    # set to the slot volume, so no speaker is ever left sitting at last night's level.
     speakers = (store or {}).get('speaker_volumes', {}).get(slot['name'])
 
     # A playlist may carry its own volume, which beats the slot's. Andrew asked for
@@ -313,6 +332,7 @@ def decide(cfg, now, store=None):
         'reason': '%s, %s to %s, using %s' % (slot['name'], slot['from'], slot['to'], source),
         'needs_attention': attention,
         'speakers': speakers,
+        'slot_playlists': sorted(belongs),
     }
 
 
