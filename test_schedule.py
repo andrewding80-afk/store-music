@@ -22,31 +22,31 @@ def check(when_text, expect_playlist, why):
 print('--- an ordinary Tuesday in October, no season or holiday override set ---')
 check('2026-10-06T10:00', None, 'before opening, nothing plays')
 check('2026-10-06T11:29', None, 'one minute before the first slot')
-check('2026-10-06T11:30', 'Jazz Trumpet (copy)', 'lunch rush starts exactly on the boundary')
-check('2026-10-06T13:29', 'Jazz Trumpet (copy)', 'last minute of lunch rush')
-check('2026-10-06T13:30', 'Instrumental Jazz Standards (2)', 'dead stretch takes over on the boundary')
-check('2026-10-06T15:59', 'Instrumental Jazz Standards (2)', 'end of the dead stretch')
-check('2026-10-06T16:00', 'FOH Jazz (From Joel)', 'early evening')
-check('2026-10-06T18:00', 'NEEDS A VOCAL PLAYLIST', 'dinner peak, the known gap')
-check('2026-10-06T21:00', 'Feel Good Jazz (copy)', 'last service')
-check('2026-10-06T22:59', 'Feel Good Jazz (copy)', 'final minute before close')
+check('2026-10-06T11:30', 'Jazz Trumpet', 'lunch rush starts exactly on the boundary')
+check('2026-10-06T13:29', 'Jazz Trumpet', 'last minute of lunch rush')
+check('2026-10-06T13:30', 'Instrumental Jazz Standards', 'dead stretch takes over on the boundary')
+check('2026-10-06T15:59', 'Instrumental Jazz Standards', 'end of the dead stretch')
+check('2026-10-06T16:00', 'FOH Jazz', 'early evening')
+check('2026-10-06T18:00', 'Jazz Classics Blue Note Edition', 'dinner peak, the known gap')
+check('2026-10-06T21:00', 'Feel Good Jazz', 'last service')
+check('2026-10-06T22:59', 'Feel Good Jazz', 'final minute before close')
 check('2026-10-06T23:00', None, 'closed, nothing plays')
 check('2026-10-07T03:00', None, 'middle of the night')
 
 print()
 print('--- Christmas: never before the first of December, 50/50 mix ---')
-check('2026-11-30T19:00', 'NEEDS A VOCAL PLAYLIST', 'November 30th is NOT Christmas')
+check('2026-11-30T19:00', 'Jazz Classics Blue Note Edition', 'November 30th is NOT Christmas')
 check('2026-12-01T19:00', 'December Dinner 50-50', 'December 1st, Christmas starts')
 check('2026-12-01T12:00', 'December Lunch 50-50', 'holiday applies to every slot, not just evening')
 check('2026-12-25T19:00', 'December Dinner 50-50', 'Christmas Day itself')
-check('2026-12-26T19:00', 'NEEDS A VOCAL PLAYLIST', 'Boxing Day, holiday is over')
+check('2026-12-26T19:00', 'Jazz Classics Blue Note Edition', 'Boxing Day, holiday is over')
 
 print()
 print('--- holiday outranks season, and single day holidays work ---')
 check('2026-12-31T19:00', 'Big Band Celebration', "New Year's Eve outranks winter")
-check('2026-12-30T19:00', 'NEEDS A VOCAL PLAYLIST', '30th is neither Christmas nor NYE')
+check('2026-12-30T19:00', 'Jazz Classics Blue Note Edition', '30th is neither Christmas nor NYE')
 check('2027-02-14T19:00', 'Jazz Vocals Romantic', "Valentine's, dinner peak only")
-check('2027-02-14T12:00', 'Jazz Trumpet (copy)', "Valentine's does not touch lunch")
+check('2027-02-14T12:00', 'Jazz Trumpet', "Valentine's does not touch lunch")
 
 print()
 print('--- the winter season wraps across the new year without breaking ---')
@@ -63,7 +63,7 @@ for label, got, want in (('15 Dec', season_dec, 'winter'),
 
 print()
 print('--- the placeholder is flagged rather than played silently ---')
-d = schedule.decide(cfg, datetime.fromisoformat('2026-10-06T19:00'))
+d = schedule.decide(dict(cfg, slots=[dict(s, playlist='NEEDS A TEST PLAYLIST') if s['name']=='Dinner peak' else s for s in cfg['slots']]), datetime.fromisoformat('2026-10-06T19:00'))
 ok = d['needs_attention'] is not None
 if not ok:
     failures.append('dinner peak placeholder was not flagged')
@@ -131,7 +131,7 @@ print('%s a station named in capitals is not mistaken for a placeholder'
       % ('PASS' if ok_caps else 'FAIL'))
 
 d4 = schedule.decide(cfg, datetime.fromisoformat('2026-10-06T19:00'))
-ok4 = d4['playlist'] == 'NEEDS A VOCAL PLAYLIST'
+ok4 = d4['playlist'] == 'Jazz Classics Blue Note Edition'
 if not ok4:
     failures.append('the store default was changed by adding home playlists: got %r'
                     % d4['playlist'])
