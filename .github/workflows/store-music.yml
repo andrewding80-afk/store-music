@@ -57,6 +57,9 @@ jobs:
       - name: Check the in-shop setup kit
         run: python test_instore.py
 
+      - name: Check the leave it off rule
+        run: python test_manual_off.py
+
       - name: Work out the mode
         id: mode
         env:

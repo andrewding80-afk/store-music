@@ -262,6 +262,27 @@ def check_store(cfg, store, now, live):
     lines.append('    actually: %s  (%s)' % (container or 'nothing',
                                              'playing' if is_playing else 'not playing'))
 
+    # ---- did he turn it off himself? ----
+    #
+    # Asked for by Andrew 2026-09-07: if he stops the music, it should stay stopped.
+    # Until now the next check started it again within fifteen minutes.
+    #
+    # There is no memory between runs and none is needed. This job never leaves a
+    # system paused in the middle of a slot, it only stops things at closing time. So
+    # paused, with this slot's own playlist still loaded, can only have been a person.
+    # And the moment the slot changes, the loaded playlist no longer matches the one
+    # wanted, so the music starts again on its own. Off means off until the next
+    # change of slot, and nothing has to be remembered or cleared.
+    #
+    # Only for systems that ask for it. A silent shop during service is a fault and
+    # must stay one.
+    stopped_by_hand = bool(not is_playing and container
+                           and container.strip() == want['playlist'].strip())
+    if stopped_by_hand and store.get('leave_off_if_stopped_by_hand'):
+        lines.append('    turned off by hand during this slot, so leaving it off')
+        lines.append('    it starts again by itself at the next change of slot')
+        return lines, trouble, pending, acted
+
     # ---- the music ----
     music_right = bool(is_playing and container
                        and container.strip() == want['playlist'].strip())

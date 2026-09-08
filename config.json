@@ -80,7 +80,9 @@
         }
       ],
       "_home_comment": "Daytime must be Calm Radio only. Spotify plays in one place at a time, and during the day Andrew is out and using Spotify himself, so a scheduled job on Spotify would cut him off. His Calm Radio stations are the ones named in capitals. Evening and night are unrestricted because he is home and not playing Spotify elsewhere. From midnight the music stops until the nine in the morning start, asked for 2026-09-06.",
-      "stop_when_closed": true
+      "stop_when_closed": true,
+      "leave_off_if_stopped_by_hand": true,
+      "_leave_off_note": "Asked for 2026-09-07. If Andrew stops the music himself, it stays stopped. It starts again on its own at the next change of slot, which at home means nine in the morning, six in the evening or eleven at night. Shops deliberately do not have this: a silent room during service is a fault, not a choice."
     },
     {
       "id": "west-harlem",
