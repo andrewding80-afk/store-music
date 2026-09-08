@@ -49,9 +49,18 @@ def check(ok, what):
 
 
 def home_at(cfg, hour):
-    """What home should be playing at a given hour today."""
+    """What home should be playing at a given hour today.
+
+    The two identifiers are filled in here on purpose. On Andrew's own machines they
+    come from a file that is deliberately not in the repository, and on GitHub they
+    are only handed to the step that actually touches the speakers. A check that
+    depended on either would pass on his laptop and fail on GitHub, which is exactly
+    what happened the first time this was written.
+    """
     when = datetime.datetime(2026, 9, 8, hour, 5)
     store = [s for s in cfg['stores'] if s['id'] == 'home'][0]
+    store['household'] = 'Sonos_pretend_household'
+    store['group'] = 'RINCON_pretend_group:1'
     return store, when, schedule.decide(cfg, when, store)
 
 
