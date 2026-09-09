@@ -5,6 +5,11 @@
 # it ends by telling you exactly what is done and what is still waiting.
 #
 # Written 2026-09-07.
+# 2026-09-09: step 4 rewritten. It can now put the code into a folder you made
+#             yourself and already dropped the keys into, which is what actually
+#             happened on the first real machine. It also repairs a copy that has
+#             lost track of where it came from, and it no longer blames the
+#             internet for problems that have nothing to do with the internet.
 
 READY=()
 LEFT=()
@@ -99,10 +104,47 @@ fi
 # ------------------------------------------------------------------ 4. the code
 head2 "STEP 4 of 6.  The music code"
 
+# Puts the code into a folder that is already there and already has things in it,
+# without touching anything sitting in it. This is the case where the keys were
+# carried across by hand before the code was ever downloaded, which is exactly
+# what happened on the first real machine on 2026-09-09.
+adopt_existing_folder() {
+  (
+    cd "$FOLDER" || exit 1
+    git init -q -b main >/dev/null 2>&1 || git init -q >/dev/null 2>&1
+    git remote remove origin >/dev/null 2>&1
+    git remote add origin "$REPO" >/dev/null 2>&1
+    git fetch -q origin >/dev/null 2>&1 || exit 1
+    git reset --hard origin/main >/dev/null 2>&1 || exit 1
+    git branch -M main >/dev/null 2>&1
+    git branch --set-upstream-to=origin/main main >/dev/null 2>&1
+    exit 0
+  )
+}
+
 if [ -d "$FOLDER/.git" ]; then
   echo "  Already here. Fetching anything new."
-  ( cd "$FOLDER" && git pull --ff-only >/dev/null 2>&1 ) && ok "the code is here and up to date" \
-    || todo "the code is here but could not be updated, tell Claude"
+  if ( cd "$FOLDER" && git pull --ff-only >/dev/null 2>&1 ); then
+    ok "the code is here and up to date"
+  elif ( cd "$FOLDER" && git remote remove origin >/dev/null 2>&1; \
+         git remote add origin "$REPO" >/dev/null 2>&1; \
+         git fetch -q origin >/dev/null 2>&1 && \
+         git branch --set-upstream-to=origin/main main >/dev/null 2>&1 && \
+         git pull --ff-only >/dev/null 2>&1 ); then
+    # The copy was there but had lost track of where it came from. Now repaired.
+    ok "the code is here and up to date"
+  else
+    todo "the code is here but could not be updated, tell Claude"
+  fi
+elif [ -d "$FOLDER" ] && [ -n "$(ls -A "$FOLDER" 2>/dev/null)" ]; then
+  echo "  This folder is already here with things in it, most likely the keys you"
+  echo "  copied across by hand. Putting the code in around them. Nothing already"
+  echo "  in the folder is touched."
+  if adopt_existing_folder; then
+    ok "the code is on this machine, alongside what you had already put in the folder"
+  else
+    todo "the folder already has things in it and the code could not be added around them, tell Claude"
+  fi
 else
   echo "  Getting a fresh copy from GitHub into:"
   echo "      $FOLDER"
@@ -110,7 +152,7 @@ else
   if git clone --quiet "$REPO" "$FOLDER"; then
     ok "the code is on this machine"
   else
-    todo "could not download the code, check this machine is on the internet"
+    todo "could not download the code from GitHub, tell Claude"
   fi
 fi
 
@@ -147,28 +189,32 @@ head2 "STEP 6 of 6.  Proving it actually works, rather than assuming"
 
 cd "$FOLDER" 2>/dev/null || { echo "  The folder is not there. Stopping."; exit 1; }
 
-if python3 test_schedule.py >/dev/null 2>&1 && python3 test_instore.py >/dev/null 2>&1; then
-  ok "the built-in checks all pass on this machine"
+if [ ! -f test_schedule.py ] || [ ! -f test_instore.py ]; then
+  todo "the code is not in the folder yet, so nothing below could be tested. Fix step 4 first"
 else
-  todo "the built-in checks did not pass here, tell Claude before running anything"
-fi
-
-if [ "$NEEDKEYS" = "0" ]; then
-  if python3 whoami.py home 2>/dev/null | grep -q "SYSTEM"; then
-    ok "this machine can reach your Sonos system from the internet"
+  if python3 test_schedule.py >/dev/null 2>&1 && python3 test_instore.py >/dev/null 2>&1; then
+    ok "the built-in checks all pass on this machine"
   else
-    todo "this machine could not reach Sonos, tell Claude"
+    todo "the built-in checks did not pass here, tell Claude before running anything"
   fi
 
-  if git -c credential.helper= \
-       -c credential.helper='!f(){ echo username=andrewding80-afk; echo "password=$(tr -d "\r\n" < github-key.txt)"; };f' \
-       ls-remote "$REPO" >/dev/null 2>&1; then
-    ok "this machine can save changes back to GitHub"
+  if [ "$NEEDKEYS" = "0" ]; then
+    if python3 whoami.py home 2>/dev/null | grep -q "SYSTEM"; then
+      ok "this machine can reach your Sonos system from the internet"
+    else
+      todo "this machine could not reach Sonos, tell Claude"
+    fi
+
+    if git -c credential.helper= \
+         -c credential.helper='!f(){ echo username=andrewding80-afk; echo "password=$(tr -d "\r\n" < github-key.txt)"; };f' \
+         ls-remote "$REPO" >/dev/null 2>&1; then
+      ok "this machine can save changes back to GitHub"
+    else
+      todo "the GitHub key here did not work, tell Claude"
+    fi
   else
-    todo "the GitHub key here did not work, tell Claude"
+    echo "  Skipping the live tests until the keys above are in place."
   fi
-else
-  echo "  Skipping the live tests until the keys above are in place."
 fi
 
 # --------------------------------------------------------- a way back in later
