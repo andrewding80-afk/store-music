@@ -87,11 +87,11 @@
     {
       "id": "west-harlem",
       "name": "West Harlem, 3600 Broadway",
-      "household": "PENDING_AUTHORISATION",
-      "group": "",
-      "enabled": false,
+      "household": "KEPT_IN_GITHUB_SECURE_STORAGE",
+      "group": "KEPT_IN_GITHUB_SECURE_STORAGE",
+      "enabled": true,
       "stop_when_closed": true,
-      "_note": "2026-09-09 visit: this system lives under contact@thehandpullednoodle.com, a different account from the other two stores, authorised that day via connect.py. Favourites complete for this timetable, 67 saved, verified by the wizard. FOH Jazz exists here only as 'FOH Jazz (From Joel)', so this store's slots avoid that name. STILL SWITCHED OFF because the household and group identifiers have not been written anywhere the scheduled job reads: they belong in GitHub secure storage as SONOS_HOUSEHOLD_WEST_HARLEM and SONOS_GROUP_WEST_HARLEM, same shape as the other stores, from the wizard's closing printout. Once they are in, flipping enabled to true is the only change left. Andrew confirmed 2026-09-09 the floor pattern matches Central Harlem, quiet till about 12:30, so the slots below mirror that shape, built only from names in the verified 67.",
+      "_note": "Switched on 2026-09-09, the day of the flagship visit. Lives under contact@thehandpullednoodle.com, a different Sonos account from the other two stores, authorised that day via connect.py. All four of its keys went into GitHub secure storage the same afternoon, token pasted by Andrew, identifiers entered by Claude driving Chrome. Favourites verified: 67 saved. FOH Jazz exists here only as 'FOH Jazz (From Joel)', so this store's slots avoid that name. Andrew confirmed the floor pattern matches Central Harlem, quiet till about 12:30, so the slots below mirror that shape, built only from names in the verified 67.",
       "slots": [
         {
           "name": "Soft open",
@@ -177,7 +177,7 @@
       "group": "KEPT_IN_GITHUB_SECURE_STORAGE",
       "enabled": true,
       "stop_when_closed": true,
-      "_note": "Switched on 2026-09-09, the day Andrew saved 36 playlists as favourites in the shop. Carries its own slots because Andrew corrected the shared timetable from the floor: the room is near empty at 11:30 and the real lunch rush is 12:30 to 2, so the day opens chill and the energy starts at 12:30. Pools deal one playlist per day per slot, so no two days sound the same. Every name below was verified saved on this system during the 2026-09-09 visit. FOH Jazz and Feel Good Jazz were deliberately skipped that day and are not referenced here.",
+      "_note": "Switched on 2026-09-09, the day Andrew saved 36 playlists as favourites in the shop. CORRECTION, same day: it was enabled that morning but its keys were not in GitHub secure storage, so every run until late afternoon silently skipped it as not connected. Found when the West Harlem keys were being added; all four Central Harlem keys went in then, token pasted by Andrew, identifiers entered by Claude from the laptop's ids.json. Lesson written to the build law's close-the-loop record: enabled means scheduled, only keys in secure storage mean reachable, and switching a store on must include checking its keys exist. Carries its own slots because Andrew corrected the shared timetable from the floor: the room is near empty at 11:30 and the real lunch rush is 12:30 to 2, so the day opens chill and the energy starts at 12:30. Pools deal one playlist per day per slot, so no two days sound the same. Every name below was verified saved on this system during the 2026-09-09 visit. FOH Jazz and Feel Good Jazz were deliberately skipped that day and are not referenced here.",
       "slots": [
         {
           "name": "Soft open",
