@@ -91,7 +91,7 @@
       "group": "KEPT_IN_GITHUB_SECURE_STORAGE",
       "enabled": true,
       "stop_when_closed": true,
-      "_note": "Switched on 2026-09-09, the day of the flagship visit. Lives under contact@thehandpullednoodle.com, a different Sonos account from the other two stores, authorised that day via connect.py. All four of its keys went into GitHub secure storage the same afternoon, token pasted by Andrew, identifiers entered by Claude driving Chrome. Favourites verified: 67 saved. FOH Jazz exists here only as 'FOH Jazz (From Joel)', so this store's slots avoid that name. Andrew confirmed the floor pattern matches Central Harlem, quiet till about 12:30, so the slots below mirror that shape, built only from names in the verified 67.",
+      "_note": "Switched on 2026-09-09, the day of the flagship visit, and proven the same afternoon: run 241 found it playing its scheduled playlist, already correct, and eased a drifted volume back down. Lives under contact@thehandpullednoodle.com, a different Sonos account from the other two stores, authorised that day via connect.py. Favourites verified: 67 saved. FOH Jazz exists here only as 'FOH Jazz (From Joel)', so this store's slots avoid that name. Andrew confirmed the floor pattern matches Central Harlem, quiet till about 12:30, so the slots below mirror that shape, built only from names in the verified 67.",
       "slots": [
         {
           "name": "Soft open",
@@ -172,12 +172,12 @@
     },
     {
       "id": "central-harlem",
-      "name": "Central Harlem, 370 Malcolm X (two speakers)",
+      "name": "Central Harlem, 370 Malcolm X (one speaker, Dining Room)",
       "household": "KEPT_IN_GITHUB_SECURE_STORAGE",
       "group": "KEPT_IN_GITHUB_SECURE_STORAGE",
       "enabled": true,
       "stop_when_closed": true,
-      "_note": "Switched on 2026-09-09, the day Andrew saved 36 playlists as favourites in the shop. CORRECTION, same day: it was enabled that morning but its keys were not in GitHub secure storage, so every run until late afternoon silently skipped it as not connected. Found when the West Harlem keys were being added; all four Central Harlem keys went in then, token pasted by Andrew, identifiers entered by Claude from the laptop's ids.json. Lesson written to the build law's close-the-loop record: enabled means scheduled, only keys in secure storage mean reachable, and switching a store on must include checking its keys exist. Carries its own slots because Andrew corrected the shared timetable from the floor: the room is near empty at 11:30 and the real lunch rush is 12:30 to 2, so the day opens chill and the energy starts at 12:30. Pools deal one playlist per day per slot, so no two days sound the same. Every name below was verified saved on this system during the 2026-09-09 visit. FOH Jazz and Feel Good Jazz were deliberately skipped that day and are not referenced here.",
+      "_note": "LABEL CORRECTED 2026-09-09 evening: this entry said two speakers for days, but the speaker roll call showed the system holds exactly one, named Dining Room, and Andrew confirmed from the floor that the single speaker IS Central Harlem. The morning's wizard therefore verified the right system all along. Same day, earlier: enabled in the morning without its keys in secure storage, so runs silently skipped it until the keys went in that afternoon. Also that day: the group id from Sunday died when Andrew power-cycled the speaker during the wifi fix, because Sonos mints a new group id when a group re-forms; the fresh id was read with connect.py and pasted into secure storage by Andrew. Lesson, twice over: enabled means scheduled, keys mean reachable, and any power cycle can kill a stored group id, so a 410 RESOURCE_GONE after a store visit means re-read the group id, not much else. A build is queued to look the group up fresh by name each run so this stops being manual. Slots: Andrew corrected the shared timetable from the floor, near empty at 11:30, real rush 12:30 to 2, so the day opens chill. Pools deal one playlist per day per slot. Every name below was verified saved on this system 2026-09-09. FOH Jazz and Feel Good Jazz were deliberately skipped and are not referenced here.",
       "slots": [
         {
           "name": "Soft open",
@@ -254,22 +254,14 @@
       ]
     },
     {
-      "id": "central-harlem-b",
-      "name": "Central Harlem, the single One SL (separate system)",
-      "household": "KEPT_IN_GITHUB_SECURE_STORAGE",
-      "group": "KEPT_IN_GITHUB_SECURE_STORAGE",
-      "enabled": false,
-      "stop_when_closed": true,
-      "_note": "The One SL registered February 2026 was set up as its own system rather than added to the existing one, so it plays on its own. Same sign-in as central-harlem. If it is merged into the other system in the shop, delete this entry."
-    },
-    {
       "id": "hells-kitchen",
-      "name": "Hell's Kitchen, 354 West 44th",
+      "name": "Hell's Kitchen, 354 West 44th (left and right pair)",
       "household": "KEPT_IN_GITHUB_SECURE_STORAGE",
       "group": "KEPT_IN_GITHUB_SECURE_STORAGE",
       "enabled": true,
       "stop_when_closed": true,
-      "_note": "Owned by contact@thenoodle.nyc, same sign-in as Central Harlem, found in the shop 2026-09-08. Speaker renamed the same day to Dining Room THPN-HK. Connected and switched on that visit. Still on the shared timetable below; 2026-09-09 finding: the shared slots name FOH Jazz and Feel Good Jazz, and it has not been verified that those are saved on this system. Check the favourites on the next Hell's Kitchen visit, or give this store its own slots the way Central Harlem got."
+      "_note": "IDENTITY CORRECTED 2026-09-09 evening. This store's system is the two-speaker pair, Dining Room Left Speaker and Dining Room Right Speaker, under contact@thenoodle.nyc, confirmed by Andrew from the speaker roll call. These files had been calling that pair 'Central Harlem's lone One SL' since at least 2026-09-07, and a central-harlem-b entry existed for it; that entry is deleted, this note is its grave marker. The 2026-09-08 shop-visit note said the speaker was renamed Dining Room THPN-HK; no speaker by that name exists on the account now, so the rename did not stick. Its favourites were confirmed 2026-09-09 to include every shared-timetable name, Jazz Trumpet, Instrumental Jazz Standards, FOH Jazz, Jazz Classics Blue Note Edition and Feel Good Jazz, so the earlier worry about missing names is resolved. OPEN ISSUE: something on this system keeps restarting its old favourites between runs, seen at 14:30, 14:45, 15:00 on 2026-09-09, each time corrected by the schedule; nobody touches the speakers by hand, so the prime suspect is old Sonos alarms on this system, which can only be deleted from the app on the shop's own wifi. Delete every alarm there on the next Hell's Kitchen visit. Until then the quarter-hourly repair holds the line. Second open question: the One SL bought in February is now unaccounted for; it may be one of this pair or sitting unregistered somewhere.",
+      "_note_2": "Still on the shared timetable below. Andrew's quiet-till-12:30 floor pattern held at both Harlem stores and likely holds here; check against the Toast busy-hours analysis before giving this store its own slots."
     }
   ],
   "_slots_comment": "All three stores run the same hours, confirmed 2026-09-05. Times are 24 hour. Music runs 11:30 to 23:00; outside those hours nothing plays. Central Harlem and West Harlem carry their own slots on their store entries; Andrew's 2026-09-09 floor observation, empty at 11:30 and rush 12:30 to 2, is confirmed for both Harlem stores and should be checked for Hell's Kitchen against the Toast busy-hours analysis, spec in run-the-house docs.",
