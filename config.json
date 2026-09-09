@@ -97,9 +97,83 @@
       "name": "Central Harlem, 370 Malcolm X (two speakers)",
       "household": "KEPT_IN_GITHUB_SECURE_STORAGE",
       "group": "KEPT_IN_GITHUB_SECURE_STORAGE",
-      "enabled": false,
+      "enabled": true,
       "stop_when_closed": true,
-      "_note": "Connected 2026-09-07 through contact@thenoodle.nyc. Switched off until the playlists are saved as favourites in the shop, which needs someone on its wifi."
+      "_note": "Switched on 2026-09-09, the day Andrew saved 36 playlists as favourites in the shop. Carries its own slots because Andrew corrected the shared timetable from the floor: the room is near empty at 11:30 and the real lunch rush is 12:30 to 2, so the day opens chill and the energy starts at 12:30. Pools deal one playlist per day per slot, so no two days sound the same. Every name below was verified saved on this system during the 2026-09-09 visit. FOH Jazz and Feel Good Jazz were deliberately skipped that day and are not referenced here.",
+      "slots": [
+        {
+          "name": "Soft open",
+          "from": "11:30",
+          "to": "12:30",
+          "volume": 22,
+          "playlist_pool": [
+            "Brunch Jazz",
+            "Bossa Nova Classics",
+            "Jazz in the Background"
+          ]
+        },
+        {
+          "name": "Lunch rush",
+          "from": "12:30",
+          "to": "14:00",
+          "volume": 28,
+          "playlist_pool": [
+            "Jazz Trumpet",
+            "Funky Instrumental Jazz",
+            "Smooth Upbeat Instrumental Jazz",
+            "The Best Upbeat Instrumental Jazz Collection",
+            "Jazz-Funk"
+          ]
+        },
+        {
+          "name": "Dead stretch",
+          "from": "14:00",
+          "to": "16:00",
+          "volume": 22,
+          "playlist_pool": [
+            "Instrumental Jazz Standards",
+            "Instrumental Jazz Mix",
+            "Jazz in the Rain"
+          ]
+        },
+        {
+          "name": "Early evening",
+          "from": "16:00",
+          "to": "18:00",
+          "volume": 26,
+          "playlist_pool": [
+            "Cocktail Jazz",
+            "Instrumental - Cocktail Jazz",
+            "Jazz Bar",
+            "Just Jazz"
+          ]
+        },
+        {
+          "name": "Dinner peak",
+          "from": "18:00",
+          "to": "21:00",
+          "volume": 30,
+          "playlist_pool": [
+            "Jazz Classics Blue Note Edition",
+            "Jazz Classics",
+            "Dinner Jazz",
+            "Jazzy Dinner",
+            "Date Night Jazz",
+            "Bossa Nova Dinner"
+          ]
+        },
+        {
+          "name": "Last service",
+          "from": "21:00",
+          "to": "23:00",
+          "volume": 24,
+          "playlist_pool": [
+            "Feel Good Instrumental Jazz Mix",
+            "Smooth Jazz & Soul R&B Instrumentals",
+            "This Is Wynton Marsalis"
+          ]
+        }
+      ]
     },
     {
       "id": "central-harlem-b",
@@ -117,10 +191,10 @@
       "group": "KEPT_IN_GITHUB_SECURE_STORAGE",
       "enabled": true,
       "stop_when_closed": true,
-      "_note": "Owned by contact@thenoodle.nyc, same sign-in as Central Harlem, found in the shop 2026-09-08. Speaker renamed the same day to Dining Room THPN-HK. Connected and switched on that visit."
+      "_note": "Owned by contact@thenoodle.nyc, same sign-in as Central Harlem, found in the shop 2026-09-08. Speaker renamed the same day to Dining Room THPN-HK. Connected and switched on that visit. Still on the shared timetable below; 2026-09-09 finding: the shared slots name FOH Jazz and Feel Good Jazz, and it has not been verified that those are saved on this system. Check the favourites on the next Hell's Kitchen visit, or give this store its own slots the way Central Harlem got."
     }
   ],
-  "_slots_comment": "All three stores run the same hours, confirmed 2026-09-05. Times are 24 hour. Music runs 11:30 to 23:00; outside those hours nothing plays.",
+  "_slots_comment": "All three stores run the same hours, confirmed 2026-09-05. Times are 24 hour. Music runs 11:30 to 23:00; outside those hours nothing plays. Central Harlem carries its own slots on its store entry; Andrew's 2026-09-09 floor correction there (empty at 11:30, rush 12:30 to 2) likely applies to the other stores too and should be checked against the Toast busy-hours analysis, spec in run-the-house docs.",
   "slots": [
     {
       "name": "Lunch rush",
@@ -182,7 +256,7 @@
       "overrides": {}
     }
   },
-  "_holidays_comment": "Holidays outrank seasons, which outrank the default. Christmas never starts before the first week of December, and the 50/50 mix of Christmas and non-Christmas tracks is built into the playlist itself, not by the software.",
+  "_holidays_comment": "Holidays outrank seasons, which outrank the default. Christmas never starts before the first week of December, and the 50/50 mix of Christmas and non-Christmas tracks is built into the playlist itself, not by the software. Holiday overrides name slots; Central Harlem's own slot names include the same 'Lunch rush', 'Dead stretch', 'Early evening', 'Dinner peak' and 'Last service', so the December and holiday overrides still land there. The 'Soft open' slot has no override and stays chill in December, which is right.",
   "holidays": [
     {
       "name": "Christmas",
