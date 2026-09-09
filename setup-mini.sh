@@ -10,12 +10,17 @@
 #             happened on the first real machine. It also repairs a copy that has
 #             lost track of where it came from, and it no longer blames the
 #             internet for problems that have nothing to do with the internet.
+# 2026-09-09: step 2 no longer invents a job. Apple silicon will not report the
+#             power-cut restart setting back, and the file was reading that
+#             silence as the setting being off, then telling Andrew to go and
+#             turn on something that was already on.
 
 READY=()
 LEFT=()
 
 ok()   { echo "   DONE   $1"; READY+=("$1"); }
 todo() { echo "   TO DO  $1"; LEFT+=("$1"); }
+note() { echo "   NOTE   $1"; }
 line() { echo "  --------------------------------------------------------------------"; }
 head2() { echo; line; echo "  $1"; line; }
 
@@ -64,6 +69,11 @@ echo
 echo "  This needs your Mac password. Nothing else here does."
 echo
 
+# Both settings below are applied first, then read back. The read back is the
+# part that has to be careful. On Apple silicon, pmset will not report the
+# power-cut restart setting at all, and on 2026-09-09 that silence was being
+# read as the setting being off, which put a job on Andrew's list that he had
+# already done. Nothing read back means nothing is known. It does not mean off.
 if sudo -n true 2>/dev/null || sudo -v; then
   sudo pmset -a sleep 0 >/dev/null 2>&1
   sudo pmset -a disksleep 0 >/dev/null 2>&1
@@ -71,8 +81,25 @@ if sudo -n true 2>/dev/null || sudo -v; then
   sudo pmset -a womp 1 >/dev/null 2>&1
   SLEEPVAL=$(pmset -g custom 2>/dev/null | awk '/ sleep/{print $2; exit}')
   AUTOVAL=$(pmset -g custom 2>/dev/null | awk '/autorestart/{print $2; exit}')
-  if [ "$SLEEPVAL" = "0" ]; then ok "set never to sleep"; else todo "set it never to sleep by hand, in System Settings, Energy"; fi
-  if [ "$AUTOVAL" = "1" ]; then ok "set to start itself again after a power cut"; else todo "turn on Start up automatically after a power failure, in System Settings, Energy"; fi
+
+  if [ "$SLEEPVAL" = "0" ]; then
+    ok "set never to sleep"
+  elif [ -z "$SLEEPVAL" ]; then
+    ok "set never to sleep"
+    note "this machine will not say the sleep setting back, so it cannot be double checked here"
+  else
+    todo "set it never to sleep by hand, in System Settings, Energy"
+  fi
+
+  if [ "$AUTOVAL" = "1" ]; then
+    ok "set to start itself again after a power cut"
+  elif [ -z "$AUTOVAL" ]; then
+    ok "set to start itself again after a power cut"
+    note "this machine will not say that setting back, which is normal on Apple silicon."
+    note "to see it for yourself: System Settings, Energy, Start up when power is connected"
+  else
+    todo "turn on Start up automatically after a power failure, in System Settings, Energy"
+  fi
 else
   todo "set never to sleep, and start up after a power failure, in System Settings, Energy"
 fi
