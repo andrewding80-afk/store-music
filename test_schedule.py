@@ -117,13 +117,29 @@ if not _ok_tue:
     failures.append('Tuesday evening dealt something not in the lounge list: %r' % _tue_eve)
 print('%s %-18s %-34s %s' % ('PASS' if _ok_tue else 'FAIL', '06T19:00', _tue_eve,
                              'Tuesday evening deals from the lounge list'))
+# From 2026-09-10 home has its OWN December, at Andrew's instruction to treat it the
+# same as the shops: 50/50, never a pure Christmas playlist. What must still never
+# happen is home picking up a SHOP's Christmas playlist, which is what this always
+# guarded and what two attempts got wrong.
+_shop_xmas = set()
+for _h in cfg.get('holidays', []):
+    if _h.get('name') == 'Christmas':
+        for _v in (_h.get('overrides') or {}).values():
+            _shop_xmas.update(_v if isinstance(_v, list) else [_v])
 _xmas = schedule.decide(cfg, datetime.fromisoformat('2026-12-20T19:00'), home)['playlist']
-_ok_xmas = _xmas in _eve_pool
+_ok_xmas = _xmas not in _shop_xmas
 if not _ok_xmas:
-    failures.append('a December evening at home was hijacked by the store Christmas rule: %r'
+    failures.append('a December evening at home was hijacked by a SHOP Christmas playlist: %r'
                     % _xmas)
 print('%s %-18s %-34s %s' % ('PASS' if _ok_xmas else 'FAIL', '20T19:00', _xmas,
-                             'home ignores the store Christmas playlists'))
+                             'home never picks up a shop Christmas playlist'))
+
+# And home's own December must actually be its own, not the everyday list.
+_ok_own_xmas = _xmas not in _eve_pool
+if not _ok_own_xmas:
+    failures.append('home has no December of its own: December evening dealt %r' % _xmas)
+print('%s %-18s %-34s %s' % ('PASS' if _ok_own_xmas else 'FAIL', '20T19:00', _xmas,
+                             'home has a December of its own'))
 check_store('2026-10-10T08:00', None, 'before nine, nothing plays at home')
 
 d3 = schedule.decide(cfg, datetime.fromisoformat('2026-10-06T19:00'), home)

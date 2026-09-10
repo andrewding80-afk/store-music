@@ -307,6 +307,15 @@ def decide(cfg, now, store=None):
     if holiday and slot['name'] in holiday.get('overrides', {}):
         playlist, source = _apply_override(holiday['overrides'][slot['name']], holiday['name'])
 
+    # A system may carry its own holidays, which beat the shared ones. Added 2026-09-10 so
+    # home could have a December without being swept into the shops' Christmas block. Two
+    # tests exist to stop a shop rule following home around and they were right to fail
+    # when it was tried the other way.
+    own_holiday = active_holiday({'holidays': (store or {}).get('holidays', [])}, now.date())
+    if own_holiday and slot['name'] in own_holiday.get('overrides', {}):
+        playlist, source = _apply_override(own_holiday['overrides'][slot['name']],
+                                           "this system's own %s" % own_holiday['name'])
+
     # What this particular system calls it wins over everything above, because a name
     # that is not saved on that system cannot be played there at all.
     own = (store or {}).get('playlists', {})

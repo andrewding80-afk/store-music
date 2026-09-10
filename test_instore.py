@@ -70,9 +70,18 @@ def main():
     check('BACH' in home_today, 'home is asked for the stations its own day uses')
     check(all('Jazz Trumpet' not in n for n in home_today),
           'home is never asked for the shop playlists')
-    check(all('December' not in n for n in
-              instore.wanted_playlists(cfg, home, everything=True)),
-          'a season that renames a shop slot does not follow home around')
+    # From 2026-09-10 home has its OWN December, because Andrew asked for home to follow
+    # the same 50/50 rule as the shops. What must still never happen is a SHOP's playlist
+    # turning up on home's list, which is what this always guarded.
+    shop_xmas = set()
+    for block in cfg.get('holidays', []):
+        for value in (block.get('overrides') or {}).values():
+            shop_xmas.update(value if isinstance(value, list) else [value])
+    home_everything = instore.wanted_playlists(cfg, home, everything=True)
+    check(not (set(home_everything) & shop_xmas),
+          'a shop playlist never follows home around')
+    check(any('December' in n for n in home_everything),
+          "home's own December playlist is listed as due later")
 
     FAVS[:] = []
     code, out = run_check_mode('west-harlem')

@@ -73,6 +73,11 @@ def wanted_playlists(cfg, store, everything=False):
             from_overrides(block)
         for block in cfg.get('holidays', []):
             from_overrides(block)
+        # A system may carry its own holidays, added 2026-09-10 so home could have a
+        # December without being swept into the shops' Christmas block. Without this the
+        # check reported home as complete while its December playlist did not exist.
+        for block in store.get('holidays', []):
+            from_overrides(block)
 
     return [n for n in names if n and not n.startswith('NEEDS ')]
 

@@ -141,14 +141,26 @@
           ],
           "volume_by_playlist": {
             "AMBIENT CALM": 15
-          }
+          },
+          "_pool_note": "⚠️ 'AMBIENT CALM' is named here and is NOT saved on the home system, checked 2026-09-10. A night it is dealt fails with 'no favourite named'. It was briefly removed that day and two tests correctly objected: Andrew asked for three stations with this one at volume 15, and deleting his instruction is not a repair for a missing favourite. FIX IT ON SONOS: save a station called exactly 'AMBIENT CALM' on the home system, or tell Claude to rename this to 'NIGHT STORMS', which is already saved there and looks like the intended one."
         }
       ],
       "_home_comment": "Daytime must be Calm Radio only. Spotify plays in one place at a time, and during the day Andrew is out and using Spotify himself, so a scheduled job on Spotify would cut him off. His Calm Radio stations are the ones named in capitals. Evening and night are unrestricted because he is home and not playing Spotify elsewhere. From midnight the music stops until the nine in the morning start, asked for 2026-09-06.",
       "stop_when_closed": true,
       "leave_off_if_stopped_by_hand": true,
       "_leave_off_note": "Asked for 2026-09-07. If Andrew stops the music himself, it stays stopped. It starts again on its own at the next change of slot, which at home means nine in the morning, six in the evening or eleven at night. Shops deliberately do not have this: a silent room during service is a fault, not a choice.",
-      "_day_rules_note": "Set 2026-09-10 by Andrew. Sunroom silent in the daytime on Tue, Wed and Thu. TV Room silent EVERY evening, all seven nights. Weekends start at 10:00 rather than 09:00; Mon and Fri and the weekend play in every room. Silent means volume 0 with the speaker still in the group, never ungrouped: that is the decision recorded on 2026-09-06, because splitting and rejoining needs the software to remember what it undid and a failure leaves the house split until someone notices. Ceilings are Andrew's: Sunroom 20, TV Room 20, Dressing Room 25, Bedroom 25, Kitchen 28. Evenings sit below the ceiling in the same proportion they always did."
+      "_day_rules_note": "Set 2026-09-10 by Andrew. Sunroom silent in the daytime on Tue, Wed and Thu. TV Room silent EVERY evening, all seven nights. Weekends start at 10:00 rather than 09:00; Mon and Fri and the weekend play in every room. Silent means volume 0 with the speaker still in the group, never ungrouped: that is the decision recorded on 2026-09-06, because splitting and rejoining needs the software to remember what it undid and a failure leaves the house split until someone notices. Ceilings are Andrew's: Sunroom 20, TV Room 20, Dressing Room 25, Bedroom 25, Kitchen 28. Evenings sit below the ceiling in the same proportion they always did.",
+      "holidays": [
+        {
+          "name": "Christmas",
+          "from": "12-01",
+          "to": "12-25",
+          "overrides": {
+            "Evening": "December Evening 50-50 (home)"
+          }
+        }
+      ],
+      "_christmas_note": "Andrew's instruction 2026-09-10: treat home the same as the shops, 50/50, not pure Christmas. Kept as home's OWN holiday rather than added to the shared block, because two tests exist specifically to stop a shop rule following home around, and they were right. ⚠️ 'December Evening 50-50 (home)' DOES NOT EXIST YET. The mixing lives in the Spotify playlist, never in the software, so it has to be built half Christmas half not, and saved as a favourite on the home system before December. The thirteen pure Christmas playlists on that system are deliberately NOT scheduled: rule 2 of 2026-09-05 forbids a Christmas playlist running on its own, and Andrew has now extended that rule to home."
     },
     {
       "id": "west-harlem",
