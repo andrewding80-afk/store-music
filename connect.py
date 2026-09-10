@@ -95,7 +95,20 @@ def main():
             print('    %s' % fav.get('name'))
 
     print()
-    print('Copy the household id and the group id you want into config.json for %r.' % store_id)
+    # Do NOT tell him to put these in config.json. That file deliberately holds
+    # KEPT_IN_GITHUB_SECURE_STORAGE placeholders, and schedule.py treats a value
+    # starting with KEPT_ as "not connected". The real ids live in GitHub Actions
+    # secrets. The old wording here told Andrew to commit a secret to the
+    # repository, which is the exact thing that design exists to prevent.
+    # Corrected 2026-09-10.
+    up = store_id.upper().replace('-', '_')
+    print('These two ids are secrets. They do NOT go in config.json, which keeps a')
+    print('placeholder on purpose. Put them into the GitHub repository secrets as:')
+    print('  SONOS_HOUSEHOLD_%s   and   SONOS_GROUP_%s' % (up, up))
+    print()
+    print('And note: the token just saved here is this machine\'s copy. The scheduled')
+    print('job on GitHub uses SONOS_TOKEN_%s, a separate copy, which this does' % up)
+    print('not touch.')
     return 0
 
 
