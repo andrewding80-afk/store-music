@@ -576,19 +576,24 @@ print('%s no real Sonos identifier is written into the settings file'
       % ('PASS' if ok_no_ids else 'FAIL'))
 
 # And the names to look for are the ones the instruction file actually passes through.
-_h, _g = schedule.stored_id_names('home')
-ok_names = (_h, _g) == ('SONOS_HOUSEHOLD_HOME', 'SONOS_GROUP_HOME')
+_h, _g, _s = schedule.stored_id_names('home')
+ok_names = (_h, _g, _s) == ('SONOS_HOUSEHOLD_HOME', 'SONOS_GROUP_HOME', 'SONOS_SPEAKER_HOME')
 if not ok_names:
-    failures.append('the stored names changed shape: %s, %s' % (_h, _g))
-print('%s the two names are %s and %s' % ('PASS' if ok_names else 'FAIL', _h, _g))
+    failures.append('the stored names changed shape: %s, %s, %s' % (_h, _g, _s))
+print('%s the three names are %s, %s and %s'
+      % ('PASS' if ok_names else 'FAIL', _h, _g, _s))
 
 # When they are set, they win. When they are not, the file is used and nothing breaks.
 _os.environ['SONOS_HOUSEHOLD_HOME'] = 'Sonos_TEST'
 _os.environ['SONOS_GROUP_HOME'] = 'RINCON_TEST'
+_os.environ['SONOS_SPEAKER_HOME'] = 'RINCON_SPEAKER_TEST'
 _reloaded = [x for x in schedule.load()['stores'] if x['id'] == 'home'][0]
-ok_env = _reloaded['household'] == 'Sonos_TEST' and _reloaded['group'] == 'RINCON_TEST'
+ok_env = (_reloaded['household'] == 'Sonos_TEST'
+          and _reloaded['group'] == 'RINCON_TEST'
+          and _reloaded.get('speaker') == 'RINCON_SPEAKER_TEST')
 del _os.environ['SONOS_HOUSEHOLD_HOME']
 del _os.environ['SONOS_GROUP_HOME']
+del _os.environ['SONOS_SPEAKER_HOME']
 if not ok_env:
     failures.append('the stored identifiers were not picked up: %r' % _reloaded)
 print('%s a stored identifier is used when it is there' % ('PASS' if ok_env else 'FAIL'))

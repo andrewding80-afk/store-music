@@ -191,6 +191,25 @@ def groups(store_id, household):
     return _request(url, headers=_auth_headers(store_id))
 
 
+def group_for_speaker(store_id, household, speaker_id):
+    """The group that speaker is in RIGHT NOW, or None if it is not there.
+
+    Written 2026-09-10, the morning two stores lost their music. A group id is a
+    speaker's serial plus a number that is regenerated every time the speakers
+    re-form a group, so it dies on any wifi drop, power cut, or somebody tapping
+    group in the app. A speaker's serial is the hardware and survives all of it.
+
+    Matches on playerIds rather than the coordinator, because home's failure that
+    morning was the coordinator itself moving to a different speaker when the
+    Bedroom one dropped off.
+    """
+    data = groups(store_id, household)
+    for g in data.get('groups', []):
+        if speaker_id in (g.get('playerIds') or []):
+            return g.get('id')
+    return None
+
+
 def favourites(store_id, household):
     url = '%s/households/%s/favorites' % (API, household)
     return _request(url, headers=_auth_headers(store_id)).get('items', [])

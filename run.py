@@ -335,6 +335,38 @@ def check_store(cfg, store, now, live):
     return lines, trouble, pending, acted
 
 
+def point_at_the_live_group(store):
+    """Point this store at whichever group its speaker is in right now.
+
+    Written 2026-09-10, the morning home and West Harlem both went silent. A group id
+    is a speaker serial plus a number that is regenerated every time the speakers
+    re-form a group, so an internet drop kills it and the music stops with a 410 that
+    nobody sees. A speaker serial is the hardware and survives all of it.
+
+    Never makes things worse than before it existed: any failure leaves the stored
+    group in place and says so, so a store that worked yesterday still works today.
+    A store with no speaker setting is untouched, which is what lets this be switched
+    on one store at a time.
+    """
+    speaker = store.get('speaker')
+    if not speaker or schedule.not_connected(store):
+        return None
+    try:
+        found = sonos.group_for_speaker(store['id'], store['household'], speaker)
+    except Exception as exc:
+        return ('    could not ask Sonos which group the speaker is in (%s). '
+                'Falling back to the stored group.' % str(exc)[:70])
+    if not found:
+        return ('    NOTE: speaker %s is not in any group right now, so the stored '
+                'group is being used and may be stale.' % speaker)
+    if found != store.get('group'):
+        was = store.get('group')
+        store['group'] = found
+        return ('    the group had changed, found it again by its speaker: %s is now %s'
+                % (was, found))
+    return None
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--live', action='store_true',
@@ -358,7 +390,10 @@ def main():
         return 0
 
     for store in enabled:
+        note = point_at_the_live_group(store)
         lines, trouble, pending, acted = check_store(cfg, store, now, args.live)
+        if note:
+            lines.insert(1, note)
         any_trouble = any_trouble or trouble
         any_pending = any_pending or pending
         changes.extend(acted)
