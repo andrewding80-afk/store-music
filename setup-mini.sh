@@ -80,7 +80,11 @@ if sudo -n true 2>/dev/null || sudo -v; then
   sudo pmset -a autorestart 1 >/dev/null 2>&1
   sudo pmset -a womp 1 >/dev/null 2>&1
   SLEEPVAL=$(pmset -g custom 2>/dev/null | awk '/ sleep/{print $2; exit}')
-  AUTOVAL=$(pmset -g custom 2>/dev/null | awk '/autorestart/{print $2; exit}')
+  # Match the field name exactly. A loose /autorestart/ matches the line
+  # "autorestartatconnect 0" first and exits, so this read 0 while the real
+  # setting was 1, and the script told Andrew to go and turn on something that
+  # had been on for days. Found 2026-09-10.
+  AUTOVAL=$(pmset -g custom 2>/dev/null | awk '$1=="autorestart"{print $2; exit}')
 
   if [ "$SLEEPVAL" = "0" ]; then
     ok "set never to sleep"
