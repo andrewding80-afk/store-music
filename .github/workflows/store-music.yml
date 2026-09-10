@@ -35,7 +35,9 @@ on:
     types: [created]
 
 permissions:
-  contents: read
+  # write, only so the last step can publish a one-line verdict to the
+  # 'status' branch. Nothing else here writes. Added 2026-09-10.
+  contents: write
 
 jobs:
   music:
@@ -74,6 +76,7 @@ jobs:
           fi
 
       - name: Set the music
+        id: setmusic
         env:
           SONOS_CLIENT_ID: ${{ secrets.SONOS_CLIENT_ID }}
           SONOS_CLIENT_SECRET: ${{ secrets.SONOS_CLIENT_SECRET }}
@@ -90,6 +93,21 @@ jobs:
           SONOS_HOUSEHOLD_HELLS_KITCHEN: ${{ secrets.SONOS_HOUSEHOLD_HELLS_KITCHEN }}
           SONOS_GROUP_HELLS_KITCHEN: ${{ secrets.SONOS_GROUP_HELLS_KITCHEN }}
         run: python run.py ${{ steps.mode.outputs.flag }} | tee run-output.txt
+
+      # Publishes the verdict where it can be read without opening GitHub. The
+      # summary below only ever reaches the Actions page, which Andrew does not see,
+      # so a job could fail quietly for days. Writes only when the verdict changes or
+      # once a day, so silence is meaningful rather than just silence.
+      #
+      # continue-on-error, because a heartbeat that can stop the thing it watches is
+      # worse than no heartbeat.
+      - name: Publish the verdict to the status branch
+        if: always()
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_EXIT_CODE: ${{ steps.setmusic.outcome == 'success' && '0' || '1' }}
+        run: python publish_status.py
 
       - name: Say what happened, only when there is something to say
         if: always()
