@@ -92,6 +92,12 @@ jobs:
           SONOS_GROUP_CENTRAL_HARLEM: ${{ secrets.SONOS_GROUP_CENTRAL_HARLEM }}
           SONOS_HOUSEHOLD_HELLS_KITCHEN: ${{ secrets.SONOS_HOUSEHOLD_HELLS_KITCHEN }}
           SONOS_GROUP_HELLS_KITCHEN: ${{ secrets.SONOS_GROUP_HELLS_KITCHEN }}
+          # The speaker each store is found by. A group id dies whenever the
+          # speakers regroup; a speaker serial does not. Added 2026-09-10.
+          SONOS_SPEAKER_HOME: ${{ secrets.SONOS_SPEAKER_HOME }}
+          SONOS_SPEAKER_WEST_HARLEM: ${{ secrets.SONOS_SPEAKER_WEST_HARLEM }}
+          SONOS_SPEAKER_CENTRAL_HARLEM: ${{ secrets.SONOS_SPEAKER_CENTRAL_HARLEM }}
+          SONOS_SPEAKER_HELLS_KITCHEN: ${{ secrets.SONOS_SPEAKER_HELLS_KITCHEN }}
         run: python run.py ${{ steps.mode.outputs.flag }} | tee run-output.txt
 
       # Publishes the verdict where it can be read without opening GitHub. The
