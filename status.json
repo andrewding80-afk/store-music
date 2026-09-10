@@ -1,13 +1,11 @@
 {
-  "ok": false,
-  "result": "SOMETHING NEEDS ATTENTION",
+  "ok": true,
+  "result": "4 changes made",
   "stores_switched_on_but_unreachable": [],
-  "problems": [
-    "West Harlem, 3600 Broadway: COULD NOT REACH SONOS"
-  ],
-  "run": "331",
-  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/34497682764",
-  "output_tail": "Store music check, 2026-09-10 11:45\nMode: LIVE, changes will be made\n\n  Home (TV Room + 4)\n    should be: VIVALDI  at volume 30   (Daytime, 09:00 to 18:00, using number 3 of 10 in this round, today)\n    each speaker: Bedroom 25, Dressing Room 56, Kitchen 33, Sunroom 20, TV Room 25\n    actually: VIVALDI  (not playing)\n    turned off by hand during this slot, so leaving it off\n    it starts again by itself at the next change of slot\n\n  West Harlem, 3600 Broadway\n    should be: Brunch Instrumental Jazz Mix  at volume 22   (Soft open, 11:30 to 12:30, using number 1 of 4 in this round, today)\n    COULD NOT REACH SONOS: GET https://api.ws.sonos.com/control/api/v1/groups/RINCON_347E5C15456601400:884695588/playbackMetadata -> 410 {\"errorCode\":\"ERROR_RESOURCE_GONE\"}\n\n  Central Harlem, 370 Malcolm X (one speaker, Dining Room)\n    should be: Brunch Jazz  at volume 22   (Soft open, 11:30 to 12:30, using number 1 of 3 in this round, today)\n    actually: Instrumental - Cocktail Jazz  (playing)\n    music: changed to 'Brunch Jazz'\n    volume: 24 -> 22\n\n  Hell's Kitchen, 354 West 44th (left and right pair)\n    should be: Jazz Trumpet  at volume 28   (Lunch rush, 11:30 to 13:30, using the default for this slot)\n    actually: Instrumental Jazz Standards  (playing)\n    music: changed to 'Jazz Trumpet'\n    volume: already 28\n\nResult: SOMETHING NEEDS ATTENTION",
-  "written_at": "2026-09-10 15:45:30 UTC",
-  "written_at_epoch": 1789055130
+  "problems": [],
+  "run": "332",
+  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/34499303083",
+  "output_tail": "",
+  "written_at": "2026-09-10 16:00:41 UTC",
+  "written_at_epoch": 1789056041
 }
