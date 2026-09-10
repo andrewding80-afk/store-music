@@ -2,8 +2,9 @@
   "ok": false,
   "result": "SOMETHING NEEDS ATTENTION",
   "stores_switched_on_but_unreachable": [],
-  "run": "326",
-  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/34489479861",
-  "written_at": "2026-09-10 14:30:33 UTC",
-  "written_at_epoch": 1789050633
+  "run": "329",
+  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/34494391281",
+  "output_tail": "Store music check, 2026-09-10 11:15\nMode: LIVE, changes will be made\n\n  Home (TV Room + 4)\n    should be: VIVALDI  at volume 30   (Daytime, 09:00 to 18:00, using number 3 of 10 in this round, today)\n    each speaker: Bedroom 25, Dressing Room 56, Kitchen 33, Sunroom 20, TV Room 25\n    COULD NOT REACH SONOS: GET https://api.ws.sonos.com/control/api/v1/groups/RINCON_5CAAFD79103401400:2184682106/playbackMetadata -> 410 {\"errorCode\":\"ERROR_RESOURCE_GONE\"}\n\n  West Harlem, 3600 Broadway: closed, nothing should be playing\n    COULD NOT REACH SONOS: GET https://api.ws.sonos.com/control/api/v1/groups/RINCON_347E5C15456601400:884695588/playback -> 410 {\"errorCode\":\"ERROR_RESOURCE_GONE\"}\n\n  Central Harlem, 370 Malcolm X (one speaker, Dining Room): closed, nothing should be playing\n    COULD NOT REACH SONOS: GET https://api.ws.sonos.com/control/api/v1/groups/RINCON_347E5CC00C2401400:608897090/playback -> 401 {\"error\": \"access_denied\", \"error_description\": \"Invalid Token\"}\n\n  Hell's Kitchen, 354 West 44th (left and right pair): closed, nothing should be playing\n    already quiet\n\nResult: SOMETHING NEEDS ATTENTION",
+  "written_at": "2026-09-10 15:15:30 UTC",
+  "written_at_epoch": 1789053330
 }
