@@ -1,0 +1,11 @@
+secrets.json
+tokens/
+__pycache__/
+*.pyc
+github-key.txt
+~$*
+PASTE-THESE-INTO-GITHUB.txt
+config-one-line.txt
+ids.json
+cronjob-github-key.txt
+cronjob-api-key.txt
