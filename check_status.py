@@ -96,10 +96,20 @@ def decide():
 def main():
     state, message = decide()
     print('%s: %s' % (state, message))
-    if state != 'OK':
+    if state == 'OK':
+        return 0
+    status = latest_status() or {}
+    tail = status.get('output_tail') or ''
+    if tail:
+        # What the run actually said. Added after run 326 on 2026-09-10 reported a
+        # fault and carried no reason with it, which made the report true and useless.
         print()
-        print('The run it came from: %s' % (latest_status() or {}).get('run_url', ''))
-    return 0 if state == 'OK' else 1
+        print('What the run itself said:')
+        for line in tail.splitlines():
+            print('  ' + line)
+    print()
+    print('The run it came from: %s' % status.get('run_url', ''))
+    return 1
 
 
 if __name__ == '__main__':

@@ -62,19 +62,29 @@ def build(text, exit_code):
     # No Result: line means the run did not reach its own ending. Treating that as
     # healthy is the exact failure this file exists to catch: silence that looks fine.
     # Caught by its own test on 2026-09-10, before it ever ran.
+    ok = bool(result) and exit_code == 0 and 'NEEDS ATTENTION' not in result
     return {
-        'ok': bool(result) and exit_code == 0 and 'NEEDS ATTENTION' not in result,
+        'ok': ok,
         'result': result or 'the run said nothing, which is itself wrong',
         'stores_switched_on_but_unreachable': unreachable,
         'run': os.environ.get('GITHUB_RUN_NUMBER', ''),
         'run_url': '%s/%s/actions/runs/%s' % (
             'https://github.com', REPO, os.environ.get('GITHUB_RUN_ID', '')),
+        # What actually happened, kept ONLY when something is wrong. Run 326 on
+        # 2026-09-10 reported SOMETHING NEEDS ATTENTION with nothing else to go on,
+        # because this file carried the verdict and not the reason. Do not try to
+        # pick out "the interesting lines": deciding in advance which lines matter
+        # is how the gitignore, the SSH auth methods and the merge rules each missed
+        # a case. Keep the tail and let the reader judge.
+        'output_tail': '' if ok else '\n'.join(text.splitlines()[-60:]),
     }
 
 
 def meaningful(status):
     """Everything except the parts that change on every run regardless of health."""
-    return {k: v for k, v in status.items() if k not in ('written_at', 'run', 'run_url')}
+    return {k: v for k, v in status.items()
+            if k not in ('written_at', 'written_at_epoch', 'run', 'run_url',
+                         'output_tail')}
 
 
 def _request(url, token, method='GET', body=None):
