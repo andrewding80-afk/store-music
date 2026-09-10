@@ -122,8 +122,15 @@ def main():
     now = int(time.time())
     if existing:
         unchanged = meaningful(existing) == meaningful(status)
+        # A published file written by an older version of this script is missing fields
+        # the current one carries, and change-detection would never notice, because it
+        # compares the fields both versions have. So the very improvement that adds a
+        # field would hide itself until the verdict happened to change.
+        # Found on 2026-09-10 within an hour of adding output_tail: the fault was
+        # already being reported, so nothing changed, so the reason never appeared.
+        same_shape = set(existing) == set(status) | {'written_at', 'written_at_epoch'}
         last = existing.get('written_at_epoch') or 0
-        if unchanged and (now - last) < STALE_AFTER:
+        if unchanged and same_shape and (now - last) < STALE_AFTER:
             print('status: unchanged and written recently, nothing to publish')
             return
 
