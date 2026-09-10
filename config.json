@@ -97,7 +97,7 @@
           "name": "Soft open",
           "from": "11:30",
           "to": "12:30",
-          "volume": 22,
+          "volume": 33,
           "playlist_pool": [
             "Brunch Jazz",
             "Brunch Chill Jazz Mix",
@@ -109,7 +109,7 @@
           "name": "Lunch rush",
           "from": "12:30",
           "to": "14:00",
-          "volume": 28,
+          "volume": 39,
           "playlist_pool": [
             "Jazz Trumpet",
             "Instrumental Jazz Funk Mix",
@@ -122,7 +122,7 @@
           "name": "Dead stretch",
           "from": "14:00",
           "to": "16:00",
-          "volume": 22,
+          "volume": 33,
           "playlist_pool": [
             "Instrumental Jazz Standards",
             "Jazz in the Background",
@@ -135,7 +135,7 @@
           "name": "Early evening",
           "from": "16:00",
           "to": "18:00",
-          "volume": 26,
+          "volume": 37,
           "playlist_pool": [
             "Cocktail Jazz",
             "Cocktail Hour Mix",
@@ -147,7 +147,7 @@
           "name": "Dinner peak",
           "from": "18:00",
           "to": "21:00",
-          "volume": 30,
+          "volume": 40,
           "playlist_pool": [
             "Jazz Classics Blue Note Edition",
             "Jazz Classics",
@@ -159,7 +159,7 @@
           "name": "Last service",
           "from": "21:00",
           "to": "23:00",
-          "volume": 24,
+          "volume": 35,
           "playlist_pool": [
             "Feel Good Jazz",
             "Feel Good Instrumental Jazz Mix",
@@ -168,7 +168,8 @@
             "THPN-Relax"
           ]
         }
-      ]
+      ],
+      "_volume_note": "Set 2026-09-10 by Andrew. The speaker is wall mounted high in a ceiling corner, so it needs more level than Central Harlem's, which these numbers had been copied from unchanged. He set 38 by hand and confirmed with his manager listening in the room that it carried properly, then chose 33 as the soft open base. The other five keep the original spacing above it. Only the level in the room is proven; the busier slots are the same shape and should be heard at the hour they actually run. Andrew capped the peak at 40 on the same day: nothing at this store goes above it."
     },
     {
       "id": "central-harlem",
