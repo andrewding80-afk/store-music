@@ -97,6 +97,9 @@ def build(text, exit_code):
         'not_protected': next(
             (l.split(': ', 1)[1].strip() for l in text.splitlines()
              if l.startswith('NOT protected')), ''),
+        'token_ages': next(
+            (l.split(': ', 1)[1].strip() for l in text.splitlines()
+             if l.startswith('Saved pass ages: ')), ''),
         'run': os.environ.get('GITHUB_RUN_NUMBER', ''),
         'run_url': '%s/%s/actions/runs/%s' % (
             'https://github.com', REPO, os.environ.get('GITHUB_RUN_ID', '')),

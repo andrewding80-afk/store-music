@@ -466,6 +466,15 @@ def main():
     # mistyped or missing SONOS_SPEAKER_ setting looks exactly like a working one,
     # because the lookup is silent when the stored group happens to still be right.
     # Added 2026-09-10 so Andrew can see his own settings took effect.
+    # How old each saved pass is. Never the pass itself, only its age. Recorded on
+    # every run so that when one dies we can say how old it was, which is the one
+    # thing nobody could answer when Central Harlem's died on 2026-09-10.
+    ages = []
+    for s in enabled:
+        d = sonos.token_age_days(s['id'])
+        ages.append('%s:%s' % (s['id'], 'unknown' if d is None else '%sd' % d))
+    print('Saved pass ages: %s' % ', '.join(ages))
+
     protected = [s['id'] for s in enabled if s.get('speaker')]
     exposed = [s['id'] for s in enabled if not s.get('speaker')]
     print('Group found by speaker for: %s'

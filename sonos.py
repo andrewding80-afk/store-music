@@ -250,6 +250,33 @@ def find_favourite(store_id, household, name):
 WANTED_PLAY_MODES = {'shuffle': True, 'repeat': True, 'crossfade': True}
 
 
+def token_age_days(store_id):
+    """How old the saved pass is, in days, or None if it cannot be read.
+
+    Never returns any part of the pass itself, only its age.
+
+    Written 2026-09-10 because a token died and nobody could say why. The code says
+    Sonos hands back the same permanent pass on every refresh, checked on 2026-09-05,
+    and yet Central Harlem's came back 401 Invalid Token. Both cannot be true.
+
+    Re-authorising was the obvious suspect and is ruled out: West Harlem was
+    re-authorised on this machine the same morning and its GitHub copy kept working.
+
+    So the question is open, and this is what will answer it. If tokens die at a
+    certain age, a few months of this recorded beside each failure will show it. A
+    question you cannot answer today becomes one that answers itself, which beats
+    guessing now.
+    """
+    try:
+        tok, _from_setting = _load_token(store_id)
+        got = tok.get('obtained_at')
+        if not got:
+            return None
+        return round((time.time() - got) / 86400.0, 1)
+    except Exception:
+        return None
+
+
 def is_a_track_list(favourite):
     """True for a Spotify playlist, False for a radio stream.
 
