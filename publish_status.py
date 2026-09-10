@@ -39,6 +39,29 @@ def read_run_output(path='run-output.txt'):
         return ''
 
 
+PROBLEM_LINE = re.compile(r'^\s+([A-Z][A-Z][A-Z][A-Z ]{2,}?)[:.]')
+
+
+def problems_by_store(text):
+    """Which store hit what kind of problem, without the volatile detail.
+
+    Deliberately a shape rule, not a list of known messages: any indented line that
+    starts in capitals is the code shouting. Listing the messages I happen to know
+    about is how the gitignore missed symlinks and the SSH fix missed
+    keyboard-interactive. Added 2026-09-10 because the overall verdict was too coarse:
+    fixing one store of three left the word unchanged, so nothing republished and the
+    fix was invisible.
+    """
+    out, store = [], None
+    for line in text.splitlines():
+        if line.strip() and not line.startswith('    ') and line.startswith('  '):
+            store = line.strip().split(':')[0]
+        m = PROBLEM_LINE.match(line)
+        if m and store:
+            out.append('%s: %s' % (store, m.group(1).strip()))
+    return sorted(set(out))
+
+
 def verdict_from(text):
     """The Result: line run.py prints last, and any store it could not reach."""
     result = ''
@@ -67,6 +90,7 @@ def build(text, exit_code):
         'ok': ok,
         'result': result or 'the run said nothing, which is itself wrong',
         'stores_switched_on_but_unreachable': unreachable,
+        'problems': problems_by_store(text),
         'run': os.environ.get('GITHUB_RUN_NUMBER', ''),
         'run_url': '%s/%s/actions/runs/%s' % (
             'https://github.com', REPO, os.environ.get('GITHUB_RUN_ID', '')),
