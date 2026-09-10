@@ -452,8 +452,14 @@ def main():
     # because the lookup is silent when the stored group happens to still be right.
     # Added 2026-09-10 so Andrew can see his own settings took effect.
     protected = [s['id'] for s in enabled if s.get('speaker')]
+    exposed = [s['id'] for s in enabled if not s.get('speaker')]
     print('Group found by speaker for: %s'
           % (', '.join(protected) if protected else 'no stores yet'))
+    if exposed:
+        # Name the gap rather than leaving it to be worked out from the list of the
+        # ones that are fine. On 2026-09-10 that inference cost a round trip: three
+        # stores were named and the missing one had to be spotted by its absence.
+        print('NOT protected, a regrouping would take these off: %s' % ', '.join(exposed))
     print('Result: %s' % result)
     return 1 if any_trouble else 0
 

@@ -94,6 +94,9 @@ def build(text, exit_code):
         'group_found_by_speaker': next(
             (l.split(': ', 1)[1].strip() for l in text.splitlines()
              if l.startswith('Group found by speaker for: ')), ''),
+        'not_protected': next(
+            (l.split(': ', 1)[1].strip() for l in text.splitlines()
+             if l.startswith('NOT protected')), ''),
         'run': os.environ.get('GITHUB_RUN_NUMBER', ''),
         'run_url': '%s/%s/actions/runs/%s' % (
             'https://github.com', REPO, os.environ.get('GITHUB_RUN_ID', '')),
@@ -120,6 +123,7 @@ def meaningful(status):
         'problems': status.get('problems'),
         'stores_switched_on_but_unreachable': status.get('stores_switched_on_but_unreachable'),
         'group_found_by_speaker': status.get('group_found_by_speaker'),
+        'not_protected': status.get('not_protected'),
     }
 
 
