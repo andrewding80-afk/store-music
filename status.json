@@ -1,12 +1,13 @@
 {
   "ok": true,
-  "result": "5 changes made",
+  "result": "2 changes made",
   "stores_switched_on_but_unreachable": [],
   "problems": [],
   "group_found_by_speaker": "home, central-harlem, hells-kitchen",
-  "run": "334",
-  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/34502492770",
+  "not_protected": "west-harlem",
+  "run": "336",
+  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/34505525359",
   "output_tail": "",
-  "written_at": "2026-09-10 16:30:37 UTC",
-  "written_at_epoch": 1789057837
+  "written_at": "2026-09-10 17:00:40 UTC",
+  "written_at_epoch": 1789059640
 }
