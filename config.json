@@ -184,7 +184,7 @@
           "name": "Soft open",
           "from": "11:30",
           "to": "12:30",
-          "volume": 22,
+          "volume": 30,
           "playlist_pool": [
             "Brunch Jazz",
             "Bossa Nova Classics",
@@ -195,7 +195,7 @@
           "name": "Lunch rush",
           "from": "12:30",
           "to": "14:00",
-          "volume": 28,
+          "volume": 36,
           "playlist_pool": [
             "Jazz Trumpet",
             "Funky Instrumental Jazz",
@@ -208,7 +208,7 @@
           "name": "Dead stretch",
           "from": "14:00",
           "to": "16:00",
-          "volume": 22,
+          "volume": 30,
           "playlist_pool": [
             "Instrumental Jazz Standards",
             "Instrumental Jazz Mix",
@@ -219,7 +219,7 @@
           "name": "Early evening",
           "from": "16:00",
           "to": "18:00",
-          "volume": 26,
+          "volume": 34,
           "playlist_pool": [
             "Cocktail Jazz",
             "Instrumental - Cocktail Jazz",
@@ -231,7 +231,7 @@
           "name": "Dinner peak",
           "from": "18:00",
           "to": "21:00",
-          "volume": 30,
+          "volume": 38,
           "playlist_pool": [
             "Jazz Classics Blue Note Edition",
             "Jazz Classics",
@@ -245,14 +245,15 @@
           "name": "Last service",
           "from": "21:00",
           "to": "23:00",
-          "volume": 24,
+          "volume": 32,
           "playlist_pool": [
             "Feel Good Instrumental Jazz Mix",
             "Smooth Jazz & Soul R&B Instrumentals",
             "This Is Wynton Marsalis"
           ]
         }
-      ]
+      ],
+      "_volume_note": "Set 2026-09-10 by Andrew: base 30, ceiling 38. The existing shape is kept, so the quiet slots sit at the base and the dinner peak reaches the ceiling. One speaker, so one level."
     },
     {
       "id": "hells-kitchen",
@@ -262,7 +263,30 @@
       "enabled": true,
       "stop_when_closed": true,
       "_note": "IDENTITY CORRECTED 2026-09-09 evening. This store's system is the two-speaker pair, Dining Room Left Speaker and Dining Room Right Speaker, under contact@thenoodle.nyc, confirmed by Andrew from the speaker roll call. These files had been calling that pair 'Central Harlem's lone One SL' since at least 2026-09-07, and a central-harlem-b entry existed for it; that entry is deleted, this note is its grave marker. The 2026-09-08 shop-visit note said the speaker was renamed Dining Room THPN-HK; no speaker by that name exists on the account now, so the rename did not stick. Its favourites were confirmed 2026-09-09 to include every shared-timetable name, Jazz Trumpet, Instrumental Jazz Standards, FOH Jazz, Jazz Classics Blue Note Edition and Feel Good Jazz, so the earlier worry about missing names is resolved. OPEN ISSUE: something on this system keeps restarting its old favourites between runs, seen at 14:30, 14:45, 15:00 on 2026-09-09, each time corrected by the schedule; nobody touches the speakers by hand, so the prime suspect is old Sonos alarms on this system, which can only be deleted from the app on the shop's own wifi. Delete every alarm there on the next Hell's Kitchen visit. Until then the quarter-hourly repair holds the line. Second open question: the One SL bought in February is now unaccounted for; it may be one of this pair or sitting unregistered somewhere.",
-      "_note_2": "Still on the shared timetable below. Andrew's quiet-till-12:30 floor pattern held at both Harlem stores and likely holds here; check against the Toast busy-hours analysis before giving this store its own slots."
+      "_note_2": "Still on the shared timetable below. Andrew's quiet-till-12:30 floor pattern held at both Harlem stores and likely holds here; check against the Toast busy-hours analysis before giving this store its own slots.",
+      "speaker_volumes": {
+        "Dead stretch": {
+          "Dining Room Left Speaker": 30,
+          "Dining Room Right Speaker": 28
+        },
+        "Last service": {
+          "Dining Room Left Speaker": 32,
+          "Dining Room Right Speaker": 30
+        },
+        "Early evening": {
+          "Dining Room Left Speaker": 34,
+          "Dining Room Right Speaker": 32
+        },
+        "Lunch rush": {
+          "Dining Room Left Speaker": 36,
+          "Dining Room Right Speaker": 33
+        },
+        "Dinner peak": {
+          "Dining Room Left Speaker": 38,
+          "Dining Room Right Speaker": 35
+        }
+      },
+      "_volume_note": "Set 2026-09-10 by Andrew. Per speaker, because the right speaker is the walled-off corner and runs softer: right 28 to 35, left 30 to 38, both moving together across the shared slot shape. ⚠️ This REPLACES the balance that was set by hand in the Sonos app on 2026-09-08 (left 33, right 25). The software now sets both absolutely, so changing the corner balance means changing these numbers, not the app."
     }
   ],
   "_slots_comment": "All three stores run the same hours, confirmed 2026-09-05. Times are 24 hour. Music runs 11:30 to 23:00; outside those hours nothing plays. Central Harlem and West Harlem carry their own slots on their store entries; Andrew's 2026-09-09 floor observation, empty at 11:30 and rush 12:30 to 2, is confirmed for both Harlem stores and should be checked for Hell's Kitchen against the Toast busy-hours analysis, spec in run-the-house docs.",

@@ -234,8 +234,15 @@ def check_store(cfg, store, now, live):
         return lines, trouble, pending, acted
 
     lines.append('  %s' % label)
-    lines.append('    should be: %s  at volume %s   (%s)'
-                 % (want['playlist'], want['volume'], want['reason']))
+    # Don't print a group volume for a store that sets each speaker separately: that
+    # number is not used and someone would eventually "correct" the speakers to match
+    # it. Hell's Kitchen started doing this on 2026-09-10.
+    if want.get('speakers'):
+        lines.append('    should be: %s  at its own level per speaker   (%s)'
+                     % (want['playlist'], want['reason']))
+    else:
+        lines.append('    should be: %s  at volume %s   (%s)'
+                     % (want['playlist'], want['volume'], want['reason']))
     if want.get('speakers'):
         lines.append('    each speaker: %s'
                      % ', '.join('%s %s' % (n, v)
