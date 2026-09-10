@@ -57,9 +57,15 @@ def wanted_playlists(cfg, store, everything=False):
     # name a slot this shop actually has apply here, which is what keeps the shop
     # Christmas playlists off the list for home and the other way round.
     def from_overrides(block):
+        # An override may name one playlist or a list to deal from. The list form was
+        # added 2026-09-10 so a season can rotate rather than play one thing for three
+        # months. Every name in it still has to exist on the system, so all of them go
+        # on this list, not just the first.
         for slot_name, playlist in (block.get('overrides') or {}).items():
-            if slot_name in slot_names:
-                add(playlist)
+            if slot_name not in slot_names:
+                continue
+            for name in (playlist if isinstance(playlist, list) else [playlist]):
+                add(name)
 
     if everything:
         seasons = cfg.get('seasons', {})

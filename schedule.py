@@ -283,15 +283,29 @@ def decide(cfg, now, store=None):
     if slot.get('playlist'):
         belongs.add(slot['playlist'])
 
+    def _apply_override(value, label):
+        """An override may name one playlist or a list to deal from.
+
+        A list was added 2026-09-10: a season that names a single playlist plays the
+        same thing every night for three months, which is the opposite of 'felt and
+        not noticed'. Dealt the same way a slot's own pool is, so autumn and Christmas
+        rotate exactly like the rest of the year.
+        """
+        if isinstance(value, list):
+            picked, _why = deal_from_pool(
+                {'name': '%s %s' % (label, slot['name']), 'playlist_pool': value}, now)
+            belongs.update(value)
+            return picked, 'the %s list, dealt from %d' % (label, len(value))
+        belongs.add(value)
+        return value, 'the %s override' % label
+
     season_name, season = active_season(cfg, now.date())
     if season and slot['name'] in season.get('overrides', {}):
-        playlist = season['overrides'][slot['name']]
-        source = 'the %s override' % season_name
+        playlist, source = _apply_override(season['overrides'][slot['name']], season_name)
 
     holiday = active_holiday(cfg, now.date())
     if holiday and slot['name'] in holiday.get('overrides', {}):
-        playlist = holiday['overrides'][slot['name']]
-        source = 'the %s override' % holiday['name']
+        playlist, source = _apply_override(holiday['overrides'][slot['name']], holiday['name'])
 
     # What this particular system calls it wins over everything above, because a name
     # that is not saved on that system cannot be played there at all.
