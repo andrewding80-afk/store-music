@@ -137,12 +137,12 @@
           "playlist_pool": [
             "BY A LAKE",
             "SCHUMANN RESONANCE",
-            "AMBIENT CALM"
+            "Goodnight Mix"
           ],
           "volume_by_playlist": {
-            "AMBIENT CALM": 15
+            "Goodnight Mix": 15
           },
-          "_pool_note": "⚠️ 'AMBIENT CALM' is named here and is NOT saved on the home system, checked 2026-09-10. A night it is dealt fails with 'no favourite named'. It was briefly removed that day and two tests correctly objected: Andrew asked for three stations with this one at volume 15, and deleting his instruction is not a repair for a missing favourite. FIX IT ON SONOS: save a station called exactly 'AMBIENT CALM' on the home system, or tell Claude to rename this to 'NIGHT STORMS', which is already saved there and looks like the intended one."
+          "_pool_note": "Andrew added 'Goodnight Mix' to the home system on 2026-09-10 and asked for it in place of 'AMBIENT CALM', which was never saved there. Checked live that day: it exists and is a Spotify track list, unlike the other two here which are Calm Radio streams, so shuffle, repeat and crossfade apply to it on the nights it is dealt. It keeps the volume 15 Andrew set for the entry it replaces, quieter than the slot's 18."
         }
       ],
       "_home_comment": "Daytime must be Calm Radio only. Spotify plays in one place at a time, and during the day Andrew is out and using Spotify himself, so a scheduled job on Spotify would cut him off. His Calm Radio stations are the ones named in capitals. Evening and night are unrestricted because he is home and not playing Spotify elsewhere. From midnight the music stops until the nine in the morning start, asked for 2026-09-06.",

@@ -292,6 +292,21 @@ def is_a_track_list(favourite):
     return ((favourite or {}).get('resource') or {}).get('type') == 'PLAYLIST'
 
 
+def playing_a_track_list(store_id, group_id):
+    """True when what is playing RIGHT NOW is a list of tracks rather than a stream.
+
+    Written 2026-09-10 after Andrew asked whether shuffle and crossfade were on
+    everywhere and home came back with all three off. The hold only looked at the
+    playlist the schedule wanted, and home's daytime slot is a Calm Radio stream, so
+    a track list Andrew started by hand sat there unshuffled with nothing watching.
+
+    Andrew's rule is about playlists, not about slots. The same reading, taken from
+    what is on rather than what was planned.
+    """
+    container = now_playing(store_id, group_id).get('container') or {}
+    return str(container.get('type', '')).upper() == 'PLAYLIST'
+
+
 def play_modes(store_id, group_id):
     return playback_status(store_id, group_id).get('playModes') or {}
 

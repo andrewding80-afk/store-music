@@ -431,7 +431,7 @@ for _when, _why in (('2026-09-07T23:00', 'eleven sharp'),
 check_home('2026-09-08T00:00', None, 'midnight, it stops')
 
 # The three names Andrew asked for, so a typo in the settings file is caught.
-ok_night_names = sorted(_night_pool) == sorted(['BY A LAKE', 'SCHUMANN RESONANCE', 'AMBIENT CALM'])
+ok_night_names = sorted(_night_pool) == sorted(['BY A LAKE', 'SCHUMANN RESONANCE', 'Goodnight Mix'])
 if not ok_night_names:
     failures.append('the late night list is not the three Andrew asked for: %r' % _night_pool)
 print('%s the late night list is the three he asked for' % ('PASS' if ok_night_names else 'FAIL'))
@@ -453,23 +453,30 @@ if not ok_two:
 print('%s every late night playlist plays in the bedroom and kitchen only, at its own level'
       % ('PASS' if ok_two else 'FAIL'))
 
-# The one Andrew singled out. AMBIENT CALM is quieter than the rest of that hour.
+# The one Andrew singled out. Goodnight Mix is quieter than the rest of that hour.
+# It replaced AMBIENT CALM on 2026-09-10 at Andrew's word, after AMBIENT CALM turned out
+# never to have been saved on the home system. The volume 15 carried across with it.
+ok_gone = 'AMBIENT CALM' not in _night_pool
+if not ok_gone:
+    failures.append('AMBIENT CALM is back in the night list and is not saved on the system')
+print('%s the playlist that was never saved is not named anywhere' % ('PASS' if ok_gone else 'FAIL'))
+
 _ambient = None
 for _d in range(60):
     _n = schedule.decide(cfg, datetime(2026, 9, 7, 23, 30) + timedelta(days=_d), home)
-    if _n['playlist'] == 'AMBIENT CALM':
+    if _n['playlist'] == 'Goodnight Mix':
         _ambient = _n
         break
 ok_vol = (_ambient is not None and _ambient['volume'] == 15
           and _ambient['speakers']['Bedroom'] == 15 and _ambient['speakers']['Kitchen'] == 15)
 if not ok_vol:
-    failures.append('AMBIENT CALM did not come out at 15: %r' % (_ambient and _ambient['speakers']))
-print('%s AMBIENT CALM plays at 15 wherever it comes up' % ('PASS' if ok_vol else 'FAIL'))
+    failures.append('Goodnight Mix did not come out at 15: %r' % (_ambient and _ambient['speakers']))
+print('%s Goodnight Mix plays at 15 wherever it comes up' % ('PASS' if ok_vol else 'FAIL'))
 
 # And the other two are unaffected by that rule.
 _others = [schedule.decide(cfg, datetime(2026, 9, 7, 23, 30) + timedelta(days=_d), home)
            for _d in range(60)]
-ok_others = all(n['volume'] == 18 for n in _others if n['playlist'] != 'AMBIENT CALM')
+ok_others = all(n['volume'] == 18 for n in _others if n['playlist'] != 'Goodnight Mix')
 if not ok_others:
     failures.append('one of the other late night playlists changed volume')
 print('%s the other two still play at 18' % ('PASS' if ok_others else 'FAIL'))

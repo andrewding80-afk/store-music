@@ -361,7 +361,12 @@ def hold_the_play_modes(store, wanted_playlist):
         return None
     try:
         fav = sonos.find_favourite(store['id'], store['household'], wanted_playlist)
-        if not sonos.is_a_track_list(fav):
+        # Either the playlist this slot wants, or whatever is actually on. The second
+        # half was added 2026-09-10: home's daytime slot is a stream, so a track list
+        # started by hand had nothing holding its modes.
+        track_list = (sonos.is_a_track_list(fav)
+                      or sonos.playing_a_track_list(store['id'], store['group']))
+        if not track_list:
             return None          # a radio stream: nothing to shuffle, nothing to fade
         wrong = sonos.wrong_play_modes(store['id'], store['group'])
         if not wrong:
