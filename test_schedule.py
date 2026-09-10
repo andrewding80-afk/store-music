@@ -90,14 +90,27 @@ def check_store(when_text, expect_playlist, why):
     print('%s %-18s %-34s %s' % ('PASS' if ok else 'FAIL', when_text[-8:], str(got), why))
 
 
-_pool_now = [sl for sl in home['slots'] if sl['name'] == 'Daytime'][0]['playlist_pool']
+def home_slot(prefix):
+    """The first home slot whose name starts with this.
+
+    From 2026-09-10 the daytime and evening are split across several slots so that
+    different days can behave differently: the Sunroom is off Tue to Thu, the TV Room
+    is off those evenings, and the weekend starts at ten. Matching on a prefix means
+    these checks keep testing the behaviour rather than the label.
+    """
+    for sl in home['slots']:
+        if sl['name'].startswith(prefix):
+            return sl
+    raise AssertionError('no home slot starting with %r' % prefix)
+
+_pool_now = home_slot('Daytime')['playlist_pool']
 _sat = schedule.decide(cfg, datetime.fromisoformat('2026-10-10T12:00'), home)['playlist']
 _ok_sat = _sat in _pool_now
 if not _ok_sat:
     failures.append('Saturday daytime dealt something not in the list: %r' % _sat)
 print('%s %-18s %-34s %s' % ('PASS' if _ok_sat else 'FAIL', '10T12:00', _sat,
                              'Saturday daytime deals from the classical list'))
-_eve_pool = [sl for sl in home['slots'] if sl['name'] == 'Evening'][0]['playlist_pool']
+_eve_pool = home_slot('Evening')['playlist_pool']
 _tue_eve = schedule.decide(cfg, datetime.fromisoformat('2026-10-06T19:00'), home)['playlist']
 _ok_tue = _tue_eve in _eve_pool
 if not _ok_tue:
@@ -153,15 +166,15 @@ def check_speakers(when_text, speaker, expect, why):
                                       str(got), why))
 
 
-# The levels Andrew actually asked for, pinned so a typo in the settings file is caught.
-# Everything else below checks the shape of the day instead, so changing a level does not
-# break a test that was only ever memorising it.
-for room, level in (('TV Room', 25), ('Kitchen', 33), ('Bedroom', 25),
-                    ('Sunroom', 20), ('Dressing Room', 56)):
-    check_speakers('2026-10-06T12:00', room, level, 'the level Andrew asked for, daytime')
+# The ceilings Andrew asked for on 2026-09-10, pinned so a typo in the settings file is
+# caught. Checked on a MONDAY, because Tue to Thu silence the Sunroom by day and the TV
+# Room by evening, and a test that pins levels must not be reading a deliberate zero.
+for room, level in (('TV Room', 20), ('Kitchen', 28), ('Bedroom', 25),
+                    ('Sunroom', 20), ('Dressing Room', 25)):
+    check_speakers('2026-10-05T12:00', room, level, 'the ceiling Andrew asked for, daytime')
 
-daytime = schedule.decide(cfg, datetime.fromisoformat('2026-10-06T12:00'), home)['speakers']
-evening = schedule.decide(cfg, datetime.fromisoformat('2026-10-06T19:00'), home)['speakers']
+daytime = schedule.decide(cfg, datetime.fromisoformat('2026-10-05T12:00'), home)['speakers']
+evening = schedule.decide(cfg, datetime.fromisoformat('2026-10-05T19:00'), home)['speakers']
 
 ok_quieter = all(evening[r] < daytime[r] for r in daytime)
 if not ok_quieter:
@@ -169,13 +182,20 @@ if not ok_quieter:
 print('%s every room is quieter in the evening than in the day'
       % ('PASS' if ok_quieter else 'FAIL'))
 
-order_day = sorted(daytime, key=lambda r: daytime[r])
-order_eve = sorted(evening, key=lambda r: evening[r])
-ok_order = order_day == order_eve
+# Sunroom and TV Room now share a ceiling, so a strict order is meaningless between
+# them. What matters is that no pair SWAPS: if one room is louder than another by day
+# it must not be quieter in the evening.
+order_day = sorted(daytime, key=lambda r: (daytime[r], r))
+order_eve = sorted(evening, key=lambda r: (evening[r], r))
+rooms = sorted(daytime)
+ok_order = all(
+    not ((daytime[a] < daytime[b] and evening[a] > evening[b]) or
+         (daytime[a] > daytime[b] and evening[a] < evening[b]))
+    for i, a in enumerate(rooms) for b in rooms[i + 1:])
 if not ok_order:
     failures.append('the rooms change their loudness order between slots: %s vs %s'
                     % (order_day, order_eve))
-print('%s the rooms keep the same order, loudest to quietest, all day'
+print('%s no two rooms swap places between the day and the evening'
       % ('PASS' if ok_order else 'FAIL'))
 
 d5 = schedule.decide(cfg, datetime.fromisoformat('2026-10-06T19:00'))
@@ -239,7 +259,7 @@ print('     machine clock %s, New York %s, %s hours apart'
 # A summer afternoon in New York is the lunch slot no matter what the machine thinks.
 # The point of this one is the clock, not the day: midday is midday whatever the
 # machine running this thinks the time is.
-ok_choice = schedule.decide(cfg, _dt.datetime(2026, 7, 18, 12, 0), home)['slot'] == 'Daytime'
+ok_choice = str(schedule.decide(cfg, _dt.datetime(2026, 7, 18, 12, 0), home)['slot']).startswith('Daytime')
 if not ok_choice:
     failures.append('midday in July was not the daytime slot')
 print('%s midday in July is the daytime slot' % ('PASS' if ok_choice else 'FAIL'))
@@ -288,7 +308,7 @@ if not _ok_eleven:
 print('%s %-16s %-28s %s' % ('PASS' if _ok_eleven else 'FAIL', '09-07T22:59', _eleven,
                              'same all evening, it does not switch at nine'))
 _e = schedule.decide(cfg, datetime.fromisoformat('2026-09-07T23:00'), home)['playlist']
-_night_pool = [sl for sl in home['slots'] if sl['name'] == 'Night'][0]['playlist_pool']
+_night_pool = home_slot('Night')['playlist_pool']
 _ok_e = _e in _night_pool
 if not _ok_e:
     failures.append('eleven at night dealt something not in the late list: %r' % _e)
@@ -347,7 +367,7 @@ def _home_playlist_names():
 # The rule applies to the daytime only. Andrew is out during the day and using Spotify
 # himself, so anything scheduled on Spotify then would cut him off. In the evening he is
 # home and playing nothing elsewhere, so Spotify is fine after six.
-CALM_ONLY_SLOTS = {'Daytime'}
+CALM_ONLY_SLOTS = {sl['name'] for sl in home['slots'] if sl['name'].startswith('Daytime')}
 
 not_calm = []
 for slot in home['slots']:
@@ -363,7 +383,7 @@ if not ok_caps_only:
 print('%s the daytime is Calm Radio only, so nothing cuts off his phone'
       % ('PASS' if ok_caps_only else 'FAIL'))
 
-_evening = [sl for sl in home['slots'] if sl['name'] == 'Evening'][0]
+_evening = home_slot('Evening')
 ok_evening_free = len(_slot_names(_evening)) >= 2
 if not ok_evening_free:
     failures.append('the evening has fewer than two things to deal from')
@@ -380,7 +400,7 @@ if not _ok_pre:
     failures.append('one minute to eleven was not an evening playlist: %r' % _pre)
 print('%s %-16s %-28s %s' % ('PASS' if _ok_pre else 'FAIL', '09-07T22:59', _pre,
                              'one minute to eleven, still the evening'))
-_night_slot = [sl for sl in home['slots'] if sl['name'] == 'Night'][0]
+_night_slot = home_slot('Night')
 _night_own = _night_slot.get('volume_by_playlist', {})
 
 for _when, _why in (('2026-09-07T23:00', 'eleven sharp'),
@@ -445,12 +465,47 @@ if not ok_all_three:
     failures.append('over two months the late night list only dealt %s' % sorted(_dealt_night))
 print('%s all three come up over two months' % ('PASS' if ok_all_three else 'FAIL'))
 
-# Nothing may be left silent into the next morning.
-morning = schedule.decide(cfg, datetime.fromisoformat('2026-09-08T09:30'), home)
+# Nothing may be left silent into the next morning. The night sets rooms to zero, so
+# something has to prove they come back up. Checked on a MONDAY, because from
+# 2026-09-10 the Sunroom is deliberately off on Tue, Wed and Thu and the TV Room in
+# those evenings. A deliberate silence must not be mistaken for a stuck one, and a
+# stuck one must not hide behind a deliberate one.
+morning = schedule.decide(cfg, datetime.fromisoformat('2026-09-07T09:30'), home)   # Monday
 ok_back = all(v > 0 for v in morning['speakers'].values())
 if not ok_back:
-    failures.append('a room is still silenced in the morning: %r' % morning['speakers'])
+    failures.append('a room is still silenced on a Monday morning: %r' % morning['speakers'])
 print('%s every room comes back up in the morning' % ('PASS' if ok_back else 'FAIL'))
+
+# Andrew's day rules, 2026-09-10. These are what a room being at zero is ALLOWED to mean.
+_day_rules = [
+    ('2026-09-07T11:00', 'Mon daytime', set()),                  # nothing off
+    ('2026-09-08T11:00', 'Tue daytime', {'Sunroom'}),
+    ('2026-09-09T11:00', 'Wed daytime', {'Sunroom'}),
+    ('2026-09-10T11:00', 'Thu daytime', {'Sunroom'}),
+    ('2026-09-11T11:00', 'Fri daytime', set()),
+    ('2026-09-12T11:00', 'Sat daytime', set()),
+    ('2026-09-07T19:00', 'Mon evening', set()),
+    ('2026-09-08T19:00', 'Tue evening', {'TV Room'}),
+    ('2026-09-10T19:00', 'Thu evening', {'TV Room'}),
+    ('2026-09-11T19:00', 'Fri evening', set()),
+]
+ok_rules = True
+for stamp, label, expect_off in _day_rules:
+    w = schedule.decide(cfg, datetime.fromisoformat(stamp), home)
+    got_off = {k for k, v in (w.get('speakers') or {}).items() if v == 0}
+    if got_off != expect_off:
+        ok_rules = False
+        failures.append('%s: expected %s silent, got %s' % (label, sorted(expect_off) or 'none', sorted(got_off) or 'none'))
+print('%s the Tue-Thu sunroom and TV room rules hold all week' % ('PASS' if ok_rules else 'FAIL'))
+
+# The weekend starts at ten, not nine.
+_sat9 = schedule.decide(cfg, datetime.fromisoformat('2026-09-12T09:30'), home)
+_sat10 = schedule.decide(cfg, datetime.fromisoformat('2026-09-12T10:30'), home)
+ok_weekend = _sat9.get('playlist') is None and _sat10.get('playlist') is not None
+if not ok_weekend:
+    failures.append('the weekend did not start at ten: 09:30 %r, 10:30 %r'
+                    % (_sat9.get('playlist'), _sat10.get('playlist')))
+print('%s the weekend is silent at half nine and playing at half ten' % ('PASS' if ok_weekend else 'FAIL'))
 
 print()
 print('--- dealing from a list of playlists, like a shuffled deck ---')
@@ -539,7 +594,7 @@ print('%s nothing is scheduled at home from midnight to nine'
 
 # And the morning has to actually come back, or quiet at midnight means quiet forever.
 _morning = schedule.decide(cfg, datetime(2026, 9, 7, 9, 0), home)
-ok_morning_back = _morning['playing'] and _morning['slot'] == 'Daytime'
+ok_morning_back = _morning['playing'] and str(_morning['slot']).startswith('Daytime')
 if not ok_morning_back:
     failures.append('the morning cycle does not restart at nine, so the house would stay '
                     'silent after the midnight stop')

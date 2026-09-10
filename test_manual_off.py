@@ -113,6 +113,24 @@ def main():
     check(not shop.get('leave_off_if_stopped_by_hand'),
           'no shop is set to leave itself off, a silent shop is a fault')
 
+    # 6. Andrew's rule, asked for 2026-09-10: six o'clock starts whatever happened by day.
+    #    He can stop the music at home during the day and it stays stopped. The evening
+    #    must not inherit that. It already worked, because the rule only leaves the music
+    #    off when the STOPPED playlist belongs to the CURRENT slot's own list, and a
+    #    daytime Calm Radio station is not one of the evening's. Pinned because he has now
+    #    asked for it by name, and a behaviour nobody tests can be removed by accident.
+    import datetime as _dtm
+    mon = _dtm.datetime(2026, 9, 7)                     # a Monday, no day rules in play
+    home_cfg = schedule.load()
+    home = [x for x in home_cfg['stores'] if x['id'] == 'home'][0]
+    before = schedule.decide(home_cfg, mon.replace(hour=17, minute=55), home)
+    after = schedule.decide(home_cfg, mon.replace(hour=18, minute=5), home)
+    day_names = set(n.strip() for n in (before.get('slot_playlists') or []))
+    eve_names = set(n.strip() for n in (after.get('slot_playlists') or []))
+    pick = before.get('playlist')
+    check(pick in day_names and pick not in eve_names,
+          "six o'clock starts even if the music was stopped by hand during the day")
+
     print()
     if fails:
         print('%d CHECK%s FAILED.' % (len(fails), '' if len(fails) == 1 else 'S'))
@@ -123,3 +141,4 @@ def main():
 
 if __name__ == '__main__':
     sys.exit(main())
+
