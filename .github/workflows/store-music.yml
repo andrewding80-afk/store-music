@@ -62,6 +62,9 @@ jobs:
       - name: Check the leave it off rule
         run: python test_manual_off.py
 
+      - name: Check one store cannot take down the others
+        run: python test_one_store_cannot_kill_the_run.py
+
       - name: Work out the mode
         id: mode
         env:

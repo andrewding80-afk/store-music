@@ -421,14 +421,29 @@ def main():
         return 0
 
     for store in enabled:
-        note = point_at_the_live_group(store)
-        want_now = schedule.decide(cfg, now, store)
-        modes_note = (hold_the_play_modes(store, (want_now or {}).get('playlist'))
-                      if args.live else None)
-        lines, trouble, pending, acted = check_store(cfg, store, now, args.live)
-        for extra in (modes_note, note):
-            if extra:
-                lines.insert(1, extra)
+        # One store must never be able to take the music off in the others. A bad
+        # household id used to crash the whole run inside find_favourite, so a single
+        # mistyped identifier would have silenced all four shops and the run would end
+        # with a stack trace instead of a report. Found 2026-09-10 while testing
+        # something else.
+        #
+        # Deliberately catching everything rather than the one call that was seen to
+        # fail. Protecting the failure you happened to notice is the same mistake as
+        # listing the bad files in an ignore rule: it holds until the next one.
+        try:
+            note = point_at_the_live_group(store)
+            want_now = schedule.decide(cfg, now, store)
+            modes_note = (hold_the_play_modes(store, (want_now or {}).get('playlist'))
+                          if args.live else None)
+            lines, trouble, pending, acted = check_store(cfg, store, now, args.live)
+            for extra in (modes_note, note):
+                if extra:
+                    lines.insert(1, extra)
+        except Exception as exc:
+            lines = ['  %s' % (store.get('name') or store['id']),
+                     '    THIS STORE COULD NOT BE CHECKED AT ALL: %s' % str(exc)[:150],
+                     '    The other stores were checked normally and are unaffected.']
+            trouble, pending, acted = True, False, []
         any_trouble = any_trouble or trouble
         any_pending = any_pending or pending
         changes.extend(acted)
