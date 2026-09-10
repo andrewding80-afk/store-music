@@ -56,13 +56,15 @@
           "to": "23:00",
           "volume": 26,
           "playlist_pool": [
-            "Jacques Loussier Playlist",
-            "The Expat: Lowkey Jazz",
-            "The Expat: Chill RnB",
+            "Julie London Radio",
             "Paul Mauriat and Friends",
             "Peggy Lee Radio",
-            "Vintage Movie Tracks"
-          ]
+            "Dinah Washington Radio",
+            "An Elegant Affair",
+            "Romcom",
+            "Classical Romance"
+          ],
+          "_pool_note": "Chosen by Andrew 2026-09-10. All seven checked live on the system that day: every one is a Spotify playlist, so all of them shuffle and crossfade. Seven dealt one a night means a week before any repeats."
         },
         {
           "name": "Night",
