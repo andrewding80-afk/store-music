@@ -1,11 +1,12 @@
 {
   "ok": true,
-  "result": "4 changes made",
+  "result": "2 changes made",
   "stores_switched_on_but_unreachable": [],
   "problems": [],
-  "run": "332",
-  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/34499303083",
+  "group_found_by_speaker": "no stores yet",
+  "run": "333",
+  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/34500900502",
   "output_tail": "",
-  "written_at": "2026-09-10 16:00:41 UTC",
-  "written_at_epoch": 1789056041
+  "written_at": "2026-09-10 16:15:32 UTC",
+  "written_at_epoch": 1789056932
 }
