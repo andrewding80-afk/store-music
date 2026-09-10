@@ -412,7 +412,7 @@
       "overrides": {}
     },
     "autumn": {
-      "from": "09-01",
+      "from": "10-01",
       "to": "11-30",
       "overrides": {
         "Evening": [
@@ -428,7 +428,7 @@
           "Jazz for Autumn"
         ]
       },
-      "_note": "Set 2026-09-10. Andrew's seven evening playlists PLUS three autumn ones, dealt as one deck of ten. Blended rather than replaced, because this document's own rule is that a seasonal change should be felt and not noticed: three in ten evenings is felt. Only home has a slot called 'Evening', so this touches nothing in the shops. 'Fall Asleep Instantly' is deliberately excluded: it is a sleep playlist whose name merely begins with the word."
+      "_note": "Set 2026-09-10, and moved the same day: Andrew said September is too early, so autumn starts 1 October rather than 1 September. September now falls in no season at all, which simply means the default playlists, and that is the intent. Andrew's seven evening playlists PLUS three autumn ones, dealt as one deck of ten. Blended rather than replaced, because this document's own rule is that a seasonal change should be felt and not noticed: three in ten evenings is felt. Only home has a slot called 'Evening', so this touches nothing in the shops. 'Fall Asleep Instantly' is deliberately excluded: it is a sleep playlist whose name merely begins with the word."
     }
   },
   "_holidays_comment": "Holidays outrank seasons, which outrank the default. Christmas never starts before the first week of December, and the 50/50 mix of Christmas and non-Christmas tracks is built into the playlist itself, not by the software. Holiday overrides name slots; Central Harlem's and West Harlem's own slot names include the same 'Lunch rush', 'Dead stretch', 'Early evening', 'Dinner peak' and 'Last service', so the December and holiday overrides still land there. The 'Soft open' slot has no override and stays chill in December, which is right.",
