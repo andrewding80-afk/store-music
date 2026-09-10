@@ -412,6 +412,13 @@ def main():
                  'Add --live to actually make them.'
     else:
         result = 'all stores as expected, nothing to do'
+    # Say which stores are protected against a group id dying. Without this, a
+    # mistyped or missing SONOS_SPEAKER_ setting looks exactly like a working one,
+    # because the lookup is silent when the stored group happens to still be right.
+    # Added 2026-09-10 so Andrew can see his own settings took effect.
+    protected = [s['id'] for s in enabled if s.get('speaker')]
+    print('Group found by speaker for: %s'
+          % (', '.join(protected) if protected else 'no stores yet'))
     print('Result: %s' % result)
     return 1 if any_trouble else 0
 

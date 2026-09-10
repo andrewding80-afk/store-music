@@ -91,6 +91,9 @@ def build(text, exit_code):
         'result': result or 'the run said nothing, which is itself wrong',
         'stores_switched_on_but_unreachable': unreachable,
         'problems': problems_by_store(text),
+        'group_found_by_speaker': next(
+            (l.split(': ', 1)[1].strip() for l in text.splitlines()
+             if l.startswith('Group found by speaker for: ')), ''),
         'run': os.environ.get('GITHUB_RUN_NUMBER', ''),
         'run_url': '%s/%s/actions/runs/%s' % (
             'https://github.com', REPO, os.environ.get('GITHUB_RUN_ID', '')),
@@ -116,6 +119,7 @@ def meaningful(status):
         'ok': status.get('ok'),
         'problems': status.get('problems'),
         'stores_switched_on_but_unreachable': status.get('stores_switched_on_but_unreachable'),
+        'group_found_by_speaker': status.get('group_found_by_speaker'),
     }
 
 
