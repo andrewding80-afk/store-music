@@ -243,12 +243,50 @@ def find_favourite(store_id, household, name):
     return None
 
 
+# Andrew's standing rule, 2026-09-10: every playlist at every location shuffles,
+# repeats and crossfades. Repeat is not a preference, it is what stops the music
+# running out mid-slot and the leave-it-off rule then assuming he wanted silence.
+# Crossfade is his taste call, decided the same day after hearing both.
+WANTED_PLAY_MODES = {'shuffle': True, 'repeat': True, 'crossfade': True}
+
+
+def is_a_track_list(favourite):
+    """True for a Spotify playlist, False for a radio stream.
+
+    Shuffle, repeat and crossfade are properties of a list of tracks. A radio stream
+    has no list to shuffle and no gaps to fade between. Andrew's home runs Calm Radio
+    stations through the day and Spotify playlists in the evening, so the rule has to
+    follow the content rather than the store.
+
+    Read off the data, not a list of service names: Sonos reports resource.type as
+    PLAYLIST or STREAM. Naming the services I happen to know about is the mistake that
+    has cost us all day.
+    """
+    return ((favourite or {}).get('resource') or {}).get('type') == 'PLAYLIST'
+
+
+def play_modes(store_id, group_id):
+    return playback_status(store_id, group_id).get('playModes') or {}
+
+
+def set_play_modes(store_id, group_id, modes):
+    url = '%s/groups/%s/playback/playMode' % (API, group_id)
+    return _request(url, method='POST', body={'playModes': modes},
+                    headers=_auth_headers(store_id))
+
+
+def wrong_play_modes(store_id, group_id):
+    """Which of the wanted modes are not set. Empty means all is well."""
+    now = play_modes(store_id, group_id)
+    return {k: v for k, v in WANTED_PLAY_MODES.items() if now.get(k) is not v}
+
+
 def play_favourite(store_id, group_id, favourite_id):
     url = '%s/groups/%s/favorites' % (API, group_id)
     return _request(url, method='POST', body={
         'favoriteId': favourite_id,
         'playOnCompletion': True,
-        'playModes': {'shuffle': True, 'repeat': True},
+        'playModes': WANTED_PLAY_MODES,
     }, headers=_auth_headers(store_id))
 
 

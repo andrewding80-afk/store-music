@@ -335,6 +335,37 @@ def check_store(cfg, store, now, live):
     return lines, trouble, pending, acted
 
 
+def hold_the_play_modes(store, wanted_playlist):
+    """Keep shuffle, repeat and crossfade true, rather than setting them once and hoping.
+
+    Andrew's standing rule, 2026-09-10: every playlist at every location shuffles,
+    repeats and crossfades. Setting them only when a playlist starts means they drift
+    the moment anyone touches the app, and nothing notices. Repeat especially: with it
+    off the music runs out mid-slot and the leave-it-off rule then reads the silence as
+    Andrew having stopped it, so a track list ending becomes an hour of quiet.
+
+    Found the same day: all three shops had crossfade off and home had repeat off, none
+    of it deliberate and none of it visible.
+
+    Reads first and only writes when something is actually wrong, so a healthy store
+    costs one call and changes nothing. Any failure leaves everything alone and says so.
+    """
+    if schedule.not_connected(store) or not store.get('group') or not wanted_playlist:
+        return None
+    try:
+        fav = sonos.find_favourite(store['id'], store['household'], wanted_playlist)
+        if not sonos.is_a_track_list(fav):
+            return None          # a radio stream: nothing to shuffle, nothing to fade
+        wrong = sonos.wrong_play_modes(store['id'], store['group'])
+        if not wrong:
+            return None
+        sonos.set_play_modes(store['id'], store['group'], wrong)
+        return '    play modes put back: %s' % ', '.join(
+            '%s should be %s' % (k, str(v).lower()) for k, v in sorted(wrong.items()))
+    except Exception as exc:
+        return '    could not check the play modes (%s). Nothing changed.' % str(exc)[:60]
+
+
 def point_at_the_live_group(store):
     """Point this store at whichever group its speaker is in right now.
 
@@ -391,9 +422,13 @@ def main():
 
     for store in enabled:
         note = point_at_the_live_group(store)
+        want_now = schedule.decide(cfg, now, store)
+        modes_note = (hold_the_play_modes(store, (want_now or {}).get('playlist'))
+                      if args.live else None)
         lines, trouble, pending, acted = check_store(cfg, store, now, args.live)
-        if note:
-            lines.insert(1, note)
+        for extra in (modes_note, note):
+            if extra:
+                lines.insert(1, extra)
         any_trouble = any_trouble or trouble
         any_pending = any_pending or pending
         changes.extend(acted)
