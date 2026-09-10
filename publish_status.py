@@ -106,9 +106,17 @@ def build(text, exit_code):
 
 def meaningful(status):
     """Everything except the parts that change on every run regardless of health."""
-    return {k: v for k, v in status.items()
-            if k not in ('written_at', 'written_at_epoch', 'run', 'run_url',
-                         'output_tail')}
+    # Health, not wording. The verdict text carries a change count, "4 changes made"
+    # against "all stores as expected", which differs between runs on a perfectly
+    # healthy system. Comparing on it would republish several times a day and turn a
+    # quiet signal into a stream. Compare on whether it is well and which stores are
+    # not, which is what anyone actually wants to know. Fixed 2026-09-10 before it
+    # ever annoyed anyone.
+    return {
+        'ok': status.get('ok'),
+        'problems': status.get('problems'),
+        'stores_switched_on_but_unreachable': status.get('stores_switched_on_but_unreachable'),
+    }
 
 
 def _request(url, token, method='GET', body=None):
