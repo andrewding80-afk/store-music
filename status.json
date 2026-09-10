@@ -1,4 +1,9 @@
 {
-  "written_at": null,
-  "note": "placeholder, waiting for the first real run to overwrite it"
+  "ok": false,
+  "result": "SOMETHING NEEDS ATTENTION",
+  "stores_switched_on_but_unreachable": [],
+  "run": "326",
+  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/34489479861",
+  "written_at": "2026-09-10 14:30:33 UTC",
+  "written_at_epoch": 1789050633
 }
