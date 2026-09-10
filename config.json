@@ -30,19 +30,12 @@
           "Sunroom": 20,
           "TV Room": 20
         },
-        "Evening, Tue to Thu": {
-          "Bedroom": 22,
-          "Dressing Room": 22,
-          "Kitchen": 25,
-          "Sunroom": 18,
-          "TV Room": 0
-        },
         "Evening": {
           "Bedroom": 22,
           "Dressing Room": 22,
           "Kitchen": 25,
           "Sunroom": 18,
-          "TV Room": 18
+          "TV Room": 0
         },
         "Night": {
           "Bedroom": 18,
@@ -121,36 +114,9 @@
           ]
         },
         {
-          "name": "Evening, Tue to Thu",
-          "from": "18:00",
-          "to": "23:00",
-          "days": [
-            "Tue",
-            "Wed",
-            "Thu"
-          ],
-          "volume": 26,
-          "playlist_pool": [
-            "Julie London Radio",
-            "Paul Mauriat and Friends",
-            "Peggy Lee Radio",
-            "Dinah Washington Radio",
-            "An Elegant Affair",
-            "Romcom",
-            "Classical Romance"
-          ],
-          "_pool_note": "Chosen by Andrew 2026-09-10. All seven checked live on the system that day: every one is a Spotify playlist, so all of them shuffle and crossfade. Seven dealt one a night means a week before any repeats."
-        },
-        {
           "name": "Evening",
           "from": "18:00",
           "to": "23:00",
-          "days": [
-            "Mon",
-            "Fri",
-            "Sat",
-            "Sun"
-          ],
           "volume": 26,
           "playlist_pool": [
             "Julie London Radio",
@@ -182,7 +148,7 @@
       "stop_when_closed": true,
       "leave_off_if_stopped_by_hand": true,
       "_leave_off_note": "Asked for 2026-09-07. If Andrew stops the music himself, it stays stopped. It starts again on its own at the next change of slot, which at home means nine in the morning, six in the evening or eleven at night. Shops deliberately do not have this: a silent room during service is a fault, not a choice.",
-      "_day_rules_note": "Set 2026-09-10 by Andrew. Sunroom silent in the daytime on Tue, Wed and Thu. TV Room silent in the evening on Tue, Wed and Thu. Weekends start at 10:00 rather than 09:00; Mon and Fri and the weekend play in every room. Silent means volume 0 with the speaker still in the group, never ungrouped: that is the decision recorded on 2026-09-06, because splitting and rejoining needs the software to remember what it undid and a failure leaves the house split until someone notices. Ceilings are Andrew's: Sunroom 20, TV Room 20, Dressing Room 25, Bedroom 25, Kitchen 28. Evenings sit below the ceiling in the same proportion they always did."
+      "_day_rules_note": "Set 2026-09-10 by Andrew. Sunroom silent in the daytime on Tue, Wed and Thu. TV Room silent EVERY evening, all seven nights. Weekends start at 10:00 rather than 09:00; Mon and Fri and the weekend play in every room. Silent means volume 0 with the speaker still in the group, never ungrouped: that is the decision recorded on 2026-09-06, because splitting and rejoining needs the software to remember what it undid and a failure leaves the house split until someone notices. Ceilings are Andrew's: Sunroom 20, TV Room 20, Dressing Room 25, Bedroom 25, Kitchen 28. Evenings sit below the ceiling in the same proportion they always did."
     },
     {
       "id": "west-harlem",

@@ -484,10 +484,12 @@ _day_rules = [
     ('2026-09-10T11:00', 'Thu daytime', {'Sunroom'}),
     ('2026-09-11T11:00', 'Fri daytime', set()),
     ('2026-09-12T11:00', 'Sat daytime', set()),
-    ('2026-09-07T19:00', 'Mon evening', set()),
+    ('2026-09-07T19:00', 'Mon evening', {'TV Room'}),
     ('2026-09-08T19:00', 'Tue evening', {'TV Room'}),
     ('2026-09-10T19:00', 'Thu evening', {'TV Room'}),
-    ('2026-09-11T19:00', 'Fri evening', set()),
+    ('2026-09-11T19:00', 'Fri evening', {'TV Room'}),
+    ('2026-09-12T19:00', 'Sat evening', {'TV Room'}),
+    ('2026-09-13T19:00', 'Sun evening', {'TV Room'}),
 ]
 ok_rules = True
 for stamp, label, expect_off in _day_rules:
@@ -496,7 +498,7 @@ for stamp, label, expect_off in _day_rules:
     if got_off != expect_off:
         ok_rules = False
         failures.append('%s: expected %s silent, got %s' % (label, sorted(expect_off) or 'none', sorted(got_off) or 'none'))
-print('%s the Tue-Thu sunroom and TV room rules hold all week' % ('PASS' if ok_rules else 'FAIL'))
+print('%s the sunroom is off Tue to Thu by day and the TV room off every evening' % ('PASS' if ok_rules else 'FAIL'))
 
 # The weekend starts at ten, not nine.
 _sat9 = schedule.decide(cfg, datetime.fromisoformat('2026-09-12T09:30'), home)
