@@ -1,14 +1,16 @@
 {
-  "ok": true,
-  "result": "4 changes made",
+  "ok": false,
+  "result": "SOMETHING NEEDS ATTENTION",
   "stores_switched_on_but_unreachable": [],
-  "problems": [],
+  "problems": [
+    "Home (TV Room + 4): COULD NOT REACH SONOS"
+  ],
   "group_found_by_speaker": "home, west-harlem, central-harlem, hells-kitchen",
   "not_protected": "",
-  "token_ages": "home:6.2d, west-harlem:2.3d, central-harlem:1.5d, hells-kitchen:3.3d",
-  "run": "481",
-  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/34667838737",
-  "output_tail": "",
-  "written_at": "2026-09-12 02:30:50 UTC",
-  "written_at_epoch": 1789180250
+  "token_ages": "home:6.4d, west-harlem:2.6d, central-harlem:1.7d, hells-kitchen:3.6d",
+  "run": "504",
+  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/34682147313",
+  "output_tail": "Store music check, 2026-09-12 04:00\nMode: LIVE, changes will be made\n\n  Home (TV Room + 4): closed, nothing should be playing\n    could not ask Sonos which group the speaker is in (GET https://api.ws.sonos.com/control/api/v1/households/Sonos_ReR4TbRaS). Falling back to the stored group.\n    COULD NOT REACH SONOS: GET https://api.ws.sonos.com/control/api/v1/groups/RINCON_B8E937E4BFAE01400:1687050710/playback -> 504 {\"errorCode\":\"ERROR_COMMAND_TIMEOUT\"}\n\n  West Harlem, 3600 Broadway: closed, nothing should be playing\n    already quiet\n\n  Central Harlem, 370 Malcolm X (one speaker, Dining Room): closed, nothing should be playing\n    already quiet\n\n  Hell's Kitchen, 354 West 44th (left and right pair): closed, nothing should be playing\n    already quiet\n\nSaved pass ages: home:6.4d, west-harlem:2.6d, central-harlem:1.7d, hells-kitchen:3.6d\nGroup found by speaker for: home, west-harlem, central-harlem, hells-kitchen\nResult: SOMETHING NEEDS ATTENTION",
+  "written_at": "2026-09-12 08:00:53 UTC",
+  "written_at_epoch": 1789200053
 }
