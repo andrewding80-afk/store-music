@@ -1,14 +1,14 @@
 {
-  "ok": true,
-  "result": "4 changes made",
+  "ok": false,
+  "result": "SOMETHING NEEDS ATTENTION",
   "stores_switched_on_but_unreachable": [],
   "problems": [],
   "group_found_by_speaker": "home, west-harlem, central-harlem, hells-kitchen",
   "not_protected": "",
   "token_ages": "home:6.1d, west-harlem:2.3d, central-harlem:1.4d, hells-kitchen:3.3d",
-  "run": "474",
-  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/34662663977",
-  "output_tail": "",
-  "written_at": "2026-09-12 00:45:51 UTC",
-  "written_at_epoch": 1789173951
+  "run": "476",
+  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/34664259033",
+  "output_tail": "Store music check, 2026-09-11 21:15\nMode: LIVE, changes will be made\n\n  Home (TV Room + 4)\n    should be: An Elegant Affair  at its own level per speaker   (Evening, 18:00 to 23:00, using number 2 of 7 in this round, today)\n    each speaker: Bedroom 22, Dressing Room 22, Kitchen 25, Sunroom 18, TV Room 0\n    actually: Goodnight Mix  (not playing)\n    SILENT during service hours\n    music: changed to 'An Elegant Affair'\n    volume: all 5 speakers already correct\n\n  West Harlem, 3600 Broadway\n    should be: THPN-Relax  at volume 28   (Last service, 21:00 to 23:00, using number 4 of 5 in this round, today)\n    actually: Jazz Classics  (playing)\n    music: changed to 'THPN-Relax'\n    volume: already 28\n\n  Central Harlem, 370 Malcolm X (one speaker, Dining Room)\n    should be: This Is Wynton Marsalis  at volume 32   (Last service, 21:00 to 23:00, using number 2 of 3 in this round, today)\n    actually: Funky Instrumental Jazz  (playing)\n    music: changed to 'This Is Wynton Marsalis'\n    volume: already 32\n\n  Hell's Kitchen, 354 West 44th (left and right pair)\n    should be: Feel Good Jazz  at its own level per speaker   (Last service, 21:00 to 23:00, using the default for this slot)\n    each speaker: Dining Room Left Speaker 32, Dining Room Right Speaker 30\n    actually: Instrumental Jazz Standards  (playing)\n    music: changed to 'Feel Good Jazz'\n    volume: all 2 speakers already correct\n\nSaved pass ages: home:6.1d, west-harlem:2.3d, central-harlem:1.4d, hells-kitchen:3.3d\nGroup found by speaker for: home, west-harlem, central-harlem, hells-kitchen\nResult: SOMETHING NEEDS ATTENTION",
+  "written_at": "2026-09-12 01:15:41 UTC",
+  "written_at_epoch": 1789175741
 }
