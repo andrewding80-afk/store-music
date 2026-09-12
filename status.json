@@ -1,14 +1,14 @@
 {
-  "ok": false,
-  "result": "SOMETHING NEEDS ATTENTION",
+  "ok": true,
+  "result": "8 changes made",
   "stores_switched_on_but_unreachable": [],
   "problems": [],
   "group_found_by_speaker": "home, west-harlem, central-harlem, hells-kitchen",
   "not_protected": "",
   "token_ages": "home:6.7d, west-harlem:2.9d, central-harlem:2.0d, hells-kitchen:3.9d",
-  "run": "536",
-  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/34702416731",
-  "output_tail": "Store music check, 2026-09-12 11:30\nMode: LIVE, changes will be made\n\n  Home (TV Room + 4)\n    should be: CHOPIN  at its own level per speaker   (Daytime, weekend, 10:00 to 18:00, using number 5 of 10 in this round, today)\n    each speaker: Bedroom 25, Dressing Room 25, Kitchen 28, Sunroom 20, TV Room 20\n    actually: CHOPIN  (playing)\n    music: already correct\n    volume: all 5 speakers already correct\n\n  West Harlem, 3600 Broadway\n    should be: Brunch Jazz  at volume 28   (Soft open, 11:30 to 12:30, using number 3 of 4 in this round, today)\n    actually: Jazz Classics Blue Note Edition  (not playing)\n    SILENT during service hours\n    music: changed to 'Brunch Jazz'\n    volume: already 28\n\n  Central Harlem, 370 Malcolm X (one speaker, Dining Room)\n    should be: Bossa Nova Classics  at volume 30   (Soft open, 11:30 to 12:30, using number 3 of 3 in this round, today)\n    actually: Funky Instrumental Jazz  (not playing)\n    SILENT during service hours\n    music: changed to 'Bossa Nova Classics'\n    volume: 32 -> 30\n\n  Hell's Kitchen, 354 West 44th (left and right pair)\n    should be: Jazz Trumpet  at its own level per speaker   (Lunch rush, 11:30 to 13:30, using the default for this slot)\n    each speaker: Dining Room Left Speaker 36, Dining Room Right Speaker 33\n    actually: FOH Jazz  (not playing)\n    SILENT during service hours\n    music: changed to 'Jazz Trumpet'\n    volume: Dining Room Left Speaker 32 -> 36\n    volume: Dining Room Right Speaker 30 -> 33\n\nSaved pass ages: home:6.7d, west-harlem:2.9d, central-harlem:2.0d, hells-kitchen:3.9d\nGroup found by speaker for: home, west-harlem, central-harlem, hells-kitchen\nResult: SOMETHING NEEDS ATTENTION",
-  "written_at": "2026-09-12 15:30:52 UTC",
-  "written_at_epoch": 1789227052
+  "run": "537",
+  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/34703166814",
+  "output_tail": "",
+  "written_at": "2026-09-12 15:45:41 UTC",
+  "written_at_epoch": 1789227941
 }
