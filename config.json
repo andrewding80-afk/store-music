@@ -17,7 +17,7 @@
           "TV Room": 20
         },
         "Daytime, weekend": {
-          "Bedroom": 25,
+          "Bedroom": 20,
           "Dressing Room": 25,
           "Kitchen": 28,
           "Sunroom": 20,
@@ -73,6 +73,8 @@
           "name": "Daytime, weekend",
           "from": "10:00",
           "to": "18:00",
+          "fade_in_seconds": 600,
+          "_fade_note": "Andrew, 2026-09-12: on weekend mornings the music comes up gradually over ten minutes, with the Bedroom topping out at 20 rather than its usual 25. This number beats the system's fade_in_seconds below.",
           "days": [
             "Sat",
             "Sun"
@@ -146,10 +148,12 @@
         }
       ],
       "_home_comment": "Daytime must be Calm Radio only. Spotify plays in one place at a time, and during the day Andrew is out and using Spotify himself, so a scheduled job on Spotify would cut him off. His Calm Radio stations are the ones named in capitals. Evening and night are unrestricted because he is home and not playing Spotify elsewhere. From midnight the music stops until the nine in the morning start, asked for 2026-09-06.",
+      "fade_in_seconds": 120,
+      "_fade_in_note": "Andrew, 2026-09-12: whenever the job starts a playlist at home it begins silent and rises to the slot's levels over this many seconds, instead of coming on at full volume. A slot may carry its own fade_in_seconds, which wins; the weekend morning does. Shops have no fade and start at once, because a shop is already full of noise when the music comes on.",
       "stop_when_closed": true,
       "leave_off_if_stopped_by_hand": true,
       "_leave_off_note": "Asked for 2026-09-07. If Andrew stops the music himself, it stays stopped. It starts again on its own at the next change of slot, which at home means nine in the morning, six in the evening or eleven at night. Shops deliberately do not have this: a silent room during service is a fault, not a choice.",
-      "_day_rules_note": "Set 2026-09-10 by Andrew. Sunroom silent in the daytime on Tue, Wed and Thu. TV Room silent EVERY evening, all seven nights. Weekends start at 10:00 rather than 09:00; Mon and Fri and the weekend play in every room. Silent means volume 0 with the speaker still in the group, never ungrouped: that is the decision recorded on 2026-09-06, because splitting and rejoining needs the software to remember what it undid and a failure leaves the house split until someone notices. Ceilings are Andrew's: Sunroom 20, TV Room 20, Dressing Room 25, Bedroom 25, Kitchen 28. Evenings sit below the ceiling in the same proportion they always did.",
+      "_day_rules_note": "Set 2026-09-10 by Andrew. Sunroom silent in the daytime on Tue, Wed and Thu. TV Room silent EVERY evening, all seven nights. Weekends start at 10:00 rather than 09:00; Mon and Fri and the weekend play in every room. Silent means volume 0 with the speaker still in the group, never ungrouped: that is the decision recorded on 2026-09-06, because splitting and rejoining needs the software to remember what it undid and a failure leaves the house split until someone notices. Ceilings are Andrew's: Sunroom 20, TV Room 20, Dressing Room 25, Bedroom 25 (20 on weekend mornings, set 2026-09-12), Kitchen 28. Evenings sit below the ceiling in the same proportion they always did.",
       "holidays": [
         {
           "name": "Christmas",

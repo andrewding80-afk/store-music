@@ -34,6 +34,13 @@ on:
   issue_comment:
     types: [created]
 
+# One run at a time. A home fade in can hold a run for ten minutes, and the next
+# timer or comment must wait behind it rather than stepping the same speakers up
+# twice. Added 2026-09-12 with the fade in.
+concurrency:
+  group: store-music
+  cancel-in-progress: false
+
 permissions:
   # write, only so the last step can publish a one-line verdict to the
   # 'status' branch. Nothing else here writes. Added 2026-09-10.
@@ -44,7 +51,9 @@ jobs:
     # A comment from anybody else is ignored. This repository is public.
     if: github.event_name != 'issue_comment' || github.event.comment.user.login == github.repository_owner
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    # Long enough for the ten minute weekend fade in at home plus the checks. Was 10
+    # until 2026-09-12.
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -64,6 +73,9 @@ jobs:
 
       - name: Check one store cannot take down the others
         run: python test_one_store_cannot_kill_the_run.py
+
+      - name: Check the fade in
+        run: python test_fade_in.py
 
       - name: Work out the mode
         id: mode

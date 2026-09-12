@@ -252,6 +252,7 @@ def decide(cfg, now, store=None):
             'needs_attention': None,
             'speakers': None,
             'slot_playlists': [],
+            'fade_in_seconds': None,
         }
 
     # A slot may name one playlist, a different one for each day of the week, or a list
@@ -355,6 +356,12 @@ def decide(cfg, now, store=None):
         attention = ('No playlist is set for %s. It is named %r in the config, which is a '
                      'placeholder rather than a real playlist.' % (slot['name'], playlist))
 
+    # How gently the music comes on when the job starts it. A number of seconds on the
+    # slot wins, then one on the system, then nothing, which means it starts at full
+    # level as it always did. Andrew asked for this at home on 2026-09-12: ten minutes on
+    # weekend mornings, two minutes for every other slot. The shops carry no number.
+    fade_in = slot.get('fade_in_seconds', (store or {}).get('fade_in_seconds'))
+
     return {
         'playing': True,
         'slot': slot['name'],
@@ -364,6 +371,7 @@ def decide(cfg, now, store=None):
         'needs_attention': attention,
         'speakers': speakers,
         'slot_playlists': sorted(belongs),
+        'fade_in_seconds': fade_in,
     }
 
 

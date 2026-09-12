@@ -189,6 +189,10 @@ for room, level in (('TV Room', 20), ('Kitchen', 28), ('Bedroom', 25),
                     ('Sunroom', 20), ('Dressing Room', 25)):
     check_speakers('2026-10-05T12:00', room, level, 'the ceiling Andrew asked for, daytime')
 
+# Weekend mornings the Bedroom tops out at 20, Andrew's ask of 2026-09-12. Saturday.
+check_speakers('2026-10-10T12:00', 'Bedroom', 20, 'weekend morning Bedroom is 20, not 25')
+check_speakers('2026-10-10T12:00', 'Kitchen', 28, 'the other rooms keep their ceilings at the weekend')
+
 daytime = schedule.decide(cfg, datetime.fromisoformat('2026-10-05T12:00'), home)['speakers']
 evening = schedule.decide(cfg, datetime.fromisoformat('2026-10-05T19:00'), home)['speakers']
 

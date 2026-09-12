@@ -67,6 +67,65 @@ def fade_out(store, lines):
     return was
 
 
+# How gently the music comes on. Also by hand, for the same reason. Andrew asked on
+# 2026-09-12: at home the music should rise from silence to its level rather than
+# come on all at once, ten minutes on weekend mornings and two minutes otherwise. The
+# number of seconds lives in config.json, on the slot or on the system. No number, no
+# fade, which is what the shops get. A step is at least ten seconds and there are at
+# most twenty, so a long fade means bigger gaps rather than a flood of calls.
+FADE_IN_MAX_STEPS = 20
+FADE_IN_MIN_STEP_SECONDS = 10
+
+
+def fade_in_steps(seconds):
+    return max(1, min(FADE_IN_MAX_STEPS, int(seconds) // FADE_IN_MIN_STEP_SECONDS))
+
+
+def start_gently(store, want, fav, seconds, lines, acted):
+    """Silence the speakers, start the music, then bring the level up over `seconds`.
+
+    Returns True if the music was started. Any failure after the music is playing is
+    reported and left for reconcile_volume, which runs afterwards and sets the final
+    levels regardless, so a fade that breaks halfway ends at the right volume rather
+    than at nothing.
+    """
+    # Targets: one per speaker, or one for the whole group.
+    targets = []
+    if want.get('speakers'):
+        found = sonos.players(store['id'], store['household'])
+        for name, level in wanted_levels(store, want, found).items():
+            targets.append((name, found[name], level))
+    else:
+        targets.append(('the whole group', None, want['volume']))
+
+    def set_level(player_id, level):
+        if player_id is None:
+            sonos.set_volume(store['id'], store['group'], level)
+        else:
+            sonos.set_player_volume(store['id'], player_id, level)
+
+    for _name, player_id, _level in targets:
+        set_level(player_id, 0)
+    sonos.play_favourite(store['id'], store['group'], fav['id'])
+    lines.append('    music: changed to %r, starting from silence' % want['playlist'])
+    acted.append('music to %r' % want['playlist'])
+
+    steps = fade_in_steps(seconds)
+    try:
+        for step in range(1, steps + 1):
+            time.sleep(seconds / float(steps))
+            for _name, player_id, level in targets:
+                if level > 0:
+                    set_level(player_id, int(round(level * step / float(steps))))
+    except sonos.SonosError as e:
+        lines.append('    the fade in stopped early: %s. The level is set outright below.' % e)
+        return True
+    lines.append('    faded up over about %d seconds to: %s'
+                 % (seconds, ', '.join('%s %s' % (n, l) for n, _, l in sorted(targets))))
+    acted.append('faded in over %ds' % seconds)
+    return True
+
+
 def restore_levels(store, was, lines):
     """Put the volume back now the music has stopped.
 
@@ -319,15 +378,21 @@ def check_store(cfg, store, now, live):
             trouble = True
         elif live:
             try:
-                sonos.play_favourite(store['id'], store['group'], fav['id'])
-                lines.append('    music: changed to %r' % want['playlist'])
-                acted.append('music to %r' % want['playlist'])
+                fade = want.get('fade_in_seconds') or 0
+                if fade > 0:
+                    start_gently(store, want, fav, fade, lines, acted)
+                else:
+                    sonos.play_favourite(store['id'], store['group'], fav['id'])
+                    lines.append('    music: changed to %r' % want['playlist'])
+                    acted.append('music to %r' % want['playlist'])
             except sonos.SonosError as e:
                 lines.append('    FAILED to change the music: %s' % e)
                 trouble = True
         else:
-            lines.append('    music: WOULD change to %r   (dry run, nothing done)'
-                         % want['playlist'])
+            fade = want.get('fade_in_seconds') or 0
+            how = (', fading in over %d seconds' % fade) if fade > 0 else ''
+            lines.append('    music: WOULD change to %r%s   (dry run, nothing done)'
+                         % (want['playlist'], how))
             pending = True
 
     # ---- the volume, checked whatever the music did ----

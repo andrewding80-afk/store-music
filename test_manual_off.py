@@ -39,6 +39,10 @@ sys.modules['sonos'] = fake_sonos()
 import run        # noqa: E402
 import schedule   # noqa: E402
 
+# Home fades its music in, and this check starts home's music several times. Do not
+# actually wait for the fades; they are checked by test_fade_in.py.
+run.time.sleep = lambda secs: None
+
 fails = []
 
 
