@@ -1,14 +1,14 @@
 {
-  "ok": false,
-  "result": "SOMETHING NEEDS ATTENTION",
+  "ok": true,
+  "result": "all stores as expected, nothing to do",
   "stores_switched_on_but_unreachable": [],
   "problems": [],
   "group_found_by_speaker": "home, west-harlem, central-harlem, hells-kitchen",
   "not_protected": "",
   "token_ages": "home:6.6d, west-harlem:2.8d, central-harlem:1.9d, hells-kitchen:3.8d",
-  "run": "530",
-  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/34697990312",
-  "output_tail": "Store music check, 2026-09-12 10:00\nMode: LIVE, changes will be made\n\n  Home (TV Room + 4)\n    should be: CHOPIN  at its own level per speaker   (Daytime, weekend, 10:00 to 18:00, using number 5 of 10 in this round, today)\n    each speaker: Bedroom 25, Dressing Room 25, Kitchen 28, Sunroom 20, TV Room 20\n    actually: SCHUMANN RESONANCE  (not playing)\n    SILENT during service hours\n    music: changed to 'CHOPIN'\n    volume: Bedroom 18 -> 25\n    volume: Dressing Room 0 -> 25\n    volume: Kitchen 18 -> 28\n    volume: Sunroom 0 -> 20\n    volume: TV Room 0 -> 20\n\n  West Harlem, 3600 Broadway: closed, nothing should be playing\n    already quiet\n\n  Central Harlem, 370 Malcolm X (one speaker, Dining Room): closed, nothing should be playing\n    already quiet\n\n  Hell's Kitchen, 354 West 44th (left and right pair): closed, nothing should be playing\n    already quiet\n\nSaved pass ages: home:6.6d, west-harlem:2.8d, central-harlem:1.9d, hells-kitchen:3.8d\nGroup found by speaker for: home, west-harlem, central-harlem, hells-kitchen\nResult: SOMETHING NEEDS ATTENTION",
-  "written_at": "2026-09-12 14:00:45 UTC",
-  "written_at_epoch": 1789221645
+  "run": "531",
+  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/34698736852",
+  "output_tail": "",
+  "written_at": "2026-09-12 14:15:33 UTC",
+  "written_at_epoch": 1789222533
 }
