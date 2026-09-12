@@ -144,6 +144,14 @@ def main():
     noon = datetime.datetime(2026, 9, 14, 12, 0)
     want = schedule.decide(cfg, noon, shop)
     check(not want.get('fade_in_seconds'), 'no shop has a fade in')
+    # Andrew, 2026-09-12: this rule is for home and no store. Pinned for every store
+    # in the file, and for their slots, so it cannot creep into a shop by accident.
+    for other in cfg['stores']:
+        if other['id'] == 'home':
+            continue
+        carries = other.get('fade_in_seconds') or any(
+            sl.get('fade_in_seconds') for sl in other.get('slots', []))
+        check(not carries, '%s carries no fade in, on the store or any slot' % other['id'])
     fresh()
     run.check_store(cfg, shop, noon, True)
     check(bool(STATE['played']) and not STATE['slept'], 'a shop starts its music at once')
