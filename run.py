@@ -76,27 +76,50 @@ def fade_out(store, lines):
 FADE_IN_MAX_STEPS = 20
 FADE_IN_MIN_STEP_SECONDS = 10
 
+# Every playlist change at every location, Andrew 2026-09-14: the old music fades out,
+# the new playlist starts, and it fades in. This replaced the 2026-09-12 rule that the
+# shops start at once. A system or slot with its own fade_in_seconds, which is home,
+# keeps its own longer fade in. Short fades take steps of about two seconds, because
+# the ten second steps that suit a ten minute fade would sound like two jumps.
+CHANGE_FADE_OUT_SECONDS = 10
+CHANGE_FADE_IN_SECONDS = 20
+SHORT_FADE_STEPS = 10
+
 
 def fade_in_steps(seconds):
+    if seconds < 120:
+        return max(1, min(SHORT_FADE_STEPS, int(seconds) // 2))
     return max(1, min(FADE_IN_MAX_STEPS, int(seconds) // FADE_IN_MIN_STEP_SECONDS))
 
 
-def start_gently(store, want, fav, seconds, lines, acted):
-    """Silence the speakers, start the music, then bring the level up over `seconds`.
+def start_gently(store, want, fav, seconds, lines, acted, was_playing=False):
+    """Fade out whatever is on, start the music, then bring the level up over `seconds`.
 
     Returns True if the music was started. Any failure after the music is playing is
     reported and left for reconcile_volume, which runs afterwards and sets the final
     levels regardless, so a fade that breaks halfway ends at the right volume rather
     than at nothing.
     """
-    # Targets: one per speaker, or one for the whole group.
+    # Targets: one per speaker. A system with its own levels per speaker rises to
+    # those. One without rises back to where each speaker already is, so a balance set
+    # by hand in the room survives, and reconcile_volume then moves the group as a
+    # whole. Only a system that reports no speakers at all is faded as one group.
     targets = []
-    if want.get('speakers'):
+    try:
         found = sonos.players(store['id'], store['household'])
+    except sonos.SonosError:
+        found = {}
+    now_at = dict((name, sonos.player_volume(store['id'], pid).get('volume') or 0)
+                  for name, pid in found.items())
+    if want.get('speakers'):
         for name, level in wanted_levels(store, want, found).items():
-            targets.append((name, found[name], level))
+            targets.append((name, found[name], now_at[name], level))
+    elif found:
+        for name, pid in found.items():
+            targets.append((name, pid, now_at[name], now_at[name]))
     else:
-        targets.append(('the whole group', None, want['volume']))
+        level = sonos.group_volume(store['id'], store['group']).get('volume') or 0
+        targets.append(('the whole group', None, level, want['volume']))
 
     def set_level(player_id, level):
         if player_id is None:
@@ -104,11 +127,23 @@ def start_gently(store, want, fav, seconds, lines, acted):
         else:
             sonos.set_player_volume(store['id'], player_id, level)
 
-    for _name, player_id, _level in targets:
-        set_level(player_id, 0)
+    if was_playing and any(start > 0 for _n, _p, start, _l in targets):
+        steps = fade_in_steps(CHANGE_FADE_OUT_SECONDS)
+        for step in range(steps - 1, -1, -1):
+            for _name, player_id, start, _level in targets:
+                if start > 0:
+                    set_level(player_id, int(round(start * step / float(steps))))
+            if step:
+                time.sleep(CHANGE_FADE_OUT_SECONDS / float(steps))
+        time.sleep(CHANGE_FADE_OUT_SECONDS / float(steps))
+        lines.append('    faded down over about %d seconds' % CHANGE_FADE_OUT_SECONDS)
+    else:
+        for _name, player_id, _start, _level in targets:
+            set_level(player_id, 0)
     sonos.play_favourite(store['id'], store['group'], fav['id'])
     lines.append('    music: changed to %r, starting from silence' % want['playlist'])
     acted.append('music to %r' % want['playlist'])
+    targets = [(name, player_id, level) for name, player_id, _start, level in targets]
 
     steps = fade_in_steps(seconds)
     try:
@@ -378,19 +413,16 @@ def check_store(cfg, store, now, live):
             trouble = True
         elif live:
             try:
-                fade = want.get('fade_in_seconds') or 0
-                if fade > 0:
-                    start_gently(store, want, fav, fade, lines, acted)
-                else:
-                    sonos.play_favourite(store['id'], store['group'], fav['id'])
-                    lines.append('    music: changed to %r' % want['playlist'])
-                    acted.append('music to %r' % want['playlist'])
+                fade = want.get('fade_in_seconds') or CHANGE_FADE_IN_SECONDS
+                start_gently(store, want, fav, fade, lines, acted, was_playing=is_playing)
             except sonos.SonosError as e:
                 lines.append('    FAILED to change the music: %s' % e)
                 trouble = True
         else:
-            fade = want.get('fade_in_seconds') or 0
-            how = (', fading in over %d seconds' % fade) if fade > 0 else ''
+            fade = want.get('fade_in_seconds') or CHANGE_FADE_IN_SECONDS
+            how = ', fading in over %d seconds' % fade
+            if is_playing:
+                how = ', fading out over %d seconds first%s' % (CHANGE_FADE_OUT_SECONDS, how)
             lines.append('    music: WOULD change to %r%s   (dry run, nothing done)'
                          % (want['playlist'], how))
             pending = True

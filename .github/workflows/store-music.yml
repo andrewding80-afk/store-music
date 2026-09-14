@@ -74,7 +74,7 @@ jobs:
       - name: Check one store cannot take down the others
         run: python test_one_store_cannot_kill_the_run.py
 
-      - name: Check the fade in
+      - name: Check the fades on every playlist change
         run: python test_fade_in.py
 
       - name: Check a new playlist replaces the queue
