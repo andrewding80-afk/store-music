@@ -9,3 +9,5 @@ config-one-line.txt
 ids.json
 cronjob-github-key.txt
 cronjob-api-key.txt
+# Any text file at the top of this folder is treated as a key and never committed.
+/*.txt
