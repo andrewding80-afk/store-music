@@ -77,6 +77,9 @@ jobs:
       - name: Check the fade in
         run: python test_fade_in.py
 
+      - name: Check a new playlist replaces the queue
+        run: python test_play_replaces_queue.py
+
       - name: Work out the mode
         id: mode
         env:

@@ -325,7 +325,11 @@ def wrong_play_modes(store_id, group_id):
 
 def play_favourite(store_id, group_id, favourite_id):
     url = '%s/groups/%s/favorites' % (API, group_id)
+    # REPLACE, because Sonos adds to the end of the queue when not told. Found at West
+    # Harlem 2026-09-14: every playlist ever started had piled up, and shuffle picked
+    # each new song from a different one, which looked like someone changing the music.
     return _request(url, method='POST', body={
+        'action': 'REPLACE',
         'favoriteId': favourite_id,
         'playOnCompletion': True,
         'playModes': WANTED_PLAY_MODES,
