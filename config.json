@@ -251,6 +251,33 @@
           ]
         }
       ],
+      "speaker_volumes": {
+        "Soft open": {
+          "Dining Room": 28,
+          "Dining Room 2": 30
+        },
+        "Lunch rush": {
+          "Dining Room": 28,
+          "Dining Room 2": 36
+        },
+        "Dead stretch": {
+          "Dining Room": 28,
+          "Dining Room 2": 30
+        },
+        "Early evening": {
+          "Dining Room": 28,
+          "Dining Room 2": 34
+        },
+        "Dinner peak": {
+          "Dining Room": 28,
+          "Dining Room 2": 38
+        },
+        "Last service": {
+          "Dining Room": 28,
+          "Dining Room 2": 32
+        }
+      },
+      "_speaker_volumes_note": "Set 2026-09-14 by Andrew. A second speaker, Dining Room 2 (RINCON_38420B6A9E1001400), was installed because the old one is faulty. Andrew's instruction: keep the old Dining Room working at its current flat 28, and give Dining Room 2 its own levels, base 30, ceiling 38. Its curve is Central Harlem's, 30 36 30 34 38 32, which is the same shape as this store's own pre-fault curve. The two speakers must be in one group for Dining Room 2 to play. SONOS_SPEAKER_WEST_HARLEM still points at the old Dining Room, which is correct while it stays; when the old speaker is finally unplugged, change that secret to Dining Room 2's serial FIRST, then remove Dining Room from these volumes.",
       "_volume_note": "⚠️ TEMPORARY, set 2026-09-10. Flat 28 at every hour because THE SPEAKER IS FAULTY: the bass blows when it is driven louder. First capped at 32 the same afternoon and that was still too loud, so 28. This is a hardware limit, not a taste choice: do not raise it for a busier room. WHEN THE NEW SONOS IS FITTED, two things change together. Restore the curve heard in the room that morning: 33 soft open, 39 lunch, 33 dead stretch, 37 early evening, 40 dinner peak, 35 last service, ceiling 40. And the speaker serial changes, so SONOS_SPEAKER_WEST_HARLEM must be updated too or the group lookup silently stops protecting this store."
     },
     {

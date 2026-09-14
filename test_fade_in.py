@@ -16,6 +16,8 @@ STATE = {'playing': False, 'container': None, 'played': [],
 ROOMS = {'Bedroom': 'P-bed', 'Dressing Room': 'P-dress', 'Kitchen': 'P-kit',
          'Sunroom': 'P-sun', 'TV Room': 'P-tv'}
 
+SHOP_ROOMS = {'Dining Room': 'P-dining', 'Dining Room 2': 'P-dining-2'}
+
 
 def fake_sonos():
     m = types.ModuleType('sonos')
@@ -37,7 +39,10 @@ def fake_sonos():
     m.pause = lambda s, g: STATE.update(playing=False)
     m.set_volume = lambda s, g, v: STATE['levels'].append(('group', v))
     m.group_volume = lambda s, g: {'volume': 30}
-    m.players = lambda s, h: dict(ROOMS) if s == 'home' else {}
+    # West Harlem sets each of its two speakers separately from 2026-09-14, so it has
+    # to answer with them, or the run waits for speakers that never reply.
+    m.players = lambda s, h: dict(ROOMS) if s == 'home' else (
+        dict(SHOP_ROOMS) if s == 'west-harlem' else {})
     m.player_volume = lambda s, p: {'volume': STATE['speakers'].get(p, 30)}
     m.set_player_volume = set_player_volume
     m.groups = lambda s, h: {'groups': []}
