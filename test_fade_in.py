@@ -18,7 +18,9 @@ ROOMS = {'Bedroom': 'P-bed', 'Dressing Room': 'P-dress', 'Kitchen': 'P-kit',
 
 SHOP_ROOMS = {'Dining Room': 'P-dining', 'Dining Room 2': 'P-dining-2'}
 PAIR_ROOMS = {'Dining Room Left Speaker': 'P-left', 'Dining Room Right Speaker': 'P-right'}
-ALL_PLAYERS = list(ROOMS.values()) + list(SHOP_ROOMS.values()) + list(PAIR_ROOMS.values())
+ONE_ROOM = {'Dining Room': 'P-ch'}
+ALL_PLAYERS = (list(ROOMS.values()) + list(SHOP_ROOMS.values())
+               + list(PAIR_ROOMS.values()) + list(ONE_ROOM.values()))
 
 
 def fake_sonos():
@@ -41,12 +43,15 @@ def fake_sonos():
                                         STATE.update(playing=True))
     m.pause = lambda s, g: STATE.update(playing=False)
     m.set_volume = lambda s, g, v: STATE['levels'].append(('group', v))
-    m.group_volume = lambda s, g: {'volume': 30}
+    # A one speaker group's volume is that speaker's, as on a real Sonos.
+    m.group_volume = lambda s, g: {'volume': STATE['speakers'].get('P-ch', 30)
+                                   if s == 'central-harlem' else 30}
     # West Harlem sets each of its two speakers separately from 2026-09-14, so it has
     # to answer with them, or the run waits for speakers that never reply.
     m.players = lambda s, h: dict(ROOMS) if s == 'home' else (
         dict(SHOP_ROOMS) if s == 'west-harlem' else (
-            dict(PAIR_ROOMS) if s == 'hells-kitchen' else {}))
+            dict(PAIR_ROOMS) if s == 'hells-kitchen' else (
+                dict(ONE_ROOM) if s == 'central-harlem' else {})))
     m.player_volume = lambda s, p: {'volume': STATE['speakers'].get(p, 30)}
     m.set_player_volume = set_player_volume
     m.groups = lambda s, h: {'groups': []}
@@ -205,6 +210,22 @@ def main():
           'the pair fades down before the change')
     check(levels_of('P-left')[-1] == 34 and levels_of('P-right')[-1] == 30,
           'and each speaker fades back to its own level, keeping the balance')
+
+    # 5d. A one speaker store rises straight to the slot's level. Seen at Central Harlem's
+    # first real fade, 16:00 on 2026-09-14: it rose to its old 30 and then jumped to 34.
+    ch = store_called(cfg, 'central-harlem')
+    evening = datetime.datetime(2026, 9, 14, 16, 30)
+    want = schedule.decide(cfg, evening, ch)
+    fresh(container='Instrumental Jazz Standards', playing=True)
+    run.check_store(cfg, ch, evening, True)
+    one = levels_of('P-ch')
+    at_play = STATE['played_at'][0] if STATE['played_at'] else 0
+    down = [v for p, v in STATE['levels'][:at_play] if p == 'P-ch']
+    up = one[len(down):]
+    check(up and up == sorted(up) and up[-1] == want['volume'] and want['volume'] != 30,
+          'a one speaker store fades up to the new slot level, not its old one')
+    check(one.count(want['volume']) == 1 and not [v for p, v in STATE['levels'] if p == 'group'],
+          'and nothing jumps it there afterwards')
 
     # 6. Step sizes: long fades take bigger steps rather than making hundreds of calls,
     # and short fades still take enough steps to sound like a fade.

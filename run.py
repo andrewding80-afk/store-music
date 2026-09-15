@@ -114,6 +114,12 @@ def start_gently(store, want, fav, seconds, lines, acted, was_playing=False):
     if want.get('speakers'):
         for name, level in wanted_levels(store, want, found).items():
             targets.append((name, found[name], now_at[name], level))
+    elif len(found) == 1:
+        # One speaker is the whole group, so there is no balance to keep and it rises
+        # straight to the slot's level. Central Harlem, 2026-09-14: rising to its old 30
+        # and then jumping to 34 was audible.
+        for name, pid in found.items():
+            targets.append((name, pid, now_at[name], want['volume']))
     elif found:
         for name, pid in found.items():
             targets.append((name, pid, now_at[name], now_at[name]))
