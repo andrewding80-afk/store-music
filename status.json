@@ -1,14 +1,14 @@
 {
-  "ok": false,
-  "result": "SOMETHING NEEDS ATTENTION",
+  "ok": true,
+  "result": "all stores as expected, nothing to do",
   "stores_switched_on_but_unreachable": [],
   "problems": [],
   "group_found_by_speaker": "home, west-harlem, central-harlem, hells-kitchen",
   "not_protected": "",
   "token_ages": "home:9.2d, west-harlem:5.4d, central-harlem:4.5d, hells-kitchen:6.4d",
-  "run": "795",
-  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/34924268648",
-  "output_tail": "Store music check, 2026-09-14 23:15\nMode: LIVE, changes will be made\n\n  Home (TV Room + 4)\n    should be: BY A LAKE  at its own level per speaker   (Night, 23:00 to 24:00, using number 2 of 3 in this round, today)\n    each speaker: Bedroom 18, Dressing Room 0, Kitchen 18, Sunroom 0, TV Room 0\n    actually: Julie London Radio  (not playing)\n    SILENT during service hours\n    music: changed to 'BY A LAKE', starting from silence\n    faded up over about 120 seconds to: Bedroom 18, Dressing Room 0, Kitchen 18, Sunroom 0, TV Room 0\n    volume: all 5 speakers already correct\n\n  West Harlem, 3600 Broadway: closed, nothing should be playing\n    faded down over about 30 seconds: Dining Room from 11, Dining Room 2 from 16\n    stopped it\n    volume put back where it was, ready for the morning\n\n  Central Harlem, 370 Malcolm X (one speaker, Dining Room): closed, nothing should be playing\n    already quiet\n\n  Hell's Kitchen, 354 West 44th (left and right pair): closed, nothing should be playing\n    faded down over about 30 seconds: Dining Room Left Speaker from 16, Dining Room Right Speaker from 15\n    stopped it\n    volume put back where it was, ready for the morning\n\nSaved pass ages: home:9.2d, west-harlem:5.4d, central-harlem:4.5d, hells-kitchen:6.4d\nGroup found by speaker for: home, west-harlem, central-harlem, hells-kitchen\nResult: SOMETHING NEEDS ATTENTION",
-  "written_at": "2026-09-15 03:18:44 UTC",
-  "written_at_epoch": 1789442324
+  "run": "796",
+  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/34925222324",
+  "output_tail": "",
+  "written_at": "2026-09-15 03:30:25 UTC",
+  "written_at_epoch": 1789443025
 }
