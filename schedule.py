@@ -117,6 +117,18 @@ def _hhmm(text):
     return time(int(h), int(m))
 
 
+def _seconds_between(start, end):
+    """Seconds from one time of day to another, both on the same day."""
+    def secs(t):
+        return t.hour * 3600 + t.minute * 60 + t.second
+    return secs(end) - secs(start)
+
+
+def seconds_until(now, hhmm):
+    """Seconds from this moment to a time of day later today. Never negative."""
+    return max(0, _seconds_between(now.time(), _hhmm(hhmm)))
+
+
 def _mmdd_in_range(when, start, end):
     """Is this date inside a 'MM-DD' to 'MM-DD' range, wrapping across new year?"""
     sm, sd = (int(x) for x in start.split('-'))
@@ -362,6 +374,33 @@ def decide(cfg, now, store=None):
     # weekend mornings, two minutes for every other slot. The shops carry no number.
     fade_in = slot.get('fade_in_seconds', (store or {}).get('fade_in_seconds'))
 
+    # One speaker coming down on its own inside a slot, without the music changing.
+    # Andrew asked for this on 2026-09-15: at home the Bedroom drops to 12 at half past
+    # eleven, to 10 at a quarter to midnight, and fades to nothing by midnight while the
+    # rest of the house stays at the night level. A step with fade_to is not a level but
+    # a slope: the level is read off it for the moment being asked about, and the run is
+    # told to walk it down the rest of the way.
+    ramp = None
+    if speakers:
+        speakers = dict(speakers)
+        for room, steps in (slot.get('speaker_steps') or {}).items():
+            if room not in speakers:
+                continue
+            for step in steps:
+                if now.time() < _hhmm(step['at']):
+                    continue
+                if 'fade_to' not in step:
+                    speakers[room] = step['volume']
+                    continue
+                started, ends = _hhmm(step['at']), _hhmm(step['by'])
+                whole = _seconds_between(started, ends)
+                gone = _seconds_between(started, now.time())
+                share = min(1.0, gone / float(whole)) if whole else 1.0
+                target = step['fade_to']
+                speakers[room] = int(round(step['volume']
+                                           + (target - step['volume']) * share))
+                ramp = {'speaker': room, 'to': target, 'by': step['by']}
+
     return {
         'playing': True,
         'slot': slot['name'],
@@ -372,6 +411,7 @@ def decide(cfg, now, store=None):
         'speakers': speakers,
         'slot_playlists': sorted(belongs),
         'fade_in_seconds': fade_in,
+        'ramp': ramp,
     }
 
 

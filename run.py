@@ -167,6 +167,60 @@ def start_gently(store, want, fav, seconds, lines, acted, was_playing=False):
     return True
 
 
+# Walking one speaker down to nothing across the rest of a slot. Andrew, 2026-09-15:
+# the Bedroom fades to silence by midnight. A step of about a minute is small enough to
+# go unnoticed in a quiet room and few enough calls to be cheap.
+RAMP_MIN_STEP_SECONDS = 45
+RAMP_MAX_STEPS = 20
+
+
+def night_ramp(store, want, now, lines, acted):
+    """Take one speaker down to its target over whatever time is left.
+
+    Runs after every store has been checked, never in the middle of one, so a store
+    waiting its turn is not held up by a fade at home.
+    """
+    ramp = want.get('ramp')
+    if not ramp:
+        return
+    try:
+        found = sonos.players(store['id'], store['household'])
+    except sonos.SonosError as e:
+        lines.append('    could not reach the speakers to fade %s: %s' % (ramp['speaker'], e))
+        return
+    player_id = found.get(ramp['speaker'])
+    if player_id is None:
+        lines.append('    no speaker named %r answered, so nothing was faded'
+                     % ramp['speaker'])
+        return
+
+    start = sonos.player_volume(store['id'], player_id).get('volume') or 0
+    target = ramp['to']
+    if start <= target:
+        lines.append('    %s is already at %s, nothing to fade' % (ramp['speaker'], start))
+        return
+
+    left = schedule.seconds_until(now, ramp['by'])
+    if left <= 0:
+        sonos.set_player_volume(store['id'], player_id, target)
+        acted.append('%s to %s' % (ramp['speaker'], target))
+        return
+
+    steps = max(1, min(RAMP_MAX_STEPS, int(left) // RAMP_MIN_STEP_SECONDS))
+    try:
+        for step in range(1, steps + 1):
+            time.sleep(left / float(steps))
+            sonos.set_player_volume(
+                store['id'], player_id,
+                int(round(start + (target - start) * step / float(steps))))
+    except sonos.SonosError as e:
+        lines.append('    the fade of %s stopped early: %s' % (ramp['speaker'], e))
+        return
+    lines.append('    %s faded from %s to %s over the %d minutes to %s'
+                 % (ramp['speaker'], start, target, round(left / 60.0), ramp['by']))
+    acted.append('%s faded %s to %s' % (ramp['speaker'], start, target))
+
+
 def restore_levels(store, was, lines):
     """Put the volume back now the music has stopped.
 
@@ -561,6 +615,33 @@ def main():
             trouble, pending, acted = True, False, []
         any_trouble = any_trouble or trouble
         any_pending = any_pending or pending
+        changes.extend(acted)
+        for line in lines:
+            print(line)
+        print()
+
+    # One speaker walking down to silence inside a slot, done last so that no store is
+    # left waiting behind a fade at home. Andrew, 2026-09-15: the Bedroom fades to
+    # nothing over the last quarter hour before midnight.
+    for store in enabled:
+        try:
+            want_now = schedule.decide(cfg, now, store)
+        except Exception:
+            continue
+        if not want_now.get('ramp') or schedule.not_connected(store):
+            continue
+        lines, acted = ['  %s' % (store.get('name') or store['id'])], []
+        if not args.live:
+            lines.append('    WOULD fade %s down to %s by %s   (dry run, nothing done)'
+                         % (want_now['ramp']['speaker'], want_now['ramp']['to'],
+                            want_now['ramp']['by']))
+            any_pending = True
+        else:
+            try:
+                night_ramp(store, want_now, now, lines, acted)
+            except Exception as exc:
+                lines.append('    the fade could not be done: %s' % str(exc)[:150])
+                any_trouble = True
         changes.extend(acted)
         for line in lines:
             print(line)

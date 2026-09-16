@@ -441,9 +441,11 @@ if not ok_night_names:
 print('%s the late night list is the three he asked for' % ('PASS' if ok_night_names else 'FAIL'))
 
 # Whichever one is dealt, only the bedroom and the kitchen play, at that playlist's level.
+# Read at 23:15, before the Bedroom's own steps down begin at 23:30. Those steps are
+# Andrew's, 2026-09-15, and are checked in test_night_fade.py.
 _bad_nights = []
 for _d in range(60):
-    _at = datetime(2026, 9, 7, 23, 30) + timedelta(days=_d)
+    _at = datetime(2026, 9, 7, 23, 15) + timedelta(days=_d)
     _n = schedule.decide(cfg, _at, home)
     _want = _night_own.get(_n['playlist'], _night_slot['volume'])
     if _n['volume'] != _want:
@@ -467,7 +469,7 @@ print('%s the playlist that was never saved is not named anywhere' % ('PASS' if 
 
 _ambient = None
 for _d in range(60):
-    _n = schedule.decide(cfg, datetime(2026, 9, 7, 23, 30) + timedelta(days=_d), home)
+    _n = schedule.decide(cfg, datetime(2026, 9, 7, 23, 15) + timedelta(days=_d), home)
     if _n['playlist'] == 'Goodnight Mix':
         _ambient = _n
         break
@@ -478,7 +480,7 @@ if not ok_vol:
 print('%s Goodnight Mix plays at 15 wherever it comes up' % ('PASS' if ok_vol else 'FAIL'))
 
 # And the other two are unaffected by that rule.
-_others = [schedule.decide(cfg, datetime(2026, 9, 7, 23, 30) + timedelta(days=_d), home)
+_others = [schedule.decide(cfg, datetime(2026, 9, 7, 23, 15) + timedelta(days=_d), home)
            for _d in range(60)]
 ok_others = all(n['volume'] == 18 for n in _others if n['playlist'] != 'Goodnight Mix')
 if not ok_others:
