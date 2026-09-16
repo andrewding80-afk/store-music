@@ -1,14 +1,14 @@
 {
-  "ok": false,
-  "result": "SOMETHING NEEDS ATTENTION",
+  "ok": true,
+  "result": "all stores as expected, nothing to do",
   "stores_switched_on_but_unreachable": [],
   "problems": [],
   "group_found_by_speaker": "home, west-harlem, central-harlem, hells-kitchen",
   "not_protected": "",
   "token_ages": "home:10.1d, west-harlem:6.3d, central-harlem:5.4d, hells-kitchen:7.3d",
-  "run": "890",
-  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/35045307805",
-  "output_tail": "Store music check, 2026-09-15 21:45\nMode: LIVE, changes will be made\n\n  Home (TV Room + 4)\n    should be: Classical Romance  at its own level per speaker   (Evening, 18:00 to 23:00, using number 6 of 7 in this round, today)\n    each speaker: Bedroom 22, Dressing Room 22, Kitchen 25, Sunroom 18, TV Room 0\n    actually: Classical Romance  (playing)\n    music: already correct\n    volume: all 5 speakers already correct\n\n  West Harlem, 3600 Broadway\n    should be: THPN-Mellow Jam  at its own level per speaker   (Last service, 21:00 to 23:00, using number 3 of 5 in this round, today)\n    each speaker: Dining Room 28, Dining Room 2 32\n    actually: THPN-Mellow Jam  (not playing)\n    SILENT during service hours\n    music: changed to 'THPN-Mellow Jam', starting from silence\n    faded up over about 20 seconds to: Dining Room 28, Dining Room 2 32\n    volume: all 2 speakers already correct\n\n  Central Harlem, 370 Malcolm X (one speaker, Dining Room)\n    should be: Smooth Jazz & Soul R&B Instrumentals  at volume 32   (Last service, 21:00 to 23:00, using number 3 of 3 in this round, today)\n    actually: Smooth Jazz & Soul R&B Instrumentals  (playing)\n    music: already correct\n    volume: already 32\n\n  Hell's Kitchen, 354 West 44th (left and right pair)\n    should be: Feel Good Jazz  at its own level per speaker   (Last service, 21:00 to 23:00, using the default for this slot)\n    each speaker: Dining Room Left Speaker 32, Dining Room Right Speaker 30\n    actually: Feel Good Jazz  (playing)\n    music: already correct\n    volume: all 2 speakers already correct\n\nSaved pass ages: home:10.1d, west-harlem:6.3d, central-harlem:5.4d, hells-kitchen:7.3d\nGroup found by speaker for: home, west-harlem, central-harlem, hells-kitchen\nResult: SOMETHING NEEDS ATTENTION",
-  "written_at": "2026-09-16 01:45:57 UTC",
-  "written_at_epoch": 1789523157
+  "run": "891",
+  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/35046276408",
+  "output_tail": "",
+  "written_at": "2026-09-16 02:00:38 UTC",
+  "written_at_epoch": 1789524038
 }
