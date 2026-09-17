@@ -260,27 +260,21 @@
       ],
       "speaker_volumes": {
         "Soft open": {
-          "Dining Room": 28,
           "Dining Room 2": 30
         },
         "Lunch rush": {
-          "Dining Room": 28,
           "Dining Room 2": 36
         },
         "Dead stretch": {
-          "Dining Room": 28,
           "Dining Room 2": 30
         },
         "Early evening": {
-          "Dining Room": 28,
           "Dining Room 2": 34
         },
         "Dinner peak": {
-          "Dining Room": 28,
           "Dining Room 2": 38
         },
         "Last service": {
-          "Dining Room": 28,
           "Dining Room 2": 32
         }
       },
