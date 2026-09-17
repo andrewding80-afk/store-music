@@ -1,14 +1,16 @@
 {
-  "ok": true,
-  "result": "all stores as expected, nothing to do",
+  "ok": false,
+  "result": "SOMETHING NEEDS ATTENTION",
   "stores_switched_on_but_unreachable": [],
-  "problems": [],
+  "problems": [
+    "West Harlem, 3600 Broadway: COULD NOT REACH SONOS"
+  ],
   "group_found_by_speaker": "home, west-harlem, central-harlem, hells-kitchen",
   "not_protected": "",
   "token_ages": "home:11.6d, west-harlem:7.8d, central-harlem:6.9d, hells-kitchen:8.8d",
-  "run": "1041",
-  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/35225901305",
-  "output_tail": "",
-  "written_at": "2026-09-17 13:15:26 UTC",
-  "written_at_epoch": 1789650926
+  "run": "1043",
+  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/35229068949",
+  "output_tail": "Store music check, 2026-09-17 09:45\nMode: LIVE, changes will be made\n\n  Home (TV Room + 4)\n    should be: VIVALDI  at its own level per speaker   (Daytime, Tue to Thu, 09:00 to 18:00, using number 10 of 10 in this round, today)\n    each speaker: Bedroom 25, Dressing Room 25, Kitchen 28, Sunroom 0, TV Room 20\n    actually: VIVALDI  (playing)\n    music: already correct\n    volume: all 5 speakers already correct\n\n  West Harlem, 3600 Broadway: closed, nothing should be playing\n    could not ask Sonos which group the speaker is in (GET https://api.ws.sonos.com/control/api/v1/households/Sonos_SzUwLjISk). Falling back to the stored group.\n    COULD NOT REACH SONOS: GET https://api.ws.sonos.com/control/api/v1/groups/RINCON_347E5C15456601400:2474565580/playback -> 504 {\"errorCode\":\"ERROR_GATEWAY_TIMEOUT\"}\n\n  Central Harlem, 370 Malcolm X (one speaker, Dining Room): closed, nothing should be playing\n    already quiet\n\n  Hell's Kitchen, 354 West 44th (left and right pair): closed, nothing should be playing\n    already quiet\n\nSaved pass ages: home:11.6d, west-harlem:7.8d, central-harlem:6.9d, hells-kitchen:8.8d\nGroup found by speaker for: home, west-harlem, central-harlem, hells-kitchen\nResult: SOMETHING NEEDS ATTENTION",
+  "written_at": "2026-09-17 13:45:46 UTC",
+  "written_at_epoch": 1789652746
 }
