@@ -1,14 +1,14 @@
 {
-  "ok": true,
-  "result": "all stores as expected, nothing to do",
+  "ok": false,
+  "result": "SOMETHING NEEDS ATTENTION",
   "stores_switched_on_but_unreachable": [],
   "problems": [],
   "group_found_by_speaker": "home, west-harlem, central-harlem, hells-kitchen",
   "not_protected": "",
-  "token_ages": "home:12.4d, west-harlem:8.6d, central-harlem:7.7d, hells-kitchen:9.6d",
-  "run": "1124",
-  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/35323421940",
-  "output_tail": "",
-  "written_at": "2026-09-18 08:15:18 UTC",
-  "written_at_epoch": 1789719318
+  "token_ages": "home:12.6d, west-harlem:8.8d, central-harlem:7.9d, hells-kitchen:9.8d",
+  "run": "1144",
+  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/35347688144",
+  "output_tail": "Store music check, 2026-09-18 09:00\nMode: LIVE, changes will be made\n\n  Home (TV Room + 4)\n    should be: TELEMANN  at its own level per speaker   (Daytime, Mon and Fri, 09:00 to 18:00, using number 1 of 10 in this round, today)\n    each speaker: Bedroom 25, Dressing Room 25, Kitchen 28, Sunroom 20, TV Room 20\n    actually: BY A LAKE  (not playing)\n    SILENT during service hours\n    music: changed to 'TELEMANN', starting from silence\n    faded up over about 120 seconds to: Bedroom 25, Dressing Room 25, Kitchen 28, Sunroom 20, TV Room 20\n    volume: all 5 speakers already correct\n\n  West Harlem, 3600 Broadway: closed, nothing should be playing\n    the group had changed, found it again by its speaker: RINCON_347E5C15456601400:2474565580 is now RINCON_38420B6A9E1001400:2747305404\n    already quiet\n\n  Central Harlem, 370 Malcolm X (one speaker, Dining Room): closed, nothing should be playing\n    already quiet\n\n  Hell's Kitchen, 354 West 44th (left and right pair): closed, nothing should be playing\n    already quiet\n\nSaved pass ages: home:12.6d, west-harlem:8.8d, central-harlem:7.9d, hells-kitchen:9.8d\nGroup found by speaker for: home, west-harlem, central-harlem, hells-kitchen\nResult: SOMETHING NEEDS ATTENTION",
+  "written_at": "2026-09-18 13:03:02 UTC",
+  "written_at_epoch": 1789736582
 }
