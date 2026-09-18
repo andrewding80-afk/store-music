@@ -260,26 +260,26 @@
       ],
       "speaker_volumes": {
         "Soft open": {
-          "Dining Room 2": 30
+          "Dining Room 2": 32
         },
         "Lunch rush": {
-          "Dining Room 2": 36
+          "Dining Room 2": 39
         },
         "Dead stretch": {
-          "Dining Room 2": 30
+          "Dining Room 2": 32
         },
         "Early evening": {
-          "Dining Room 2": 34
+          "Dining Room 2": 37
         },
         "Dinner peak": {
-          "Dining Room 2": 38
+          "Dining Room 2": 41
         },
         "Last service": {
-          "Dining Room 2": 32
+          "Dining Room 2": 34
         }
       },
-      "_speaker_volumes_note": "Set 2026-09-14 by Andrew. A second speaker, Dining Room 2 (RINCON_38420B6A9E1001400), was installed because the old one is faulty. Andrew's instruction: keep the old Dining Room working at its current flat 28, and give Dining Room 2 its own levels, base 30, ceiling 38. Its curve is Central Harlem's, 30 36 30 34 38 32, which is the same shape as this store's own pre-fault curve. The two speakers must be in one group for Dining Room 2 to play. SONOS_SPEAKER_WEST_HARLEM still points at the old Dining Room, which is correct while it stays; when the old speaker is finally unplugged, change that secret to Dining Room 2's serial FIRST, then remove Dining Room from these volumes.",
-      "_volume_note": "⚠️ TEMPORARY, set 2026-09-10. Flat 28 at every hour because THE SPEAKER IS FAULTY: the bass blows when it is driven louder. First capped at 32 the same afternoon and that was still too loud, so 28. This is a hardware limit, not a taste choice: do not raise it for a busier room. WHEN THE NEW SONOS IS FITTED, two things change together. Restore the curve heard in the room that morning: 33 soft open, 39 lunch, 33 dead stretch, 37 early evening, 40 dinner peak, 35 last service, ceiling 40. And the speaker serial changes, so SONOS_SPEAKER_WEST_HARLEM must be updated too or the group lookup silently stops protecting this store."
+      "_speaker_volumes_note": "Set 2026-09-18 by Andrew, replacing the 2026-09-14 note. THE OLD DINING ROOM IS GONE: it was removed on 2026-09-17 because it was broken, and Dining Room 2 (RINCON_38420B6A9E1001400) is now the only speaker in this store. It was mounted in its correct position on 2026-09-18, which is why it can be driven harder than the levels chosen while it sat temporarily. Andrew's instruction: minimum 32, maximum 41, same shape as before. That rescales 30 36 30 34 38 32 to 32 39 32 37 41 34, keeping the order and the gaps, including the 4 point lift from early evening into the dinner peak. ⚠️ ON TRIAL: his words were 'see how it goes today'. Judged by ear in the room, not by arithmetic. If nobody reports back, ask before treating it as settled.",
+      "_volume_note": "Set 2026-09-18. The 28 on each slot above is a FALLBACK ONLY and nobody hears it today: it applies to any speaker on this system that is not named in speaker_volumes, and Dining Room 2 is named in all six. It matters again the day a second speaker is added, which would otherwise arrive at 28 while the room runs at 32 to 41. ⚠️ THE OLD CAP IS DEAD AND SO IS ITS REASONING. Until 2026-09-17 this note said flat 28 everywhere and 'do not raise it for a busier room', because the old speaker's bass blew when driven. That speaker has been removed. Do not carry that limit over to Dining Room 2, which is different hardware and has never shown it."
     },
     {
       "id": "central-harlem",

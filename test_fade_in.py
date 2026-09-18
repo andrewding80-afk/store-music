@@ -165,6 +165,11 @@ def main():
     shop = store_called(cfg, 'west-harlem')
     lunch = datetime.datetime(2026, 9, 14, 13, 0)
     want = schedule.decide(cfg, lunch, shop)
+    # Read the level out of the config rather than writing it in here. This test is
+    # about the SHAPE of the fade, down to nothing and then up, not about the number.
+    # It hardcoded 36 until 2026-09-18 and broke the moment Andrew asked for 32 to 41,
+    # which is a test failing for a change it was never meant to be guarding.
+    lunch_level = want['speakers']['Dining Room 2']
     fresh(container='Cocktail Jazz', playing=True)
     STATE['speakers'].update({'P-dining': 28, 'P-dining-2': 36})
     lines, trouble, pending, acted = run.check_store(cfg, shop, lunch, True)
@@ -175,9 +180,15 @@ def main():
     check(len(down) > 2 and down == sorted(down, reverse=True) and down[-1] == 0,
           'the old music fades down to nothing before the new playlist starts')
     up = new[len(down):]
-    check(len(up) > 2 and up == sorted(up) and up[-1] == 36,
+    check(len(up) > 2 and up == sorted(up) and up[-1] == lunch_level,
           'then the new playlist fades up to its level')
-    check(levels_of('P-dining')[-1] == 28, 'the other speaker comes back to its own level')
+    # P-dining was the old broken Dining Room, removed from the store on 2026-09-17 and
+    # taken out of speaker_volumes. The pretend Sonos still returns it, which now makes
+    # this the check that a speaker present on the system but NOT named in the config is
+    # set to the slot's own volume rather than left where it was. That is the case the
+    # config's _volume_note warns about for the day a second speaker is added.
+    check(levels_of('P-dining')[-1] == want['volume'],
+          'a speaker not named in the config is set to the slot volume')
     check(abs(sum(STATE['slept']) - (run.CHANGE_FADE_OUT_SECONDS
                                      + run.CHANGE_FADE_IN_SECONDS)) < 1,
           'taking the short change fade, not a long one')
@@ -189,7 +200,7 @@ def main():
     fresh(container='Brunch Jazz', playing=False)
     run.check_store(cfg, shop, lunch, True)
     new = levels_of('P-dining-2')
-    check(new[0] == 0 and new[-1] == 36 and new == sorted(new),
+    check(new[0] == 0 and new[-1] == lunch_level and new == sorted(new),
           'a shop starting from silence fades in from nothing')
     check(abs(sum(STATE['slept']) - run.CHANGE_FADE_IN_SECONDS) < 1,
           'with no fade out, because nothing was playing')
