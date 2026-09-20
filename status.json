@@ -1,14 +1,14 @@
 {
-  "ok": true,
-  "result": "all stores as expected, nothing to do",
+  "ok": false,
+  "result": "SOMETHING NEEDS ATTENTION",
   "stores_switched_on_but_unreachable": [],
   "problems": [],
   "group_found_by_speaker": "home, west-harlem, central-harlem, hells-kitchen",
   "not_protected": "",
   "token_ages": "home:14.7d, west-harlem:10.9d, central-harlem:10.0d, hells-kitchen:11.9d",
-  "run": "1363",
-  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/35520554498",
-  "output_tail": "",
-  "written_at": "2026-09-20 15:45:30 UTC",
-  "written_at_epoch": 1789919130
+  "run": "1366",
+  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/35522912260",
+  "output_tail": "Store music check, 2026-09-20 12:30\nMode: LIVE, changes will be made\n\n  Home (TV Room + 4)\n    should be: VIVALDI  at its own level per speaker   (Daytime, weekend, 10:00 to 18:00, using number 3 of 10 in this round, today)\n    each speaker: Bedroom 20, Dressing Room 25, Kitchen 28, Sunroom 20, TV Room 20\n    actually: VIVALDI  (playing)\n    music: already correct\n    volume: all 5 speakers already correct\n\n  West Harlem, 3600 Broadway\n    the group had changed, found it again by its speaker: RINCON_347E5C15456601400:2474565580 is now RINCON_38420B6A9E1001400:1807673954\n    should be: Jazz Trumpet  at its own level per speaker   (Lunch rush, 12:30 to 14:00, using number 3 of 5 in this round, today)\n    each speaker: Dining Room 2 39\n    actually: Good Morning Jazz  (playing)\n    faded down over about 10 seconds\n    music: changed to 'Jazz Trumpet', starting from silence\n    faded up over about 20 seconds to: Dining Room 2 39\n    volume: all 1 speakers already correct\n\n  Central Harlem, 370 Malcolm X (one speaker, Dining Room)\n    should be: Jazz Trumpet  at volume 36   (Lunch rush, 12:30 to 14:00, using number 3 of 5 in this round, today)\n    actually: Jazz in the Background  (playing)\n    faded down over about 10 seconds\n    music: changed to 'Jazz Trumpet', starting from silence\n    faded up over about 20 seconds to: Dining Room 36\n    volume: already 36\n\n  Hell's Kitchen, 354 West 44th (left and right pair)\n    should be: Jazz Trumpet  at its own level per speaker   (Lunch rush, 11:30 to 13:30, using the default for this slot)\n    each speaker: Dining Room Left Speaker 36, Dining Room Right Speaker 33\n    actually: Jazz Trumpet  (not playing)\n    SILENT during service hours\n    music: changed to 'Jazz Trumpet', starting from silence\n    faded up over about 20 seconds to: Dining Room Left Speaker 36, Dining Room Right Speaker 33\n    volume: all 2 speakers already correct\n\nSaved pass ages: home:14.7d, west-harlem:10.9d, central-harlem:10.0d, hells-kitchen:11.9d\nGroup found by speaker for: home, west-harlem, central-harlem, hells-kitchen\nResult: SOMETHING NEEDS ATTENTION",
+  "written_at": "2026-09-20 16:32:11 UTC",
+  "written_at_epoch": 1789921931
 }
