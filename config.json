@@ -396,10 +396,70 @@
           "Dining Room Right Speaker": 35
         }
       },
-      "_volume_note": "Set 2026-09-10 by Andrew. Per speaker, because the right speaker is the walled-off corner and runs softer: right 28 to 35, left 30 to 38, both moving together across the shared slot shape. ⚠️ This REPLACES the balance that was set by hand in the Sonos app on 2026-09-08 (left 33, right 25). The software now sets both absolutely, so changing the corner balance means changing these numbers, not the app."
+      "_volume_note": "Set 2026-09-10 by Andrew. Per speaker, because the right speaker is the walled-off corner and runs softer: right 28 to 35, left 30 to 38, both moving together across the shared slot shape. ⚠️ This REPLACES the balance that was set by hand in the Sonos app on 2026-09-08 (left 33, right 25). The software now sets both absolutely, so changing the corner balance means changing these numbers, not the app.",
+      "_slots_note": "Andrew, 2026-09-23: Hell's Kitchen went live on 8 September on the shared timetable, one fixed playlist per slot, and was never given pools when the Harlem stores got theirs. It played the same five playlists every day for fifteen days while 39 sat saved on its system. These five pools are drawn only from what is already saved there. The times and the volumes are copied from the shared slots UNCHANGED on purpose: this change moves one variable, which playlist plays, and nothing else. Jazz Noir is deliberately left out under the never-sad-never-sombre rule. The ten artist Radio entries are Spotify playlists, not stations, so they shuffle and crossfade like everything else; proven on home's four Radio favourites, still to be confirmed on this system itself. Where a playlist exists twice here, once plain and once as '(2)' or '(From Joel)', the plain name is used because that is the one this shop has been playing since 8 September and is known to work.",
+      "slots": [
+        {
+          "name": "Lunch rush",
+          "from": "11:30",
+          "to": "13:30",
+          "volume": 28,
+          "playlist_pool": [
+            "Jazz Trumpet",
+            "Brunch Jazz",
+            "Grant Green Radio",
+            "Blue Friday - Rudy Van Gelder Remaster Radio"
+          ]
+        },
+        {
+          "name": "Dead stretch",
+          "from": "13:30",
+          "to": "16:00",
+          "volume": 22,
+          "playlist_pool": [
+            "Instrumental Jazz Standards",
+            "Bill Evans Trio Radio",
+            "April In Paris - 2007 Remaster/Rudy Van Gelder Edition Radio",
+            "Ben Webster Radio"
+          ]
+        },
+        {
+          "name": "Early evening",
+          "from": "16:00",
+          "to": "18:00",
+          "volume": 26,
+          "playlist_pool": [
+            "FOH Jazz",
+            "In the Mood for Jazz",
+            "Coleman Hawkins Radio"
+          ]
+        },
+        {
+          "name": "Dinner peak",
+          "from": "18:00",
+          "to": "21:00",
+          "volume": 30,
+          "playlist_pool": [
+            "Jazz Classics Blue Note Edition",
+            "Miles Davis Quintet Radio",
+            "Sonny Rollins Radio"
+          ]
+        },
+        {
+          "name": "Last service",
+          "from": "21:00",
+          "to": "23:00",
+          "volume": 24,
+          "playlist_pool": [
+            "Feel Good Jazz",
+            "Dexter Gordon Radio",
+            "John Coltrane Radio"
+          ]
+        }
+      ]
     }
   ],
-  "_slots_comment": "All three stores run the same hours, confirmed 2026-09-05. Times are 24 hour. Music runs 11:30 to 23:00; outside those hours nothing plays. Central Harlem and West Harlem carry their own slots on their store entries; Andrew's 2026-09-09 floor observation, empty at 11:30 and rush 12:30 to 2, is confirmed for both Harlem stores and should be checked for Hell's Kitchen against the Toast busy-hours analysis, spec in run-the-house docs.",
+  "_slots_comment": "All three stores run the same hours, confirmed 2026-09-05. Times are 24 hour. Music runs 11:30 to 23:00; outside those hours nothing plays. All three shops now carry their own slots on their store entries, Hell's Kitchen from 2026-09-23, so this shared list is the fallback and nothing in service uses it. ⚠️ Hell's Kitchen kept the shared TIMES when it took its own slots, because that change moved playlists only. Andrew's 2026-09-09 floor observation, empty at 11:30 and rush 12:30 to 2, is confirmed for both Harlem stores and gave them a six-slot shape with a Soft open. Hell's Kitchen still runs the older five-slot shape and is still owed that check against the Toast busy-hours analysis, spec in run-the-house docs.",
   "slots": [
     {
       "name": "Lunch rush",
