@@ -1,14 +1,14 @@
 {
-  "ok": false,
-  "result": "SOMETHING NEEDS ATTENTION",
+  "ok": true,
+  "result": "all stores as expected, nothing to do",
   "stores_switched_on_but_unreachable": [],
   "problems": [],
   "group_found_by_speaker": "home, west-harlem, central-harlem, hells-kitchen",
   "not_protected": "",
   "token_ages": "home:18.7d, west-harlem:14.9d, central-harlem:14.0d, hells-kitchen:15.9d",
-  "run": "1770",
-  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/36020659569",
-  "output_tail": "Store music check, 2026-09-24 11:30\nMode: LIVE, changes will be made\n\n  Home (TV Room + 4)\n    should be: BACH  at its own level per speaker   (Daytime, Tue to Thu, 09:00 to 18:00, using number 7 of 10 in this round, today)\n    each speaker: Bedroom 25, Dressing Room 25, Kitchen 28, Sunroom 0, TV Room 20\n    actually: BACH  (playing)\n    music: already correct\n    volume: all 5 speakers already correct\n\n  West Harlem, 3600 Broadway\n    the group had changed, found it again by its speaker: RINCON_347E5C15456601400:2474565580 is now RINCON_38420B6A9E1001400:1807673954\n    should be: Brunch Chill Jazz Mix  at its own level per speaker   (Soft open, 11:30 to 12:30, using number 3 of 4 in this round, today)\n    each speaker: Dining Room 2 32\n    actually: THPN-Mellow Jam  (not playing)\n    SILENT during service hours\n    music: changed to 'Brunch Chill Jazz Mix', starting from silence\n    faded up over about 20 seconds to: Dining Room 2 32\n    volume: all 1 speakers already correct\n\n  Central Harlem, 370 Malcolm X (one speaker, Dining Room)\n    should be: Brunch Jazz  at volume 30   (Soft open, 11:30 to 12:30, using number 3 of 3 in this round, today)\n    actually: This Is Wynton Marsalis  (not playing)\n    SILENT during service hours\n    music: changed to 'Brunch Jazz', starting from silence\n    faded up over about 20 seconds to: Dining Room 30\n    volume: already 30\n\n  Hell's Kitchen, 354 West 44th (left and right pair)\n    should be: Jazz Trumpet  at its own level per speaker   (Lunch rush, 11:30 to 13:30, using the default for this slot)\n    each speaker: Dining Room Left Speaker 36, Dining Room Right Speaker 33\n    actually: Feel Good Jazz  (not playing)\n    SILENT during service hours\n    music: changed to 'Jazz Trumpet', starting from silence\n    faded up over about 20 seconds to: Dining Room Left Speaker 36, Dining Room Right Speaker 33\n    volume: all 2 speakers already correct\n\nSaved pass ages: home:18.7d, west-harlem:14.9d, central-harlem:14.0d, hells-kitchen:15.9d\nGroup found by speaker for: home, west-harlem, central-harlem, hells-kitchen\nResult: SOMETHING NEEDS ATTENTION",
-  "written_at": "2026-09-24 15:32:08 UTC",
-  "written_at_epoch": 1790263928
+  "run": "1771",
+  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/36022464828",
+  "output_tail": "",
+  "written_at": "2026-09-24 15:45:33 UTC",
+  "written_at_epoch": 1790264733
 }
