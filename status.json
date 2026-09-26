@@ -1,14 +1,14 @@
 {
-  "ok": true,
-  "result": "all stores as expected, nothing to do",
+  "ok": false,
+  "result": "SOMETHING NEEDS ATTENTION",
   "stores_switched_on_but_unreachable": [],
   "problems": [],
   "group_found_by_speaker": "home, west-harlem, central-harlem, hells-kitchen",
   "not_protected": "",
   "token_ages": "home:20.6d, west-harlem:16.8d, central-harlem:15.9d, hells-kitchen:17.8d",
-  "run": "1962",
-  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/36242908673",
-  "output_tail": "",
-  "written_at": "2026-09-26 12:45:16 UTC",
-  "written_at_epoch": 1790426716
+  "run": "1967",
+  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/36247012825",
+  "output_tail": "Store music check, 2026-09-26 10:00\nMode: LIVE, changes will be made\n\n  Home (TV Room + 4)\n    should be: TELEMANN  at its own level per speaker   (Daytime, weekend, 10:00 to 18:00, using number 9 of 10 in this round, today)\n    each speaker: Bedroom 20, Dressing Room 25, Kitchen 28, Sunroom 20, TV Room 20\n    actually: SCHUMANN RESONANCE  (not playing)\n    SILENT during service hours\n    music: changed to 'TELEMANN', starting from silence\n    faded up over about 600 seconds to: Bedroom 20, Dressing Room 25, Kitchen 28, Sunroom 20, TV Room 20\n    volume: all 5 speakers already correct\n\n  West Harlem, 3600 Broadway: closed, nothing should be playing\n    the group had changed, found it again by its speaker: RINCON_347E5C15456601400:2474565580 is now RINCON_38420B6A9E1001400:1807673954\n    already quiet\n\n  Central Harlem, 370 Malcolm X (one speaker, Dining Room): closed, nothing should be playing\n    already quiet\n\n  Hell's Kitchen, 354 West 44th (left and right pair): closed, nothing should be playing\n    already quiet\n\nSaved pass ages: home:20.6d, west-harlem:16.8d, central-harlem:15.9d, hells-kitchen:17.8d\nGroup found by speaker for: home, west-harlem, central-harlem, hells-kitchen\nResult: SOMETHING NEEDS ATTENTION",
+  "written_at": "2026-09-26 14:11:24 UTC",
+  "written_at_epoch": 1790431884
 }
