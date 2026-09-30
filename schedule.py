@@ -329,6 +329,32 @@ def decide(cfg, now, store=None):
         playlist, source = _apply_override(own_holiday['overrides'][slot['name']],
                                            "this system's own %s" % own_holiday['name'])
 
+    # Half and half, by the clock. Added 2026-09-29 for Christmas. Andrew's rule from
+    # 5 September is never a Christmas playlist on its own, one in two mixed through. The
+    # plan then was a half-Christmas playlist built in Spotify; none was ever built, and
+    # the five names waiting for them existed nowhere, which would have silenced every shop
+    # on 1 December. Andrew asked instead for the playlists already saved on each system.
+    # So the half is kept by the hour: every even hour deals from this system's festive
+    # list, every odd hour keeps the slot's normal music. Never more than one hour of
+    # Christmas at a stretch. The festive deck moves on every Christmas hour, so two in one
+    # day never repeat. A holiday may name only_slots; home does, because its daytime is
+    # Calm Radio only and every Christmas playlist it has is Spotify.
+    mix = (own_holiday or {}).get('half_and_half')
+    only = (own_holiday or {}).get('only_slots')
+    if mix and (not only or slot['name'] in only):
+        belongs.update(mix)
+        if now.hour % 2 == 0:
+            # One deck for the whole system, not one per slot. Found by the check that
+            # was written before this: a deck per slot let the hour either side of a slot
+            # change deal the same Christmas playlist twice running.
+            playlist, _why = deal_from_pool(
+                {'name': '%s %s' % (own_holiday['name'], (store or {}).get('id')),
+                 'playlist_pool': mix, 'reshuffle_every_hours': 2}, now)
+            source = ("this system's own %s list, an even hour, so Christmas this hour "
+                      "and the slot's normal music the next" % own_holiday['name'])
+        else:
+            source = '%s; an odd hour, so the normal music between Christmas hours' % source
+
     # What this particular system calls it wins over everything above, because a name
     # that is not saved on that system cannot be played there at all.
     own = (store or {}).get('playlists', {})

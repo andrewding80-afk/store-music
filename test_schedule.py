@@ -34,12 +34,78 @@ check('2026-10-06T23:00', None, 'closed, nothing plays')
 check('2026-10-07T03:00', None, 'middle of the night')
 
 print()
-print('--- Christmas: never before the first of December, 50/50 mix ---')
-check('2026-11-30T19:00', 'Jazz Classics Blue Note Edition', 'November 30th is NOT Christmas')
-check('2026-12-01T19:00', 'December Dinner 50-50', 'December 1st, Christmas starts')
-check('2026-12-01T12:00', 'December Lunch 50-50', 'holiday applies to every slot, not just evening')
-check('2026-12-25T19:00', 'December Dinner 50-50', 'Christmas Day itself')
-check('2026-12-26T19:00', 'Jazz Classics Blue Note Edition', 'Boxing Day, holiday is over')
+print('--- Christmas: never before the first of December, half and half, every system its own ---')
+# Rebuilt 2026-09-29. The old shared block named five "December ... 50-50" playlists that
+# were never saved anywhere, so every shop would have gone silent on 1 December. Andrew
+# asked for Christmas to point at playlists already on each system. His 5 September rule,
+# never a Christmas playlist on its own, is kept by the clock rather than by the playlist:
+# every even hour plays from that system's own Christmas list and every odd hour plays the
+# slot's normal music. Half the time, never more than one hour of Christmas at a stretch.
+_stores = dict((s['id'], s) for s in cfg['stores'])
+
+
+def _xmas_list(store):
+    for h in store.get('holidays', []):
+        if h.get('name') == 'Christmas':
+            return h.get('half_and_half') or []
+    return []
+
+
+def _normal_names(store, slot_name):
+    for sl in schedule.slots_for(cfg, store):
+        if sl['name'] == slot_name:
+            return set(sl.get('playlist_pool') or [sl.get('playlist')])
+    return set()
+
+
+ok_no_placeholders = True
+for _h in cfg.get('holidays', []) + [h for s in cfg['stores'] for h in s.get('holidays', [])]:
+    _names = list(_h.get('half_and_half') or [])
+    for _v in (_h.get('overrides') or {}).values():
+        _names += _v if isinstance(_v, list) else [_v]
+    if any('50-50' in n for n in _names):
+        ok_no_placeholders = False
+if not ok_no_placeholders:
+    failures.append('a "50-50" placeholder that exists on no system is still named')
+print('%s no "December 50-50" placeholder is named anywhere' % ('PASS' if ok_no_placeholders else 'FAIL'))
+
+for _sid in ('west-harlem', 'central-harlem', 'hells-kitchen'):
+    _st = _stores[_sid]
+    _xl = set(_xmas_list(_st))
+    _ok = len(_xl) >= 6
+    for _when, _want_xmas, _why in (('2026-11-30T12:15', False, 'the 30th of November is not Christmas'),
+                                    ('2026-12-01T12:15', True, 'the 1st of December, an even hour'),
+                                    ('2026-12-01T13:15', False, 'the hour after is normal music'),
+                                    ('2026-12-25T20:15', True, 'Christmas Day, an even hour'),
+                                    ('2026-12-26T20:15', False, 'Boxing Day, over')):
+        _d = schedule.decide(cfg, datetime.fromisoformat(_when), _st)
+        _is_xmas = _d['playlist'] in _xl
+        _right = (_is_xmas == _want_xmas and
+                  (_is_xmas or _d['playlist'] in _normal_names(_st, _d['slot'])))
+        if not _right:
+            failures.append('%s %s: got %r in %s (%s)' % (_sid, _when, _d['playlist'], _d['slot'], _why))
+        _ok = _ok and _right
+    # Every hour of every day, 1 to 25 December: even hours Christmas, odd hours not, and two
+    # Christmas hours in one day never deal the same playlist.
+    for _day in range(1, 26):
+        _seen = []
+        for _hr in range(11, 23):
+            _d = schedule.decide(cfg, datetime(2026, 12, _day, _hr, 45), _st)
+            if not _d['playlist']:
+                continue
+            _is_xmas = _d['playlist'] in _xl
+            if _is_xmas != (_hr % 2 == 0):
+                _ok = False
+                failures.append('%s 12-%02d %02d:45 broke the every-other-hour rule: %r'
+                                % (_sid, _day, _hr, _d['playlist']))
+            if _is_xmas:
+                _seen.append(_d['playlist'])
+        if any(a == b for a, b in zip(_seen, _seen[1:])):
+            _ok = False
+            failures.append('%s 12-%02d dealt the same Christmas playlist twice running: %r'
+                            % (_sid, _day, _seen))
+    print('%s %-15s its own %d Christmas playlists, every other hour, 1 to 25 December'
+          % ('PASS' if _ok else 'FAIL', _sid, len(_xl)))
 
 print()
 print('--- holiday outranks season, and single day holidays work ---')
@@ -121,25 +187,36 @@ print('%s %-18s %-34s %s' % ('PASS' if _ok_tue else 'FAIL', '06T19:00', _tue_eve
 # same as the shops: 50/50, never a pure Christmas playlist. What must still never
 # happen is home picking up a SHOP's Christmas playlist, which is what this always
 # guarded and what two attempts got wrong.
-_shop_xmas = set()
-for _h in cfg.get('holidays', []):
-    if _h.get('name') == 'Christmas':
-        for _v in (_h.get('overrides') or {}).values():
-            _shop_xmas.update(_v if isinstance(_v, list) else [_v])
-_xmas = schedule.decide(cfg, datetime.fromisoformat('2026-12-20T19:00'), home)['playlist']
-_ok_xmas = _xmas not in _shop_xmas
+# Rebuilt 2026-09-29 with the shops' Christmas: every system now carries its own list, so
+# "a shop playlist" means a name on a shop's list that home's list does not have.
+_home_xl = set(_xmas_list(home))
+_shop_only = set()
+for _sid in ('west-harlem', 'central-harlem', 'hells-kitchen'):
+    _shop_only |= set(_xmas_list(_stores[_sid]))
+_shop_only -= _home_xl
+_xmas = schedule.decide(cfg, datetime.fromisoformat('2026-12-20T20:00'), home)['playlist']
+_ok_xmas = _xmas in _home_xl and _xmas not in _shop_only
 if not _ok_xmas:
-    failures.append('a December evening at home was hijacked by a SHOP Christmas playlist: %r'
+    failures.append('a December evening at home did not deal from home\'s own Christmas list: %r'
                     % _xmas)
-print('%s %-18s %-34s %s' % ('PASS' if _ok_xmas else 'FAIL', '20T19:00', _xmas,
-                             'home never picks up a shop Christmas playlist'))
+print('%s %-18s %-34s %s' % ('PASS' if _ok_xmas else 'FAIL', '20T20:00', _xmas,
+                             'home deals from its own Christmas list, an even hour'))
 
-# And home's own December must actually be its own, not the everyday list.
-_ok_own_xmas = _xmas not in _eve_pool
-if not _ok_own_xmas:
-    failures.append('home has no December of its own: December evening dealt %r' % _xmas)
-print('%s %-18s %-34s %s' % ('PASS' if _ok_own_xmas else 'FAIL', '20T19:00', _xmas,
-                             'home has a December of its own'))
+_xmas_odd = schedule.decide(cfg, datetime.fromisoformat('2026-12-20T21:00'), home)['playlist']
+_ok_odd = _xmas_odd in _eve_pool
+if not _ok_odd:
+    failures.append('the hour between Christmas hours at home was not the evening list: %r' % _xmas_odd)
+print('%s %-18s %-34s %s' % ('PASS' if _ok_odd else 'FAIL', '20T21:00', _xmas_odd,
+                             'and the next hour is the ordinary evening list'))
+
+# Home's daytime is Calm Radio only, so Spotify never cuts off Andrew's phone. His Christmas
+# playlists are all Spotify, so December must leave the daytime alone.
+_xmas_day = schedule.decide(cfg, datetime.fromisoformat('2026-12-16T12:00'), home)['playlist']
+_ok_day = _xmas_day == _xmas_day.upper() and _xmas_day not in _home_xl
+if not _ok_day:
+    failures.append('a December daytime at home played Christmas Spotify: %r' % _xmas_day)
+print('%s %-18s %-34s %s' % ('PASS' if _ok_day else 'FAIL', '16T12:00', _xmas_day,
+                             'December daytime at home stays Calm Radio'))
 check_store('2026-10-10T08:00', None, 'before nine, nothing plays at home')
 
 d3 = schedule.decide(cfg, datetime.fromisoformat('2026-10-06T19:00'), home)

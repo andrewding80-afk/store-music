@@ -78,6 +78,10 @@ def wanted_playlists(cfg, store, everything=False):
         # check reported home as complete while its December playlist did not exist.
         for block in store.get('holidays', []):
             from_overrides(block)
+            # Christmas from 2026-09-29: a festive list played every other hour. Every name
+            # in it has to be saved on this system, the same as any other list.
+            for name in block.get('half_and_half') or []:
+                add(name)
 
     return [n for n in names if n and not n.startswith('NEEDS ')]
 

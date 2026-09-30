@@ -167,9 +167,25 @@
           "name": "Christmas",
           "from": "12-01",
           "to": "12-25",
-          "overrides": {
-            "Evening": "December Evening 50-50 (home)"
-          }
+          "half_and_half": [
+            "Christmas Classics",
+            "Christmas Cocktail Jazz",
+            "Christmas Jazz",
+            "Christmas Peaceful Piano",
+            "Christmas Piano Classical Mix",
+            "christmas vintage jazz",
+            "Classic Classical Christmas Mix",
+            "Cozy Christmas Jazz",
+            "Cozy Instrumental Christmas Jazz Mix",
+            "Instrumental Classical Christmas Mix",
+            "The Expat: Brunch Christmas Jazz",
+            "The Expat: Lunch Christmas Jazz",
+            "Vocal Christmas Jazz Mix"
+          ],
+          "only_slots": [
+            "Evening"
+          ],
+          "_note": "Rebuilt 2026-09-29 at Andrew's instruction to point Christmas at playlists already saved on this system; the old shared names ('December Lunch 50-50' and the rest) existed nowhere and would have left the music silent from 1 December. His 5 September rule, never a Christmas playlist on its own, is kept by the hour: even hours deal from this list, odd hours keep the slot's normal music. Every name was read off this system's favourites the same night; all are Spotify playlists, so shuffle and crossfade apply. Every Christmas playlist saved on the home system is used. Evening only: the daytime is Calm Radio only so Spotify never cuts off Andrew's phone, and all thirteen are Spotify."
         }
       ],
       "_christmas_note": "Andrew's instruction 2026-09-10: treat home the same as the shops, 50/50, not pure Christmas. Kept as home's OWN holiday rather than added to the shared block, because two tests exist specifically to stop a shop rule following home around, and they were right. ⚠️ 'December Evening 50-50 (home)' DOES NOT EXIST YET. The mixing lives in the Spotify playlist, never in the software, so it has to be built half Christmas half not, and saved as a favourite on the home system before December. The thirteen pure Christmas playlists on that system are deliberately NOT scheduled: rule 2 of 2026-09-05 forbids a Christmas playlist running on its own, and Andrew has now extended that rule to home."
@@ -280,7 +296,27 @@
         }
       },
       "_speaker_volumes_note": "Set 2026-09-18 by Andrew, replacing the 2026-09-14 note. THE OLD DINING ROOM IS GONE: it was removed on 2026-09-17 because it was broken, and Dining Room 2 (RINCON_38420B6A9E1001400) is now the only speaker in this store. It was mounted in its correct position on 2026-09-18, which is why it can be driven harder than the levels chosen while it sat temporarily. Andrew's instruction: minimum 32, maximum 41, same shape as before. That rescales 30 36 30 34 38 32 to 32 39 32 37 41 34, keeping the order and the gaps, including the 4 point lift from early evening into the dinner peak. ⚠️ ON TRIAL: his words were 'see how it goes today'. Judged by ear in the room, not by arithmetic. If nobody reports back, ask before treating it as settled.",
-      "_volume_note": "Set 2026-09-18. The 28 on each slot above is a FALLBACK ONLY and nobody hears it today: it applies to any speaker on this system that is not named in speaker_volumes, and Dining Room 2 is named in all six. It matters again the day a second speaker is added, which would otherwise arrive at 28 while the room runs at 32 to 41. ⚠️ THE OLD CAP IS DEAD AND SO IS ITS REASONING. Until 2026-09-17 this note said flat 28 everywhere and 'do not raise it for a busier room', because the old speaker's bass blew when driven. That speaker has been removed. Do not carry that limit over to Dining Room 2, which is different hardware and has never shown it."
+      "_volume_note": "Set 2026-09-18. The 28 on each slot above is a FALLBACK ONLY and nobody hears it today: it applies to any speaker on this system that is not named in speaker_volumes, and Dining Room 2 is named in all six. It matters again the day a second speaker is added, which would otherwise arrive at 28 while the room runs at 32 to 41. ⚠️ THE OLD CAP IS DEAD AND SO IS ITS REASONING. Until 2026-09-17 this note said flat 28 everywhere and 'do not raise it for a busier room', because the old speaker's bass blew when driven. That speaker has been removed. Do not carry that limit over to Dining Room 2, which is different hardware and has never shown it.",
+      "holidays": [
+        {
+          "name": "Christmas",
+          "from": "12-01",
+          "to": "12-25",
+          "half_and_half": [
+            "THPN Christmas",
+            "Christmas Cocktail Jazz",
+            "Christmas Coffeehouse Jazz",
+            "Christmas Jazz",
+            "Cozy Christmas Jazz",
+            "Fireside Christmas Jazz",
+            "Instrumental Christmas Jazz Mix",
+            "Jazzy Christmas Dinner",
+            "Smooth Jazz Christmas",
+            "Vocal Christmas Jazz Mix"
+          ],
+          "_note": "Rebuilt 2026-09-29 at Andrew's instruction to point Christmas at playlists already saved on this system; the old shared names ('December Lunch 50-50' and the rest) existed nowhere and would have left the music silent from 1 December. His 5 September rule, never a Christmas playlist on its own, is kept by the hour: even hours deal from this list, odd hours keep the slot's normal music. Every name was read off this system's favourites the same night; all are Spotify playlists, so shuffle and crossfade apply. Left out, all saved on the system: Christmas Hits, Feel Good Christmas, Christmas Classics and Relaxing Christmas, which lean pop or generic rather than jazz; Cozy Winter Mix, which is winter, not Christmas."
+        }
+      ]
     },
     {
       "id": "central-harlem",
@@ -364,7 +400,26 @@
           ]
         }
       ],
-      "_volume_note": "Set 2026-09-10 by Andrew: base 30, ceiling 38. The existing shape is kept, so the quiet slots sit at the base and the dinner peak reaches the ceiling. One speaker, so one level."
+      "_volume_note": "Set 2026-09-10 by Andrew: base 30, ceiling 38. The existing shape is kept, so the quiet slots sit at the base and the dinner peak reaches the ceiling. One speaker, so one level.",
+      "holidays": [
+        {
+          "name": "Christmas",
+          "from": "12-01",
+          "to": "12-25",
+          "half_and_half": [
+            "Christmas Jazz Coffee Shop",
+            "christmas vintage jazz",
+            "Cozy Christmas Jazz",
+            "Cozy Instrumental Christmas Jazz Mix",
+            "Instrumental Christmas Jazz Mix",
+            "Jazzy Christmas Dinner",
+            "Jazzy Christmas Mix",
+            "Smooth Jazz Christmas",
+            "Vocal Christmas Jazz Mix"
+          ],
+          "_note": "Rebuilt 2026-09-29 at Andrew's instruction to point Christmas at playlists already saved on this system; the old shared names ('December Lunch 50-50' and the rest) existed nowhere and would have left the music silent from 1 December. His 5 September rule, never a Christmas playlist on its own, is kept by the hour: even hours deal from this list, odd hours keep the slot's normal music. Every name was read off this system's favourites the same night; all are Spotify playlists, so shuffle and crossfade apply. Left out: Christmas Hits, which is pop rather than jazz."
+        }
+      ]
     },
     {
       "id": "hells-kitchen",
@@ -457,6 +512,26 @@
             "John Coltrane Radio"
           ]
         }
+      ],
+      "holidays": [
+        {
+          "name": "Christmas",
+          "from": "12-01",
+          "to": "12-25",
+          "half_and_half": [
+            "A Very Jazzy Christmas - Jazz Christmas",
+            "Christmas Jazz 🎄 Instrumental Vintage Classics 2026",
+            "christmas vintage jazz",
+            "Cozy Christmas Jazz",
+            "Jazz Christmas",
+            "Jazz Christmas 🎄 Instrumental Music 2026",
+            "Jazzy Christmas Mix",
+            "OLD CHRISTMAS JAZZY SONG",
+            "Soft Christmas Jazz Instrumentals",
+            "Upbeat Christmas Jazz Instrumental"
+          ],
+          "_note": "Rebuilt 2026-09-29 at Andrew's instruction to point Christmas at playlists already saved on this system; the old shared names ('December Lunch 50-50' and the rest) existed nowhere and would have left the music silent from 1 December. His 5 September rule, never a Christmas playlist on its own, is kept by the hour: even hours deal from this list, odd hours keep the slot's normal music. Every name was read off this system's favourites the same night; all are Spotify playlists, so shuffle and crossfade apply. Every Christmas playlist saved on the system is used; all ten are jazz."
+        }
       ]
     }
   ],
@@ -536,20 +611,8 @@
       "_note": "Set 2026-09-10, and moved the same day: Andrew said September is too early, so autumn starts 1 October rather than 1 September. September now falls in no season at all, which simply means the default playlists, and that is the intent. Andrew's seven evening playlists PLUS three autumn ones, dealt as one deck of ten. Blended rather than replaced, because this document's own rule is that a seasonal change should be felt and not noticed: three in ten evenings is felt. Only home has a slot called 'Evening', so this touches nothing in the shops. 'Fall Asleep Instantly' is deliberately excluded: it is a sleep playlist whose name merely begins with the word."
     }
   },
-  "_holidays_comment": "Holidays outrank seasons, which outrank the default. Christmas never starts before the first week of December, and the 50/50 mix of Christmas and non-Christmas tracks is built into the playlist itself, not by the software. Holiday overrides name slots; Central Harlem's and West Harlem's own slot names include the same 'Lunch rush', 'Dead stretch', 'Early evening', 'Dinner peak' and 'Last service', so the December and holiday overrides still land there. The 'Soft open' slot has no override and stays chill in December, which is right.",
+  "_holidays_comment": "Holidays outrank seasons, which outrank the default. Christmas never starts before the first week of December. From 2026-09-29 Christmas lives on each system's own entry, not here, because each system has different playlists saved; it runs half and half by the hour (see schedule.py). New Year's Eve and Valentine's Day below are still shared and still name playlists that are saved on no system: 'Big Band Celebration' and 'Jazz Vocals Romantic'. On those days the affected slots will find nothing to play until real names are chosen.",
   "holidays": [
-    {
-      "name": "Christmas",
-      "from": "12-01",
-      "to": "12-25",
-      "overrides": {
-        "Lunch rush": "December Lunch 50-50",
-        "Dead stretch": "December Afternoon 50-50",
-        "Early evening": "December Evening 50-50",
-        "Dinner peak": "December Dinner 50-50",
-        "Last service": "December Late 50-50"
-      }
-    },
     {
       "name": "New Year's Eve",
       "from": "12-31",

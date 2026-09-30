@@ -61,9 +61,12 @@ def main():
           'a shop is asked for the playlist its lunch slot actually plays')
     check(not any(n.startswith('NEEDS ') for n in everything),
           'a slot with no playlist chosen yet is never asked for')
-    check(all('December' not in n for n in today),
+    # From 2026-09-29 each system carries its own Christmas list, played every other hour.
+    shop_christmas = [n for b in shop.get('holidays', []) if b.get('name') == 'Christmas'
+                      for n in (b.get('half_and_half') or [])]
+    check(bool(shop_christmas) and all(n not in today for n in shop_christmas),
           'Christmas playlists do not hold up a visit in September')
-    check(any('December' in n for n in everything),
+    check(all(n in everything for n in shop_christmas),
           'Christmas playlists are still listed as due later')
 
     home_today = instore.wanted_playlists(cfg, home)
@@ -73,15 +76,14 @@ def main():
     # From 2026-09-10 home has its OWN December, because Andrew asked for home to follow
     # the same 50/50 rule as the shops. What must still never happen is a SHOP's playlist
     # turning up on home's list, which is what this always guarded.
-    shop_xmas = set()
-    for block in cfg.get('holidays', []):
-        for value in (block.get('overrides') or {}).values():
-            shop_xmas.update(value if isinstance(value, list) else [value])
+    home_christmas = [n for b in home.get('holidays', []) if b.get('name') == 'Christmas'
+                      for n in (b.get('half_and_half') or [])]
+    shop_only = set(shop_christmas) - set(home_christmas)
     home_everything = instore.wanted_playlists(cfg, home, everything=True)
-    check(not (set(home_everything) & shop_xmas),
+    check(bool(shop_only) and not (set(home_everything) & shop_only),
           'a shop playlist never follows home around')
-    check(any('December' in n for n in home_everything),
-          "home's own December playlist is listed as due later")
+    check(bool(home_christmas) and all(n in home_everything for n in home_christmas),
+          "home's own Christmas playlists are listed as due later")
 
     FAVS[:] = []
     code, out = run_check_mode('west-harlem')
