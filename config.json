@@ -31,15 +31,15 @@
           "TV Room": 20
         },
         "Evening": {
-          "Bedroom": 22,
-          "Dressing Room": 22,
-          "Kitchen": 25,
-          "Sunroom": 18,
+          "Bedroom": 18,
+          "Dressing Room": 18,
+          "Kitchen": 20,
+          "Sunroom": 14,
           "TV Room": 0
         },
         "Night": {
-          "Bedroom": 18,
-          "Kitchen": 18,
+          "Bedroom": 14,
+          "Kitchen": 14,
           "TV Room": 0,
           "Sunroom": 0,
           "Dressing Room": 0
@@ -119,7 +119,7 @@
           "name": "Evening",
           "from": "18:00",
           "to": "23:00",
-          "volume": 26,
+          "volume": 21,
           "playlist_pool": [
             "Julie London Radio",
             "Paul Mauriat and Friends",
@@ -135,26 +135,27 @@
           "name": "Night",
           "from": "23:00",
           "to": "24:00",
-          "volume": 18,
+          "volume": 14,
           "playlist_pool": [
             "BY A LAKE",
             "SCHUMANN RESONANCE",
             "Goodnight Mix"
           ],
           "volume_by_playlist": {
-            "Goodnight Mix": 15
+            "Goodnight Mix": 12
           },
           "speaker_steps": {
             "Bedroom": [
-              {"at": "23:30", "volume": 12},
-              {"at": "23:45", "volume": 10, "fade_to": 0, "by": "24:00"}
+              {"at": "23:30", "volume": 10},
+              {"at": "23:45", "volume": 8, "fade_to": 0, "by": "24:00"}
             ]
           },
-          "_speaker_steps_note": "Andrew, 2026-09-15. Inside this one slot the Bedroom comes down on its own while the rest of the house stays at the night level: 12 from half past eleven, 10 from a quarter to midnight, and from there down to nothing by midnight. The music itself does not change, only that speaker's level, so nothing here deals a new playlist.",
-          "_pool_note": "Andrew added 'Goodnight Mix' to the home system on 2026-09-10 and asked for it in place of 'AMBIENT CALM', which was never saved there. Checked live that day: it exists and is a Spotify track list, unlike the other two here which are Calm Radio streams, so shuffle, repeat and crossfade apply to it on the nights it is dealt. It keeps the volume 15 Andrew set for the entry it replaces, quieter than the slot's 18."
+          "_speaker_steps_note": "Andrew, 2026-09-15. Inside this one slot the Bedroom comes down on its own while the rest of the house stays at the night level, and from a quarter to midnight down to nothing by midnight. The music itself does not change, only that speaker's level, so nothing here deals a new playlist. Was 12 then 10; lowered to 10 then 8 on 2026-09-29 with the rest of the evening and night, see _quieter_nights_note.",
+          "_pool_note": "Andrew added 'Goodnight Mix' to the home system on 2026-09-10 and asked for it in place of 'AMBIENT CALM', which was never saved there. Checked live that day: it exists and is a Spotify track list, unlike the other two here which are Calm Radio streams, so shuffle, repeat and crossfade apply to it on the nights it is dealt. It keeps the volume Andrew set for the entry it replaces, quieter than the slot's own level: 15 against 18 until 2026-09-29, now 12 against 14."
         }
       ],
       "_home_comment": "Daytime must be Calm Radio only. Spotify plays in one place at a time, and during the day Andrew is out and using Spotify himself, so a scheduled job on Spotify would cut him off. His Calm Radio stations are the ones named in capitals. Evening and night are unrestricted because he is home and not playing Spotify elsewhere. From midnight the music stops until the nine in the morning start, asked for 2026-09-06.",
+      "_quieter_nights_note": "Andrew, 2026-09-29: 'the volume at night on all the speakers can be about 20% less'. Every Evening and Night level at home cut by 20% and rounded to a whole number: Evening Bedroom 22 to 18, Dressing Room 22 to 18, Kitchen 25 to 20, Sunroom 18 to 14, group 26 to 21; Night Bedroom and Kitchen 18 to 14, group 18 to 14, Goodnight Mix 15 to 12, the Bedroom's steps 12 and 10 to 10 and 8. Read as six in the evening onward, not only eleven to midnight, because 'all the speakers' fits the evening, when four rooms play, and not the last hour, when two do. Daytime untouched.",
       "fade_in_seconds": 120,
       "_fade_in_note": "Andrew, 2026-09-12: whenever the job starts a playlist at home it begins silent and rises to the slot's levels over this many seconds, instead of coming on at full volume. A slot may carry its own fade_in_seconds, which wins; the weekend morning does. Shops have no fade and start at once, because a shop is already full of noise when the music comes on.",
       "stop_when_closed": true,

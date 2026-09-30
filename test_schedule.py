@@ -473,19 +473,20 @@ for _d in range(60):
     if _n['playlist'] == 'Goodnight Mix':
         _ambient = _n
         break
-ok_vol = (_ambient is not None and _ambient['volume'] == 15
-          and _ambient['speakers']['Bedroom'] == 15 and _ambient['speakers']['Kitchen'] == 15)
+# 15 and 18 until 2026-09-29, when Andrew made every evening and night level 20% quieter.
+ok_vol = (_ambient is not None and _ambient['volume'] == 12
+          and _ambient['speakers']['Bedroom'] == 12 and _ambient['speakers']['Kitchen'] == 12)
 if not ok_vol:
-    failures.append('Goodnight Mix did not come out at 15: %r' % (_ambient and _ambient['speakers']))
-print('%s Goodnight Mix plays at 15 wherever it comes up' % ('PASS' if ok_vol else 'FAIL'))
+    failures.append('Goodnight Mix did not come out at 12: %r' % (_ambient and _ambient['speakers']))
+print('%s Goodnight Mix plays at 12 wherever it comes up' % ('PASS' if ok_vol else 'FAIL'))
 
 # And the other two are unaffected by that rule.
 _others = [schedule.decide(cfg, datetime(2026, 9, 7, 23, 15) + timedelta(days=_d), home)
            for _d in range(60)]
-ok_others = all(n['volume'] == 18 for n in _others if n['playlist'] != 'Goodnight Mix')
+ok_others = all(n['volume'] == 14 for n in _others if n['playlist'] != 'Goodnight Mix')
 if not ok_others:
     failures.append('one of the other late night playlists changed volume')
-print('%s the other two still play at 18' % ('PASS' if ok_others else 'FAIL'))
+print('%s the other two still play at 14' % ('PASS' if ok_others else 'FAIL'))
 
 # All three actually get used, rather than one never coming up.
 _dealt_night = set(n['playlist'] for n in _others)

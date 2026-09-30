@@ -69,19 +69,20 @@ def main():
     check(not want.get('ramp'), 'and nothing is fading yet')
 
     want, bed = bedroom_at(cfg, home, 23, 35)
-    check(bed == 12, 'at half past eleven the Bedroom is turned down to 12')
+    # 12 and 10 until 2026-09-29, when Andrew made every evening and night level 20% quieter.
+    check(bed == 10, 'at half past eleven the Bedroom is turned down to 10')
     check(not want.get('ramp'), 'and still nothing is fading')
     check((want.get('speakers') or {}).get('Kitchen') == night_level,
           'the Kitchen is left at the night level, this is the Bedroom only')
 
     want, bed = bedroom_at(cfg, home, 23, 45)
-    check(bed == 10, 'at a quarter to midnight it is turned down to 10')
+    check(bed == 8, 'at a quarter to midnight it is turned down to 8')
     check(want.get('ramp') and want['ramp']['speaker'] == 'Bedroom'
           and want['ramp']['to'] == 0,
           'and from there the Bedroom is fading to nothing')
 
     want, bed = bedroom_at(cfg, home, 23, 52)
-    check(bed is not None and 4 <= bed <= 6,
+    check(bed is not None and 3 <= bed <= 5,
           'halfway through that last quarter hour it is about half way down')
     want, bed = bedroom_at(cfg, home, 23, 59)
     check(bed <= 1, 'and by a minute to midnight it is as good as silent')
@@ -89,7 +90,7 @@ def main():
     # The fade itself: a run that lands in the last quarter hour takes the Bedroom
     # down to nothing across whatever time is left, rather than in one step.
     STATE.update(levels=[], slept=[], speakers=dict((p, 18) for p in ROOMS.values()))
-    STATE['speakers']['P-bed'] = 10
+    STATE['speakers']['P-bed'] = 8
     when = datetime.datetime(2026, 9, 15, 23, 47)
     want = schedule.decide(cfg, when, home)
     lines, acted = [], []
