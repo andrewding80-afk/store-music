@@ -108,11 +108,42 @@ for _sid in ('west-harlem', 'central-harlem', 'hells-kitchen'):
           % ('PASS' if _ok else 'FAIL', _sid, len(_xl)))
 
 print()
-print('--- holiday outranks season, and single day holidays work ---')
-check('2026-12-31T19:00', 'Big Band Celebration', "New Year's Eve outranks winter")
-check('2026-12-30T19:00', 'Jazz Classics Blue Note Edition', '30th is neither Christmas nor NYE')
-check('2027-02-14T19:00', 'Jazz Vocals Romantic', "Valentine's, dinner peak only")
-check('2027-02-14T12:00', 'Jazz Trumpet', "Valentine's does not touch lunch")
+print('--- New Year\'s Eve and Valentine\'s Day, every shop its own, single days ---')
+# Rebuilt 2026-10-05. The shared "Big Band Celebration" and "Jazz Vocals Romantic" were saved on
+# no system, so on those days the shops would have found nothing to play. Each shop now carries
+# its own lists, read off its own favourites.
+check('2026-12-31T19:00', 'Jazz Classics Blue Note Edition', 'the shared list is empty now')
+
+
+def _own_override(store, holiday, slot_name):
+    for h in store.get('holidays', []):
+        if h['name'] == holiday:
+            return set((h.get('overrides') or {}).get(slot_name) or [])
+    return set()
+
+
+for _sid in ('west-harlem', 'central-harlem', 'hells-kitchen'):
+    _st = _stores[_sid]
+    _ok = True
+    for _when, _hol, _want_own, _why in (
+            ('2026-12-31T16:30', "New Year's Eve", True, 'early evening on the 31st'),
+            ('2026-12-31T19:00', "New Year's Eve", True, 'dinner on the 31st'),
+            ('2026-12-31T22:00', "New Year's Eve", True, 'last service on the 31st'),
+            ('2026-12-31T12:45', "New Year's Eve", False, 'lunch on the 31st is ordinary'),
+            ('2026-12-30T19:00', "New Year's Eve", False, 'the 30th is ordinary'),
+            ('2027-02-14T19:00', "Valentine's Day", True, "Valentine's dinner"),
+            ('2027-02-14T12:45', "Valentine's Day", False, "Valentine's lunch is ordinary"),
+            ('2027-02-15T19:00', "Valentine's Day", False, 'the 15th is ordinary')):
+        _d = schedule.decide(cfg, datetime.fromisoformat(_when), _st)
+        _own = _own_override(_st, _hol, _d['slot'])
+        _right = (_d['playlist'] in _own) if _want_own else (_d['playlist'] in _normal_names(_st, _d['slot']))
+        if _want_own and not _own:
+            _right = False
+        if not _right:
+            failures.append('%s %s: got %r in %s (%s)' % (_sid, _when, _d['playlist'], _d['slot'], _why))
+            _ok = False
+    print('%s %-15s its own New Year\'s Eve and Valentine\'s, on the right slots and days only'
+          % ('PASS' if _ok else 'FAIL', _sid))
 
 print()
 print('--- the winter season wraps across the new year without breaking ---')

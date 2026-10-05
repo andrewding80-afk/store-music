@@ -315,6 +315,45 @@
             "Vocal Christmas Jazz Mix"
           ],
           "_note": "Rebuilt 2026-09-29 at Andrew's instruction to point Christmas at playlists already saved on this system; the old shared names ('December Lunch 50-50' and the rest) existed nowhere and would have left the music silent from 1 December. His 5 September rule, never a Christmas playlist on its own, is kept by the hour: even hours deal from this list, odd hours keep the slot's normal music. Every name was read off this system's favourites the same night; all are Spotify playlists, so shuffle and crossfade apply. Left out, all saved on the system: Christmas Hits, Feel Good Christmas, Christmas Classics and Relaxing Christmas, which lean pop or generic rather than jazz; Cozy Winter Mix, which is winter, not Christmas."
+        },
+        {
+          "name": "New Year's Eve",
+          "from": "12-31",
+          "to": "12-31",
+          "overrides": {
+            "Early evening": [
+              "THPN-Rat Pack Jazz",
+              "THPN- Upbeat Variety Mix",
+              "Feel Good Jazz",
+              "Soul Jazz Mix"
+            ],
+            "Dinner peak": [
+              "THPN-Rat Pack Jazz",
+              "THPN- Upbeat Variety Mix",
+              "Feel Good Jazz",
+              "Soul Jazz Mix"
+            ],
+            "Last service": [
+              "THPN-Rat Pack Jazz",
+              "THPN- Upbeat Variety Mix",
+              "Feel Good Jazz",
+              "Soul Jazz Mix"
+            ]
+          },
+          "_note": "2026-10-05, at Andrew's 'fix loose ends': the shared 'Big Band Celebration' was saved on no system. No shop has a big band playlist saved, so these are the most upbeat and celebratory it does have, read off its favourites that day. The 5 September plan says big band all evening; saving a real big band playlist at each shop would get closer."
+        },
+        {
+          "name": "Valentine's Day",
+          "from": "02-14",
+          "to": "02-14",
+          "overrides": {
+            "Dinner peak": [
+              "THPN-Rat Pack Jazz",
+              "Jazz Classics",
+              "Dinner Jazz"
+            ]
+          },
+          "_note": "2026-10-05, at Andrew's 'fix loose ends': the shared 'Jazz Vocals Romantic' was saved on no system. The plan says vocals weighted up, romantic, never mournful; these are the closest saved on this system."
         }
       ]
     },
@@ -418,6 +457,45 @@
             "Vocal Christmas Jazz Mix"
           ],
           "_note": "Rebuilt 2026-09-29 at Andrew's instruction to point Christmas at playlists already saved on this system; the old shared names ('December Lunch 50-50' and the rest) existed nowhere and would have left the music silent from 1 December. His 5 September rule, never a Christmas playlist on its own, is kept by the hour: even hours deal from this list, odd hours keep the slot's normal music. Every name was read off this system's favourites the same night; all are Spotify playlists, so shuffle and crossfade apply. Left out: Christmas Hits, which is pop rather than jazz."
+        },
+        {
+          "name": "New Year's Eve",
+          "from": "12-31",
+          "to": "12-31",
+          "overrides": {
+            "Early evening": [
+              "This Is Wynton Marsalis",
+              "The Best Upbeat Instrumental Jazz Collection",
+              "Feel Good Instrumental Jazz Mix",
+              "Jazz-Funk"
+            ],
+            "Dinner peak": [
+              "This Is Wynton Marsalis",
+              "The Best Upbeat Instrumental Jazz Collection",
+              "Feel Good Instrumental Jazz Mix",
+              "Jazz-Funk"
+            ],
+            "Last service": [
+              "This Is Wynton Marsalis",
+              "The Best Upbeat Instrumental Jazz Collection",
+              "Feel Good Instrumental Jazz Mix",
+              "Jazz-Funk"
+            ]
+          },
+          "_note": "2026-10-05, at Andrew's 'fix loose ends': the shared 'Big Band Celebration' was saved on no system. No shop has a big band playlist saved, so these are the most upbeat and celebratory it does have, read off its favourites that day. The 5 September plan says big band all evening; saving a real big band playlist at each shop would get closer."
+        },
+        {
+          "name": "Valentine's Day",
+          "from": "02-14",
+          "to": "02-14",
+          "overrides": {
+            "Dinner peak": [
+              "Date Night Jazz",
+              "Jazzy Dinner",
+              "Jazz Classics"
+            ]
+          },
+          "_note": "2026-10-05, at Andrew's 'fix loose ends': the shared 'Jazz Vocals Romantic' was saved on no system. The plan says vocals weighted up, romantic, never mournful; these are the closest saved on this system."
         }
       ]
     },
@@ -476,7 +554,8 @@
             "Instrumental Jazz Standards",
             "Bill Evans Trio Radio",
             "April In Paris - 2007 Remaster/Rudy Van Gelder Edition Radio",
-            "Ben Webster Radio"
+            "Ben Webster Radio",
+            "FOH Jazz"
           ]
         },
         {
@@ -509,7 +588,8 @@
           "playlist_pool": [
             "Feel Good Jazz",
             "Dexter Gordon Radio",
-            "John Coltrane Radio"
+            "John Coltrane Radio",
+            "FOH Jazz"
           ]
         }
       ],
@@ -531,8 +611,48 @@
             "Upbeat Christmas Jazz Instrumental"
           ],
           "_note": "Rebuilt 2026-09-29 at Andrew's instruction to point Christmas at playlists already saved on this system; the old shared names ('December Lunch 50-50' and the rest) existed nowhere and would have left the music silent from 1 December. His 5 September rule, never a Christmas playlist on its own, is kept by the hour: even hours deal from this list, odd hours keep the slot's normal music. Every name was read off this system's favourites the same night; all are Spotify playlists, so shuffle and crossfade apply. Every Christmas playlist saved on the system is used; all ten are jazz."
+        },
+        {
+          "name": "New Year's Eve",
+          "from": "12-31",
+          "to": "12-31",
+          "overrides": {
+            "Early evening": [
+              "In the Mood for Jazz",
+              "Coleman Hawkins Radio",
+              "Feel Good Jazz",
+              "Jazz Trumpet"
+            ],
+            "Dinner peak": [
+              "In the Mood for Jazz",
+              "Coleman Hawkins Radio",
+              "Feel Good Jazz",
+              "Jazz Trumpet"
+            ],
+            "Last service": [
+              "In the Mood for Jazz",
+              "Coleman Hawkins Radio",
+              "Feel Good Jazz",
+              "Jazz Trumpet"
+            ]
+          },
+          "_note": "2026-10-05, at Andrew's 'fix loose ends': the shared 'Big Band Celebration' was saved on no system. No shop has a big band playlist saved, so these are the most upbeat and celebratory it does have, read off its favourites that day. The 5 September plan says big band all evening; saving a real big band playlist at each shop would get closer."
+        },
+        {
+          "name": "Valentine's Day",
+          "from": "02-14",
+          "to": "02-14",
+          "overrides": {
+            "Dinner peak": [
+              "In the Mood for Jazz",
+              "Jazz Classics Blue Note Edition",
+              "FOH Jazz"
+            ]
+          },
+          "_note": "2026-10-05, at Andrew's 'fix loose ends': the shared 'Jazz Vocals Romantic' was saved on no system. The plan says vocals weighted up, romantic, never mournful; these are the closest saved on this system. Hell's Kitchen has no vocal playlist saved at all, so its list is the warmest it has, not vocal."
         }
-      ]
+      ],
+      "_foh_note": "Andrew, 2026-09-29, '10. yes': FOH Jazz, 182 songs and about 20 hours, the deepest playlist on any system, now also in the Dead stretch and Last service pools, not only Early evening. Added 2026-10-05 after the new rotation was seen working."
     }
   ],
   "_slots_comment": "All three stores run the same hours, confirmed 2026-09-05. Times are 24 hour. Music runs 11:30 to 23:00; outside those hours nothing plays. All three shops now carry their own slots on their store entries, Hell's Kitchen from 2026-09-23, so this shared list is the fallback and nothing in service uses it. ⚠️ Hell's Kitchen kept the shared TIMES when it took its own slots, because that change moved playlists only. Andrew's 2026-09-09 floor observation, empty at 11:30 and rush 12:30 to 2, is confirmed for both Harlem stores and gave them a six-slot shape with a Soft open. Hell's Kitchen still runs the older five-slot shape and is still owed that check against the Toast busy-hours analysis, spec in run-the-house docs.",
@@ -611,26 +731,7 @@
       "_note": "Set 2026-09-10, and moved the same day: Andrew said September is too early, so autumn starts 1 October rather than 1 September. September now falls in no season at all, which simply means the default playlists, and that is the intent. Andrew's seven evening playlists PLUS three autumn ones, dealt as one deck of ten. Blended rather than replaced, because this document's own rule is that a seasonal change should be felt and not noticed: three in ten evenings is felt. Only home has a slot called 'Evening', so this touches nothing in the shops. 'Fall Asleep Instantly' is deliberately excluded: it is a sleep playlist whose name merely begins with the word."
     }
   },
-  "_holidays_comment": "Holidays outrank seasons, which outrank the default. Christmas never starts before the first week of December. From 2026-09-29 Christmas lives on each system's own entry, not here, because each system has different playlists saved; it runs half and half by the hour (see schedule.py). New Year's Eve and Valentine's Day below are still shared and still name playlists that are saved on no system: 'Big Band Celebration' and 'Jazz Vocals Romantic'. On those days the affected slots will find nothing to play until real names are chosen.",
-  "holidays": [
-    {
-      "name": "New Year's Eve",
-      "from": "12-31",
-      "to": "12-31",
-      "overrides": {
-        "Early evening": "Big Band Celebration",
-        "Dinner peak": "Big Band Celebration",
-        "Last service": "Big Band Celebration"
-      }
-    },
-    {
-      "name": "Valentine's Day",
-      "from": "02-14",
-      "to": "02-14",
-      "overrides": {
-        "Dinner peak": "Jazz Vocals Romantic"
-      }
-    }
-  ],
+  "_holidays_comment": "Holidays outrank seasons, which outrank the default. Christmas never starts before the first week of December. Since 2026-10-05 every holiday lives on each system's own entry, because each system has different playlists saved and a name not saved on a system cannot play there. This shared list is deliberately empty. Christmas runs half and half by the hour (see schedule.py).",
+  "holidays": [],
   "_rules_comment": "Standing rules, kept here so they are visible to anyone editing this file. Never sad, never sombre, always positive. Five items of taste only: instrumental jazz, big band, classic jazz vocals. Nothing experimental. The music is never handed to staff."
 }
