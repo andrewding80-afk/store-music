@@ -355,7 +355,9 @@
           },
           "_note": "2026-10-05, at Andrew's 'fix loose ends': the shared 'Jazz Vocals Romantic' was saved on no system. The plan says vocals weighted up, romantic, never mournful; these are the closest saved on this system."
         }
-      ]
+      ],
+      "report_silent_rooms": true,
+      "_report_silent_rooms_note": "2026-10-05: report, never fix, any speaker here that is muted or outside the main group during service. Raises SOMETHING NEEDS ATTENTION; the mini's damping buzzes Andrew only if it holds for three verdicts in a row. Home is left off until Andrew rules on leaving hand changes alone."
     },
     {
       "id": "central-harlem",
@@ -497,7 +499,9 @@
           },
           "_note": "2026-10-05, at Andrew's 'fix loose ends': the shared 'Jazz Vocals Romantic' was saved on no system. The plan says vocals weighted up, romantic, never mournful; these are the closest saved on this system."
         }
-      ]
+      ],
+      "report_silent_rooms": true,
+      "_report_silent_rooms_note": "2026-10-05: report, never fix, any speaker here that is muted or outside the main group during service. Raises SOMETHING NEEDS ATTENTION; the mini's damping buzzes Andrew only if it holds for three verdicts in a row. Home is left off until Andrew rules on leaving hand changes alone."
     },
     {
       "id": "hells-kitchen",
@@ -652,7 +656,9 @@
           "_note": "2026-10-05, at Andrew's 'fix loose ends': the shared 'Jazz Vocals Romantic' was saved on no system. The plan says vocals weighted up, romantic, never mournful; these are the closest saved on this system. Hell's Kitchen has no vocal playlist saved at all, so its list is the warmest it has, not vocal."
         }
       ],
-      "_foh_note": "Andrew, 2026-09-29, '10. yes': FOH Jazz, 182 songs and about 20 hours, the deepest playlist on any system, now also in the Dead stretch and Last service pools, not only Early evening. Added 2026-10-05 after the new rotation was seen working."
+      "_foh_note": "Andrew, 2026-09-29, '10. yes': FOH Jazz, 182 songs and about 20 hours, the deepest playlist on any system, now also in the Dead stretch and Last service pools, not only Early evening. Added 2026-10-05 after the new rotation was seen working.",
+      "report_silent_rooms": true,
+      "_report_silent_rooms_note": "2026-10-05: report, never fix, any speaker here that is muted or outside the main group during service. Raises SOMETHING NEEDS ATTENTION; the mini's damping buzzes Andrew only if it holds for three verdicts in a row. Home is left off until Andrew rules on leaving hand changes alone."
     }
   ],
   "_slots_comment": "All three stores run the same hours, confirmed 2026-09-05. Times are 24 hour. Music runs 11:30 to 23:00; outside those hours nothing plays. All three shops now carry their own slots on their store entries, Hell's Kitchen from 2026-09-23, so this shared list is the fallback and nothing in service uses it. ⚠️ Hell's Kitchen kept the shared TIMES when it took its own slots, because that change moved playlists only. Andrew's 2026-09-09 floor observation, empty at 11:30 and rush 12:30 to 2, is confirmed for both Harlem stores and gave them a six-slot shape with a Soft open. Hell's Kitchen still runs the older five-slot shape and is still owed that check against the Toast busy-hours analysis, spec in run-the-house docs.",

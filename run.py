@@ -327,6 +327,30 @@ def reconcile_volume(store, want, live, lines, acted):
     return trouble, pending
 
 
+def rooms_not_in_the_music(store):
+    """Every speaker on this system that is not making the music: left the main group, or muted.
+
+    Added 2026-10-05. Three times a room went quiet while every run said "correct": the
+    Sunroom muted at home (18 September), and the home Kitchen and Dressing Room split into
+    groups of their own, the second time for two days (30 September to 2 October). The job
+    reads one group and sets each speaker's level, so a muted speaker or one outside the group
+    passes every other check. Hell's Kitchen's pair can fail the same way. This only reports;
+    it changes nothing. A switch on the system turns it on, and only the shops have it.
+    """
+    data = sonos.groups(store['id'], store['household'])
+    main = [g for g in data.get('groups', []) if g.get('id') == store['group']]
+    if not main:
+        return []      # the group could not be found at all; other checks already say so
+    members = set(main[0].get('playerIds') or [])
+    quiet = []
+    for p in data.get('players', []):
+        if p.get('id') not in members:
+            quiet.append((p.get('name'), 'it has left the main group, so no music reaches it'))
+        elif sonos.player_volume(store['id'], p['id']).get('muted'):
+            quiet.append((p.get('name'), 'it is muted'))
+    return quiet
+
+
 def check_store(cfg, store, now, live):
     """Returns the lines to report, whether anything needs attention, and whether a
     change is outstanding.
@@ -467,9 +491,10 @@ def check_store(cfg, store, now, live):
     else:
         fav = sonos.find_favourite(store['id'], store['household'], want['playlist'])
         if fav is None:
-            lines.append('    NO SONOS FAVOURITE NAMED %r. Add it once on this system, '
-                         'and point it at your own copy rather than the Spotify original.'
-                         % want['playlist'])
+            # The advice to prefer your own copy was dropped 2026-10-05: Andrew ruled on
+            # 2026-09-08 and again 2026-09-28 that Spotify's own playlists are fine.
+            lines.append('    NO SONOS FAVOURITE NAMED %r. Save it once as a favourite on this '
+                         'system, or change the name in config.json.' % want['playlist'])
             trouble = True
         elif live:
             try:
@@ -495,6 +520,18 @@ def check_store(cfg, store, now, live):
     except sonos.SonosError as e:
         lines.append('    FAILED on the volume: %s' % e)
         trouble = True
+
+    # ---- every room actually in the music, report only ----
+    if store.get('report_silent_rooms'):
+        try:
+            quiet = rooms_not_in_the_music(store)
+        except sonos.SonosError as e:
+            quiet = []
+            lines.append('    could not check the rooms: %s' % e)
+        for room, why in quiet:
+            lines.append('    ROOM NOT PLAYING: %s, %s' % (room, why))
+        if quiet:
+            trouble = True
 
     return lines, trouble, pending, acted
 
