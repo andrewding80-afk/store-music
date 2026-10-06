@@ -87,6 +87,9 @@ jobs:
       - name: Check a silent room is reported, not called correct
         run: python test_silent_rooms.py
 
+      - name: Check hand changes at home are kept until midnight
+        run: python test_hand.py && python test_hand_run.py
+
       - name: Work out the mode
         id: mode
         env:
@@ -123,6 +126,9 @@ jobs:
           SONOS_SPEAKER_WEST_HARLEM: ${{ secrets.SONOS_SPEAKER_WEST_HARLEM }}
           SONOS_SPEAKER_CENTRAL_HARLEM: ${{ secrets.SONOS_SPEAKER_CENTRAL_HARLEM }}
           SONOS_SPEAKER_HELLS_KITCHEN: ${{ secrets.SONOS_SPEAKER_HELLS_KITCHEN }}
+          # Only so memory.py can read and write home-memory.json on the status branch,
+          # the job's memory of hand changes at home. Added 2026-10-05.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python run.py ${{ steps.mode.outputs.flag }} | tee run-output.txt
 
       # Publishes the verdict where it can be read without opening GitHub. The

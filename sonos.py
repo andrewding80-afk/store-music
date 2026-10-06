@@ -359,6 +359,21 @@ def set_player_volume(store_id, player_id, volume):
                     headers=_auth_headers(store_id))
 
 
+def set_player_mute(store_id, player_id, muted):
+    """Mute or unmute one speaker. Added 2026-10-05 for the morning reset at home."""
+    url = '%s/players/%s/playerVolume/mute' % (API, player_id)
+    return _request(url, method='POST', body={'muted': bool(muted)},
+                    headers=_auth_headers(store_id))
+
+
+def add_to_group(store_id, group_id, player_ids):
+    """Put speakers back into a group. Added 2026-10-05: the home reset at night and morning."""
+    url = '%s/groups/%s/groups/modifyGroupMembers' % (API, group_id)
+    return _request(url, method='POST',
+                    body={'playerIdsToAdd': list(player_ids), 'playerIdsToRemove': []},
+                    headers=_auth_headers(store_id))
+
+
 def players(store_id, household):
     """Every individual speaker on a system, as {name: id}."""
     data = groups(store_id, household)

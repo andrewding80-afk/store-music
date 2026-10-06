@@ -42,8 +42,13 @@ def latest_status():
 
 
 def published_verdicts(limit=12):
-    """The recent published states, newest first, from the branch's own history."""
-    out = git('log', '--format=%H', '-n', str(limit), 'origin/%s' % BRANCH)
+    """The recent published states, newest first, from the branch's own history.
+
+    Only commits that changed status.json count. From 2026-10-05 the branch also carries
+    home-memory.json, written on runs where the verdict did not change; counting those
+    commits would repeat one verdict and turn a single bad run into "three in a row".
+    """
+    out = git('log', '--format=%H', '-n', str(limit), 'origin/%s' % BRANCH, '--', 'status.json')
     verdicts = []
     for sha in out.split():
         raw = git('show', '%s:status.json' % sha)

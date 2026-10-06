@@ -8,10 +8,13 @@ file mentions a particular store.
 """
 
 import argparse
+import json
 import sys
 import time
 from datetime import datetime
 
+import hand
+import memory
 import schedule
 import sonos
 
@@ -112,7 +115,10 @@ def start_gently(store, want, fav, seconds, lines, acted, was_playing=False):
     now_at = dict((name, sonos.player_volume(store['id'], pid).get('volume') or 0)
                   for name, pid in found.items())
     if want.get('speakers'):
+        held = store.get('_held') or set()
         for name, level in wanted_levels(store, want, found).items():
+            if name in held:
+                continue                # a room set by hand keeps its level through the change
             targets.append((name, found[name], now_at[name], level))
     elif len(found) == 1:
         # One speaker is the whole group, so there is no balance to keep and it rises
@@ -182,6 +188,10 @@ def night_ramp(store, want, now, lines, acted):
     """
     ramp = want.get('ramp')
     if not ramp:
+        return
+    if keeps_hand_changes(store) and hand.skip_ramp(store.get('_mem'), ramp['speaker']):
+        lines.append('    %s was set by hand today, so its walk down is skipped; the music '
+                     'still stops at midnight' % ramp['speaker'])
         return
     try:
         found = sonos.players(store['id'], store['household'])
@@ -290,7 +300,10 @@ def reconcile_volume(store, want, live, lines, acted):
 
         should = wanted_levels(store, want, found)
         wrong = []
+        held = store.get('_held') or set()
         for name, player_id in sorted(found.items()):
+            if name in held:
+                continue                # set by hand at home today; left until midnight
             now_at = sonos.player_volume(store['id'], player_id).get('volume')
             if now_at != should[name]:
                 wrong.append((name, player_id, now_at, should[name]))
@@ -325,6 +338,45 @@ def reconcile_volume(store, want, live, lines, acted):
                      % (now_at, want['volume']))
         pending = True
     return trouble, pending
+
+
+def keeps_hand_changes(store):
+    """Home only, Andrew 2026-10-05. A shop always goes back to the schedule."""
+    return bool(store.get('keep_hand_changes_until_midnight'))
+
+
+def regroup(store, lines, unmute=False):
+    """Every speaker on the system back in the main group, and optionally unmuted.
+
+    Andrew, 2026-10-05: "all speakers need to be regrouped at the end of each night", and
+    the house resets "for the next morning". Done on every run while home is closed, which
+    also catches the overnight restarts that left the Kitchen and Dressing Room on their
+    own, and once more at the morning start, which also unmutes.
+    """
+    data = sonos.groups(store['id'], store['household'])
+    main = [g for g in data.get('groups', []) if g.get('id') == store['group']]
+    if not main:
+        lines.append('    could not find the main group to put the speakers back into')
+        return
+    members = set(main[0].get('playerIds') or [])
+    out = [p for p in data.get('players', []) if p.get('id') not in members]
+    if out:
+        sonos.add_to_group(store['id'], store['group'], [p['id'] for p in out])
+        lines.append('    put back in the group: %s' % ', '.join(sorted(p['name'] for p in out)))
+    if unmute:
+        unmuted = []
+        for p in data.get('players', []):
+            if sonos.player_volume(store['id'], p['id']).get('muted'):
+                sonos.set_player_mute(store['id'], p['id'], False)
+                unmuted.append(p['name'])
+        if unmuted:
+            lines.append('    unmuted for the new day: %s' % ', '.join(sorted(unmuted)))
+
+
+def levels_now(store):
+    found = sonos.players(store['id'], store['household'])
+    return found, dict((n, sonos.player_volume(store['id'], pid).get('volume') or 0)
+                       for n, pid in found.items())
 
 
 def rooms_not_in_the_music(store):
@@ -375,6 +427,13 @@ def check_store(cfg, store, now, live):
 
     if not want['playing']:
         lines.append('  %s: closed, nothing should be playing' % label)
+
+        # Home: every speaker back in the group, every run through the night.
+        if keeps_hand_changes(store) and live and not schedule.not_connected(store):
+            try:
+                regroup(store, lines)
+            except sonos.SonosError as e:
+                lines.append('    could not put the speakers back in the group: %s' % e)
 
         # Whether to actually stop it is a per system choice, and the default is to
         # leave it alone. The shops go quiet at closing. Home does too, from midnight
@@ -447,6 +506,29 @@ def check_store(cfg, store, now, live):
     lines.append('    actually: %s  (%s)' % (container or 'nothing',
                                              'playing' if is_playing else 'not playing'))
 
+    # ---- hand changes at home, kept until midnight (Andrew, 2026-10-05) ----
+    mem = store.get('_mem') if keeps_hand_changes(store) else None
+    if keeps_hand_changes(store) and store.get('_mem_note'):
+        lines.append('    %s' % store['_mem_note'])
+    if mem is not None and live:
+        if not mem['morning_done']:
+            regroup(store, lines, unmute=True)
+            mem['morning_done'] = True
+        found, actual = levels_now(store)
+        for name in hand.find_hand_levels(mem, actual, wanted_levels(store, want, found)):
+            lines.append('    %s was set to %s by hand, so it stays there until midnight'
+                         % (name, mem['held'][name]))
+        hand.find_hand_music(mem, container, is_playing, want['playlist'])
+        if mem['held']:
+            lines.append('    left as set by hand: %s' % ', '.join(
+                '%s %s' % (n, v) for n, v in sorted(mem['held'].items())))
+        store['_held'] = set(mem['held'])
+        if mem['paused_held']:
+            lines.append('    paused by hand today, so it stays off until midnight')
+            return lines, trouble, pending, acted
+        if mem['music_held']:
+            lines.append('    %r was put on by hand, so it stays until midnight' % mem['music_held'])
+
     # ---- did he turn it off himself? ----
     #
     # Asked for by Andrew 2026-09-07: if he stops the music, it should stay stopped.
@@ -481,13 +563,16 @@ def check_store(cfg, store, now, live):
     # ---- the music ----
     music_right = bool(is_playing and container
                        and container.strip() == want['playlist'].strip())
+    if mem is not None and live and mem['music_held'] and is_playing:
+        music_right = True              # not the schedule's, but chosen by hand: leave it
 
     if not is_playing:
         lines.append('    SILENT during service hours')
         trouble = True
 
     if music_right:
-        lines.append('    music: already correct')
+        held_music = mem is not None and live and mem['music_held'] and is_playing
+        lines.append('    music: left as chosen by hand' if held_music else '    music: already correct')
     else:
         fav = sonos.find_favourite(store['id'], store['household'], want['playlist'])
         if fav is None:
@@ -626,6 +711,21 @@ def main():
         print('  No stores are enabled in config.json.')
         return 0
 
+    # Memory between runs, for systems that keep hand changes (home). Live runs only: a dry
+    # run must not record anything, or it would teach the next live run the wrong levels.
+    mem_all, mem_sha, mem_note, mem_before = None, None, None, None
+    if args.live and any(keeps_hand_changes(s) for s in enabled):
+        mem_all, mem_sha, mem_note = memory.load()
+        mem_before = json.dumps(mem_all, sort_keys=True)
+        for s in enabled:
+            if not keeps_hand_changes(s):
+                continue
+            if mem_all is None:
+                s['_mem_note'] = mem_note
+                continue
+            s['_mem'], _reset = hand.start_day(mem_all.get(s['id']), now.date().isoformat())
+            mem_all[s['id']] = s['_mem']
+
     for store in enabled:
         # One store must never be able to take the music off in the others. A bad
         # household id used to crash the whole run inside find_favourite, so a single
@@ -683,6 +783,29 @@ def main():
         for line in lines:
             print(line)
         print()
+
+    # Remember what the house was left at, so the next run can tell a person's change from
+    # the job's own. Read back from the speakers rather than taken from what was asked for,
+    # so a fade that stopped early is remembered where it really stopped.
+    if mem_all is not None:
+        for s in enabled:
+            if not s.get('_mem') or schedule.not_connected(s):
+                continue
+            try:
+                _found, actual = levels_now(s)
+                st = sonos.playback_status(s['id'], s['group'])
+                np = sonos.now_playing(s['id'], s['group'])
+                hand.remember(s['_mem'], actual, (np.get('container') or {}).get('name'),
+                              st.get('playbackState') == 'PLAYBACK_STATE_PLAYING')
+            except Exception as exc:
+                # Drop this system's memory rather than keep a half-true one: the guards in
+                # hand.py turn an empty memory into the old behaviour, never a frozen house.
+                mem_all.pop(s['id'], None)
+                print('  memory for %s not updated: %s' % (s['id'], str(exc)[:120]))
+        if json.dumps(mem_all, sort_keys=True) != mem_before:
+            problem = memory.save(mem_all, mem_sha)
+            if problem:
+                print('  %s' % problem)
 
     # A quiet success and a quiet failure must never look the same, and neither may be
     # confused with a change that has not been made yet.
