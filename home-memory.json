@@ -5,10 +5,10 @@
     "morning_done": true,
     "music": "Goodnight Mix",
     "music_held": null,
-    "paused_held": false,
-    "playing": true,
+    "paused_held": true,
+    "playing": false,
     "set": {
-      "Bedroom": 10,
+      "Bedroom": 0,
       "Dressing Room": 0,
       "Kitchen": 12,
       "Sunroom": 0,
