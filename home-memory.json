@@ -1,0 +1,18 @@
+{
+  "home": {
+    "day": "2026-10-05",
+    "held": {},
+    "morning_done": true,
+    "music": "Peggy Lee Radio",
+    "music_held": null,
+    "paused_held": false,
+    "playing": true,
+    "set": {
+      "Bedroom": 18,
+      "Dressing Room": 18,
+      "Kitchen": 20,
+      "Sunroom": 14,
+      "TV Room": 0
+    }
+  }
+}
