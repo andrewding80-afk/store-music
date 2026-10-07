@@ -3,15 +3,15 @@
     "day": "2026-10-06",
     "held": {},
     "morning_done": true,
-    "music": "Classical Romance",
+    "music": "BY A LAKE",
     "music_held": null,
     "paused_held": false,
     "playing": true,
     "set": {
-      "Bedroom": 18,
-      "Dressing Room": 18,
-      "Kitchen": 20,
-      "Sunroom": 14,
+      "Bedroom": 14,
+      "Dressing Room": 0,
+      "Kitchen": 14,
+      "Sunroom": 0,
       "TV Room": 0
     }
   }
