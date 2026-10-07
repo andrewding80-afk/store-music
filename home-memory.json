@@ -2,17 +2,17 @@
   "home": {
     "day": "2026-10-07",
     "held": {},
-    "morning_done": false,
-    "music": "BY A LAKE",
+    "morning_done": true,
+    "music": "HAYDN",
     "music_held": null,
     "paused_held": false,
-    "playing": false,
+    "playing": true,
     "set": {
-      "Bedroom": 0,
-      "Dressing Room": 0,
-      "Kitchen": 14,
+      "Bedroom": 25,
+      "Dressing Room": 25,
+      "Kitchen": 28,
       "Sunroom": 0,
-      "TV Room": 0
+      "TV Room": 20
     }
   }
 }
