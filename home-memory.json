@@ -1,18 +1,1 @@
-{
-  "home": {
-    "day": "2026-10-08",
-    "held": {},
-    "morning_done": false,
-    "music": "Goodnight Mix",
-    "music_held": null,
-    "paused_held": false,
-    "playing": false,
-    "set": {
-      "Bedroom": 0,
-      "Dressing Room": 0,
-      "Kitchen": 12,
-      "Sunroom": 0,
-      "TV Room": 0
-    }
-  }
-}
+{}
