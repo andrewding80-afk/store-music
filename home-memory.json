@@ -3,15 +3,15 @@
     "day": "2026-10-07",
     "held": {},
     "morning_done": true,
-    "music": "An Elegant Affair",
+    "music": "Goodnight Mix",
     "music_held": null,
     "paused_held": false,
     "playing": true,
     "set": {
-      "Bedroom": 18,
-      "Dressing Room": 18,
-      "Kitchen": 20,
-      "Sunroom": 14,
+      "Bedroom": 12,
+      "Dressing Room": 0,
+      "Kitchen": 12,
+      "Sunroom": 0,
       "TV Room": 0
     }
   }
