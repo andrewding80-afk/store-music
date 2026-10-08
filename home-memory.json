@@ -1,11 +1,11 @@
 {
   "home": {
-    "day": "2026-10-07",
+    "day": "2026-10-08",
     "held": {},
-    "morning_done": true,
+    "morning_done": false,
     "music": "Goodnight Mix",
     "music_held": null,
-    "paused_held": true,
+    "paused_held": false,
     "playing": false,
     "set": {
       "Bedroom": 0,
