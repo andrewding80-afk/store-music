@@ -2,17 +2,17 @@
   "home": {
     "day": "2026-10-09",
     "held": {},
-    "morning_done": false,
-    "music": "Peggy Lee Radio",
+    "morning_done": true,
+    "music": "HAYDN",
     "music_held": null,
     "paused_held": false,
-    "playing": false,
+    "playing": true,
     "set": {
-      "Bedroom": 0,
-      "Dressing Room": 18,
-      "Kitchen": 20,
-      "Sunroom": 14,
-      "TV Room": 0
+      "Bedroom": 25,
+      "Dressing Room": 25,
+      "Kitchen": 28,
+      "Sunroom": 20,
+      "TV Room": 20
     }
   }
 }
