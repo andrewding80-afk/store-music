@@ -1,12 +1,12 @@
 {
   "home": {
-    "day": "2026-10-09",
+    "day": "2026-10-10",
     "held": {},
-    "morning_done": true,
+    "morning_done": false,
     "music": "BY A LAKE",
     "music_held": null,
     "paused_held": false,
-    "playing": true,
+    "playing": false,
     "set": {
       "Bedroom": 0,
       "Dressing Room": 0,
