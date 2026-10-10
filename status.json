@@ -1,14 +1,16 @@
 {
-  "ok": true,
-  "result": "all stores as expected, nothing to do",
+  "ok": false,
+  "result": "SOMETHING NEEDS ATTENTION",
   "stores_switched_on_but_unreachable": [],
-  "problems": [],
+  "problems": [
+    "Home (TV Room + 4): COULD NOT REACH SONOS"
+  ],
   "group_found_by_speaker": "home, west-harlem, central-harlem, hells-kitchen",
   "not_protected": "",
-  "token_ages": "home:34.2d, west-harlem:30.4d, central-harlem:29.5d, hells-kitchen:31.4d",
-  "run": "3330",
-  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/38019897528",
-  "output_tail": "",
-  "written_at": "2026-10-10 03:15:27 UTC",
-  "written_at_epoch": 1791602127
+  "token_ages": "home:34.4d, west-harlem:30.6d, central-harlem:29.7d, hells-kitchen:31.6d",
+  "run": "3350",
+  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/38036358838",
+  "output_tail": "Store music check, 2026-10-10 04:00\nMode: LIVE, changes will be made\n\n  Home (TV Room + 4): closed, nothing should be playing\n    could not ask Sonos which group the speaker is in (GET https://api.ws.sonos.com/control/api/v1/households/Sonos_ReR4TbRaS). Falling back to the stored group.\n    could not put the speakers back in the group: GET https://api.ws.sonos.com/control/api/v1/households/Sonos_ReR4TbRaSCCxvcec2ISz3jTcUL.Zpw2Aue_mYrbepPN6WcV/groups -> 504 {\"errorCode\":\"ERROR_GATEWAY_TIMEOUT\"}\n    COULD NOT REACH SONOS: GET https://api.ws.sonos.com/control/api/v1/groups/RINCON_B8E937E4BFAE01400:1687050710/playback -> 504 {\"errorCode\":\"ERROR_GATEWAY_TIMEOUT\"}\n\n  West Harlem, 3600 Broadway: closed, nothing should be playing\n    the group had changed, found it again by its speaker: RINCON_347E5C15456601400:2474565580 is now RINCON_38420B6A9E1001400:1807673954\n    already quiet\n\n  Central Harlem, 370 Malcolm X (one speaker, Dining Room): closed, nothing should be playing\n    already quiet\n\n  Hell's Kitchen, 354 West 44th (left and right pair): closed, nothing should be playing\n    already quiet\n\n  memory for home not updated: GET https://api.ws.sonos.com/control/api/v1/households/Sonos_ReR4TbRaSCCxvcec2ISz3jTcUL.Zpw2Aue_mYrbepPN6WcV/groups -> 5\nSaved pass ages: home:34.4d, west-harlem:30.6d, central-harlem:29.7d, hells-kitchen:31.6d\nGroup found by speaker for: home, west-harlem, central-harlem, hells-kitchen\nResult: SOMETHING NEEDS ATTENTION",
+  "written_at": "2026-10-10 08:01:04 UTC",
+  "written_at_epoch": 1791619264
 }
