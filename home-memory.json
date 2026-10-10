@@ -3,16 +3,16 @@
     "day": "2026-10-10",
     "held": {},
     "morning_done": true,
-    "music": "MOZART",
+    "music": "Autumn Mix",
     "music_held": null,
     "paused_held": false,
     "playing": true,
     "set": {
-      "Bedroom": 20,
-      "Dressing Room": 25,
-      "Kitchen": 28,
-      "Sunroom": 20,
-      "TV Room": 20
+      "Bedroom": 18,
+      "Dressing Room": 18,
+      "Kitchen": 20,
+      "Sunroom": 14,
+      "TV Room": 0
     }
   }
 }
