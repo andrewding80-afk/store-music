@@ -2,17 +2,17 @@
   "home": {
     "day": "2026-10-10",
     "held": {},
-    "morning_done": false,
-    "music": "BY A LAKE",
+    "morning_done": true,
+    "music": "MOZART",
     "music_held": null,
     "paused_held": false,
-    "playing": false,
+    "playing": true,
     "set": {
-      "Bedroom": 0,
-      "Dressing Room": 0,
-      "Kitchen": 14,
-      "Sunroom": 0,
-      "TV Room": 0
+      "Bedroom": 20,
+      "Dressing Room": 25,
+      "Kitchen": 28,
+      "Sunroom": 20,
+      "TV Room": 20
     }
   }
 }
