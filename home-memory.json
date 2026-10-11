@@ -5,15 +5,15 @@
       "TV Room": 16
     },
     "morning_done": true,
-    "music": "Autumn Mix",
+    "music": "Goodnight Mix",
     "music_held": null,
     "paused_held": false,
     "playing": true,
     "set": {
-      "Bedroom": 18,
-      "Dressing Room": 18,
-      "Kitchen": 20,
-      "Sunroom": 14,
+      "Bedroom": 12,
+      "Dressing Room": 0,
+      "Kitchen": 12,
+      "Sunroom": 0,
       "TV Room": 16
     }
   }
