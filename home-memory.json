@@ -1,7 +1,9 @@
 {
   "home": {
     "day": "2026-10-10",
-    "held": {},
+    "held": {
+      "TV Room": 16
+    },
     "morning_done": true,
     "music": "Autumn Mix",
     "music_held": null,
@@ -12,7 +14,7 @@
       "Dressing Room": 18,
       "Kitchen": 20,
       "Sunroom": 14,
-      "TV Room": 0
+      "TV Room": 16
     }
   }
 }
