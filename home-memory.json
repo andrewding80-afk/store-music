@@ -1,18 +1,24 @@
 {
   "home": {
     "day": "2026-10-11",
-    "held": {},
+    "held": {
+      "Bedroom": 12,
+      "Dressing Room": 15,
+      "Kitchen": 17,
+      "Sunroom": 12,
+      "TV Room": 12
+    },
     "morning_done": true,
     "music": "HANDEL",
     "music_held": null,
     "paused_held": false,
     "playing": true,
     "set": {
-      "Bedroom": 20,
-      "Dressing Room": 25,
-      "Kitchen": 28,
-      "Sunroom": 20,
-      "TV Room": 20
+      "Bedroom": 12,
+      "Dressing Room": 15,
+      "Kitchen": 17,
+      "Sunroom": 12,
+      "TV Room": 12
     }
   }
 }
