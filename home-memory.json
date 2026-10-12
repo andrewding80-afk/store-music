@@ -1,17 +1,11 @@
 {
   "home": {
-    "day": "2026-10-11",
-    "held": {
-      "Bedroom": 12,
-      "Dressing Room": 15,
-      "Kitchen": 17,
-      "Sunroom": 12,
-      "TV Room": 12
-    },
-    "morning_done": true,
+    "day": "2026-10-12",
+    "held": {},
+    "morning_done": false,
     "music": "Romcom",
     "music_held": null,
-    "paused_held": true,
+    "paused_held": false,
     "playing": false,
     "set": {
       "Bedroom": 12,
