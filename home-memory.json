@@ -1,8 +1,8 @@
 {
   "home": {
-    "day": "2026-10-14",
+    "day": "2026-10-15",
     "held": {},
-    "morning_done": true,
+    "morning_done": false,
     "music": "SCHUMANN RESONANCE",
     "music_held": null,
     "paused_held": false,
