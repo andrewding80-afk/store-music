@@ -421,7 +421,7 @@
           "name": "Dinner peak",
           "from": "18:00",
           "to": "21:00",
-          "volume": 38,
+          "volume": 40,
           "playlist_pool": [
             "Jazz Classics Blue Note Edition",
             "Jazz Classics",
@@ -443,7 +443,7 @@
           ]
         }
       ],
-      "_volume_note": "Set 2026-09-10 by Andrew: base 30, ceiling 38. The existing shape is kept, so the quiet slots sit at the base and the dinner peak reaches the ceiling. One speaker, so one level. Andrew, 2026-10-16: lunch about three points higher, so Soft open 30 to 33 and Lunch rush 36 to 39; Lunch rush now sits above the old 38 ceiling, by his word.",
+      "_volume_note": "Set 2026-09-10 by Andrew: base 30, ceiling 38. The existing shape is kept, so the quiet slots sit at the base and the dinner peak reaches the ceiling. One speaker, so one level. Andrew, 2026-10-16: lunch about three points higher, so Soft open 30 to 33 and Lunch rush 36 to 39; Lunch rush now sits above the old 38 ceiling, by his word. Same day, Andrew: \"raise the cap for the loudest slot in the day to 40\", so the ceiling is 40 and Dinner peak 38 to 40.",
       "holidays": [
         {
           "name": "Christmas",
