@@ -374,7 +374,7 @@
           "name": "Soft open",
           "from": "11:30",
           "to": "12:30",
-          "volume": 30,
+          "volume": 33,
           "playlist_pool": [
             "Brunch Jazz",
             "Bossa Nova Classics",
@@ -385,7 +385,7 @@
           "name": "Lunch rush",
           "from": "12:30",
           "to": "14:00",
-          "volume": 36,
+          "volume": 39,
           "playlist_pool": [
             "Jazz Trumpet",
             "Funky Instrumental Jazz",
@@ -443,7 +443,7 @@
           ]
         }
       ],
-      "_volume_note": "Set 2026-09-10 by Andrew: base 30, ceiling 38. The existing shape is kept, so the quiet slots sit at the base and the dinner peak reaches the ceiling. One speaker, so one level.",
+      "_volume_note": "Set 2026-09-10 by Andrew: base 30, ceiling 38. The existing shape is kept, so the quiet slots sit at the base and the dinner peak reaches the ceiling. One speaker, so one level. Andrew, 2026-10-16: lunch about three points higher, so Soft open 30 to 33 and Lunch rush 36 to 39; Lunch rush now sits above the old 38 ceiling, by his word.",
       "holidays": [
         {
           "name": "Christmas",
