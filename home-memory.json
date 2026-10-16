@@ -1,11 +1,11 @@
 {
   "home": {
-    "day": "2026-10-15",
+    "day": "2026-10-16",
     "held": {},
-    "morning_done": true,
+    "morning_done": false,
     "music": "fall feels",
     "music_held": null,
-    "paused_held": true,
+    "paused_held": false,
     "playing": false,
     "set": {
       "Bedroom": 0,
