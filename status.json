@@ -1,16 +1,14 @@
 {
-  "ok": false,
-  "result": "SOMETHING NEEDS ATTENTION",
+  "ok": true,
+  "result": "all stores as expected, nothing to do",
   "stores_switched_on_but_unreachable": [],
-  "problems": [
-    "Central Harlem, 370 Malcolm X (one speaker, Dining Room): THIS STORE COULD NOT BE CHECKED AT ALL"
-  ],
+  "problems": [],
   "group_found_by_speaker": "home, west-harlem, central-harlem, hells-kitchen",
   "not_protected": "",
   "token_ages": "home:41.9d, west-harlem:38.1d, central-harlem:37.2d, hells-kitchen:39.1d",
-  "run": "4113",
-  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/39068037921",
-  "output_tail": "Store music check, 2026-10-17 16:45\nMode: LIVE, changes will be made\n\n  Home (TV Room + 4)\n    should be: VIVALDI  at its own level per speaker   (Daytime, weekend, 10:00 to 18:00, using number 10 of 10 in this round, today)\n    each speaker: Bedroom 20, Dressing Room 25, Kitchen 28, Sunroom 20, TV Room 20\n    actually: VIVALDI  (playing)\n    music: already correct\n    volume: all 5 speakers already correct\n\n  West Harlem, 3600 Broadway\n    the group had changed, found it again by its speaker: RINCON_347E5C15456601400:2474565580 is now RINCON_38420B6A9E1001400:731327446\n    should be: Cocktail Hour Mix  at its own level per speaker   (Early evening, 16:00 to 18:00, using number 2 of 4 in this round, today)\n    each speaker: Dining Room 2 37\n    actually: Cocktail Hour Mix  (playing)\n    music: already correct\n    volume: all 1 speakers already correct\n\n  Central Harlem, 370 Malcolm X (one speaker, Dining Room)\n    THIS STORE COULD NOT BE CHECKED AT ALL: HTTP Error 502: Bad Gateway\n    The other stores were checked normally and are unaffected.\n\n  Hell's Kitchen, 354 West 44th (left and right pair)\n    should be: FOH Jazz  at its own level per speaker   (Early evening, 16:00 to 18:00, using number 2 of 3 in this round, today)\n    each speaker: Dining Room Left Speaker 34, Dining Room Right Speaker 32\n    actually: FOH Jazz  (playing)\n    music: already correct\n    volume: all 2 speakers already correct\n\nSaved pass ages: home:41.9d, west-harlem:38.1d, central-harlem:37.2d, hells-kitchen:39.1d\nGroup found by speaker for: home, west-harlem, central-harlem, hells-kitchen\nResult: SOMETHING NEEDS ATTENTION",
-  "written_at": "2026-10-17 20:45:31 UTC",
-  "written_at_epoch": 1792269931
+  "run": "4114",
+  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/39068519244",
+  "output_tail": "",
+  "written_at": "2026-10-17 20:52:22 UTC",
+  "written_at_epoch": 1792270342
 }
