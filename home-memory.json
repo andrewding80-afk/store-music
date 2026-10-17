@@ -1,7 +1,10 @@
 {
   "home": {
     "day": "2026-10-17",
-    "held": {},
+    "held": {
+      "Sunroom": 19,
+      "TV Room": 23
+    },
     "morning_done": true,
     "music": "Paul Mauriat and Friends",
     "music_held": null,
@@ -11,8 +14,8 @@
       "Bedroom": 18,
       "Dressing Room": 18,
       "Kitchen": 20,
-      "Sunroom": 14,
-      "TV Room": 0
+      "Sunroom": 19,
+      "TV Room": 23
     }
   }
 }
