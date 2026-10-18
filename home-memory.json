@@ -15,10 +15,10 @@
     "playing": true,
     "set": {
       "Bedroom": 17,
-      "Dressing Room": 22,
-      "Kitchen": 24,
-      "Sunroom": 17,
-      "TV Room": 17
+      "Dressing Room": 14,
+      "Kitchen": 16,
+      "Sunroom": 11,
+      "TV Room": 11
     }
   }
 }
