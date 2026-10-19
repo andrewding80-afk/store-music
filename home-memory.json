@@ -11,8 +11,8 @@
     "morning_done": true,
     "music": "Jazz for Autumn",
     "music_held": null,
-    "paused_held": false,
-    "playing": true,
+    "paused_held": true,
+    "playing": false,
     "set": {
       "Bedroom": 17,
       "Dressing Room": 14,
