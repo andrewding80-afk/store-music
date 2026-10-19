@@ -2,17 +2,17 @@
   "home": {
     "day": "2026-10-19",
     "held": {},
-    "morning_done": false,
-    "music": "Jazz for Autumn",
+    "morning_done": true,
+    "music": "VIVALDI",
     "music_held": null,
     "paused_held": false,
-    "playing": false,
+    "playing": true,
     "set": {
-      "Bedroom": 17,
-      "Dressing Room": 14,
-      "Kitchen": 16,
-      "Sunroom": 11,
-      "TV Room": 11
+      "Bedroom": 25,
+      "Dressing Room": 25,
+      "Kitchen": 28,
+      "Sunroom": 20,
+      "TV Room": 20
     }
   }
 }
