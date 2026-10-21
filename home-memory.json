@@ -2,16 +2,16 @@
   "home": {
     "day": "2026-10-21",
     "held": {},
-    "morning_done": false,
-    "music": "Romcom",
+    "morning_done": true,
+    "music": "CHOPIN",
     "music_held": null,
     "paused_held": false,
-    "playing": false,
+    "playing": true,
     "set": {
-      "Bedroom": 0,
-      "Dressing Room": 18,
-      "Kitchen": 20,
-      "Sunroom": 14
+      "Bedroom": 25,
+      "Dressing Room": 25,
+      "Kitchen": 28,
+      "Sunroom": 0
     }
   }
 }
