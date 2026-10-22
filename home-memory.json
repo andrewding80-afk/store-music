@@ -6,9 +6,9 @@
     "music": "BY A LAKE",
     "music_held": null,
     "paused_held": false,
-    "playing": true,
+    "playing": false,
     "set": {
-      "Bedroom": 10,
+      "Bedroom": 0,
       "Dressing Room": 0,
       "Kitchen": 14,
       "Sunroom": 0
