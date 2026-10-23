@@ -6,7 +6,7 @@
     "music": "RAMEAU",
     "music_held": null,
     "paused_held": false,
-    "playing": false,
+    "playing": true,
     "set": {
       "Bedroom": 25,
       "Dressing Room": 25,
