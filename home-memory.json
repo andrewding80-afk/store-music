@@ -3,15 +3,15 @@
     "day": "2026-10-25",
     "held": {},
     "morning_done": true,
-    "music": "fall feels",
+    "music": "Julie London Radio",
     "music_held": null,
     "paused_held": false,
     "playing": true,
     "set": {
-      "Bedroom": 18,
-      "Dressing Room": 18,
-      "Kitchen": 20,
-      "Sunroom": 14,
+      "Bedroom": 13,
+      "Dressing Room": 13,
+      "Kitchen": 15,
+      "Sunroom": 9,
       "TV Room": 0
     }
   }
