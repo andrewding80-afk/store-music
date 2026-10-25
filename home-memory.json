@@ -1,7 +1,10 @@
 {
   "home": {
     "day": "2026-10-25",
-    "held": {},
+    "held": {
+      "Sunroom": 14,
+      "TV Room": 18
+    },
     "morning_done": true,
     "music": "Julie London Radio",
     "music_held": null,
@@ -11,8 +14,8 @@
       "Bedroom": 13,
       "Dressing Room": 13,
       "Kitchen": 15,
-      "Sunroom": 9,
-      "TV Room": 0
+      "Sunroom": 14,
+      "TV Room": 18
     }
   }
 }
