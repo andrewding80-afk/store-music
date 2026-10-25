@@ -226,13 +226,16 @@ def deal_from_pool(slot, now):
 
     # Shuffle the deck the same way every time for a given cycle, so the order is
     # settled rather than remembered. A different cycle deals a different order.
-    deck = _deck_for(slot['name'], pool, cycle)
+    # A slot may share another slot's deck (Andrew, 2026-10-25: Sunday evenings five points
+    # quieter). Same deck, so the night-by-night rotation carries on as if nothing split.
+    deck_name = slot.get('deck', slot['name'])
+    deck = _deck_for(deck_name, pool, cycle)
 
     # A shuffled deck can deal its last card and then the next deck's first card, which
     # would play the same station two days running. Look at what the previous deck
     # ended on and, if the new one starts with it, move that card back one place.
     if size > 2:
-        previous = _deck_for(slot['name'], pool, cycle - 1)
+        previous = _deck_for(deck_name, pool, cycle - 1)
         if deck[0] == previous[-1]:
             deck[0], deck[1] = deck[1], deck[0]
 

@@ -43,6 +43,20 @@
           "TV Room": 0,
           "Sunroom": 0,
           "Dressing Room": 0
+        },
+        "Sunday evening": {
+          "Bedroom": 13,
+          "Dressing Room": 13,
+          "Kitchen": 15,
+          "Sunroom": 9,
+          "TV Room": 0
+        },
+        "Sunday night": {
+          "Bedroom": 9,
+          "Kitchen": 9,
+          "TV Room": 0,
+          "Sunroom": 0,
+          "Dressing Room": 0
         }
       },
       "slots": [
@@ -116,6 +130,26 @@
           ]
         },
         {
+          "name": "Sunday evening",
+          "from": "18:00",
+          "to": "23:00",
+          "volume": 16,
+          "playlist_pool": [
+            "Julie London Radio",
+            "Paul Mauriat and Friends",
+            "Peggy Lee Radio",
+            "Dinah Washington Radio",
+            "An Elegant Affair",
+            "Romcom",
+            "Classical Romance"
+          ],
+          "days": [
+            "Sun"
+          ],
+          "deck": "Evening",
+          "_sunday_note": "Andrew, 2026-10-25: 'Do this for every Sunday. Make sure the rest of the evening on Sunday follows this five point step down accordingly.' Every level five below Evening; same deck, so the playlist rotation is unchanged."
+        },
+        {
           "name": "Evening",
           "from": "18:00",
           "to": "23:00",
@@ -132,6 +166,39 @@
           "_pool_note": "Chosen by Andrew 2026-09-10. All seven checked live on the system that day: every one is a Spotify playlist, so all of them shuffle and crossfade. Seven dealt one a night means a week before any repeats."
         },
         {
+          "name": "Sunday night",
+          "from": "23:00",
+          "to": "24:00",
+          "volume": 9,
+          "playlist_pool": [
+            "BY A LAKE",
+            "SCHUMANN RESONANCE",
+            "Goodnight Mix"
+          ],
+          "volume_by_playlist": {
+            "Goodnight Mix": 7
+          },
+          "speaker_steps": {
+            "Bedroom": [
+              {
+                "at": "23:30",
+                "volume": 5
+              },
+              {
+                "at": "23:45",
+                "volume": 3,
+                "fade_to": 0,
+                "by": "24:00"
+              }
+            ]
+          },
+          "days": [
+            "Sun"
+          ],
+          "deck": "Night",
+          "_sunday_note": "Andrew, 2026-10-25: Sunday night five points below Night, Bedroom steps too; the fade to nothing by midnight is unchanged."
+        },
+        {
           "name": "Night",
           "from": "23:00",
           "to": "24:00",
@@ -146,8 +213,16 @@
           },
           "speaker_steps": {
             "Bedroom": [
-              {"at": "23:30", "volume": 10},
-              {"at": "23:45", "volume": 8, "fade_to": 0, "by": "24:00"}
+              {
+                "at": "23:30",
+                "volume": 10
+              },
+              {
+                "at": "23:45",
+                "volume": 8,
+                "fade_to": 0,
+                "by": "24:00"
+              }
             ]
           },
           "_speaker_steps_note": "Andrew, 2026-09-15. Inside this one slot the Bedroom comes down on its own while the rest of the house stays at the night level, and from a quarter to midnight down to nothing by midnight. The music itself does not change, only that speaker's level, so nothing here deals a new playlist. Was 12 then 10; lowered to 10 then 8 on 2026-09-29 with the rest of the evening and night, see _quieter_nights_note.",
@@ -183,7 +258,8 @@
             "Vocal Christmas Jazz Mix"
           ],
           "only_slots": [
-            "Evening"
+            "Evening",
+            "Sunday evening"
           ],
           "_note": "Rebuilt 2026-09-29 at Andrew's instruction to point Christmas at playlists already saved on this system; the old shared names ('December Lunch 50-50' and the rest) existed nowhere and would have left the music silent from 1 December. His 5 September rule, never a Christmas playlist on its own, is kept by the hour: even hours deal from this list, odd hours keep the slot's normal music. Every name was read off this system's favourites the same night; all are Spotify playlists, so shuffle and crossfade apply. Every Christmas playlist saved on the home system is used. Evening only: the daytime is Calm Radio only so Spotify never cuts off Andrew's phone, and all thirteen are Spotify."
         }

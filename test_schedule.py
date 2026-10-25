@@ -556,6 +556,8 @@ for _d in range(60):
     _at = datetime(2026, 9, 7, 23, 15) + timedelta(days=_d)
     _n = schedule.decide(cfg, _at, home)
     _want = _night_own.get(_n['playlist'], _night_slot['volume'])
+    if _at.weekday() == 6:      # Sunday nights are five lower (Andrew, 2026-10-25; test_sunday_home.py)
+        _want -= 5
     if _n['volume'] != _want:
         _bad_nights.append('%s played at %s, should be %s' % (_n['playlist'], _n['volume'], _want))
     if _n['speakers'] != {'Bedroom': _want, 'Kitchen': _want,
@@ -591,7 +593,8 @@ print('%s Goodnight Mix plays at 12 wherever it comes up' % ('PASS' if ok_vol el
 # And the other two are unaffected by that rule.
 _others = [schedule.decide(cfg, datetime(2026, 9, 7, 23, 15) + timedelta(days=_d), home)
            for _d in range(60)]
-ok_others = all(n['volume'] == 14 for n in _others if n['playlist'] != 'Goodnight Mix')
+ok_others = all(n['volume'] == (9 if n['slot'] == 'Sunday night' else 14)
+                for n in _others if n['playlist'] != 'Goodnight Mix')
 if not ok_others:
     failures.append('one of the other late night playlists changed volume')
 print('%s the other two still play at 14' % ('PASS' if ok_others else 'FAIL'))
