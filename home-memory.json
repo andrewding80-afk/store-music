@@ -8,8 +8,8 @@
     "morning_done": true,
     "music": "Julie London Radio",
     "music_held": null,
-    "paused_held": false,
-    "playing": true,
+    "paused_held": true,
+    "playing": false,
     "set": {
       "Bedroom": 13,
       "Dressing Room": 13,
