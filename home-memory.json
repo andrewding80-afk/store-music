@@ -1,1 +1,18 @@
-{}
+{
+  "home": {
+    "day": "2026-10-26",
+    "held": {},
+    "morning_done": false,
+    "music": "Julie London Radio",
+    "music_held": null,
+    "paused_held": false,
+    "playing": false,
+    "set": {
+      "Bedroom": 0,
+      "Dressing Room": 13,
+      "Kitchen": 15,
+      "Sunroom": 14,
+      "TV Room": 18
+    }
+  }
+}
