@@ -1,7 +1,9 @@
 {
   "home": {
     "day": "2026-10-27",
-    "held": {},
+    "held": {
+      "Sunroom": 25
+    },
     "morning_done": true,
     "music": "VIVALDI",
     "music_held": null,
@@ -11,7 +13,7 @@
       "Bedroom": 25,
       "Dressing Room": 25,
       "Kitchen": 28,
-      "Sunroom": 0,
+      "Sunroom": 25,
       "TV Room": 20
     }
   }
