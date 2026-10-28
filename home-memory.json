@@ -1,18 +1,24 @@
 {
   "home": {
     "day": "2026-10-28",
-    "held": {},
+    "held": {
+      "Bedroom": 30,
+      "Dressing Room": 30,
+      "Kitchen": 33,
+      "Sunroom": 30,
+      "TV Room": 28
+    },
     "morning_done": true,
-    "music": "BEETHOVEN",
-    "music_held": null,
+    "music": "Jazz in the Rain",
+    "music_held": "Jazz in the Rain",
     "paused_held": false,
     "playing": true,
     "set": {
-      "Bedroom": 25,
-      "Dressing Room": 25,
-      "Kitchen": 28,
-      "Sunroom": 0,
-      "TV Room": 20
+      "Bedroom": 30,
+      "Dressing Room": 30,
+      "Kitchen": 33,
+      "Sunroom": 30,
+      "TV Room": 28
     }
   }
 }
