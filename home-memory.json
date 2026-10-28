@@ -1,13 +1,11 @@
 {
   "home": {
-    "day": "2026-10-27",
-    "held": {
-      "Sunroom": 25
-    },
-    "morning_done": true,
+    "day": "2026-10-28",
+    "held": {},
+    "morning_done": false,
     "music": "Autumn Mix",
     "music_held": null,
-    "paused_held": true,
+    "paused_held": false,
     "playing": false,
     "set": {
       "Bedroom": 0,
