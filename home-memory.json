@@ -2,17 +2,17 @@
   "home": {
     "day": "2026-10-29",
     "held": {},
-    "morning_done": false,
-    "music": "Jazz in the Rain",
+    "morning_done": true,
+    "music": "HANDEL",
     "music_held": null,
     "paused_held": false,
-    "playing": false,
+    "playing": true,
     "set": {
-      "Bedroom": 18,
-      "Dressing Room": 18,
-      "Kitchen": 20,
-      "Sunroom": 18,
-      "TV Room": 17
+      "Bedroom": 25,
+      "Dressing Room": 25,
+      "Kitchen": 28,
+      "Sunroom": 0,
+      "TV Room": 20
     }
   }
 }
