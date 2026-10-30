@@ -1,18 +1,1 @@
-{
-  "home": {
-    "day": "2026-10-30",
-    "held": {},
-    "morning_done": false,
-    "music": "Dinah Washington Radio",
-    "music_held": null,
-    "paused_held": false,
-    "playing": false,
-    "set": {
-      "Bedroom": 26,
-      "Dressing Room": 26,
-      "Kitchen": 29,
-      "Sunroom": 2,
-      "TV Room": 21
-    }
-  }
-}
+{}
