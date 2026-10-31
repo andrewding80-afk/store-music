@@ -1,14 +1,14 @@
 {
-  "ok": true,
-  "result": "all stores as expected, nothing to do",
+  "ok": false,
+  "result": "SOMETHING NEEDS ATTENTION",
   "stores_switched_on_but_unreachable": [],
   "problems": [],
   "group_found_by_speaker": "home, west-harlem, central-harlem, hells-kitchen",
   "not_protected": "",
-  "token_ages": "home:55.4d, west-harlem:51.6d, central-harlem:50.7d, hells-kitchen:52.6d",
-  "run": "5484",
-  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/41183821190",
-  "output_tail": "",
-  "written_at": "2026-10-31 08:15:26 UTC",
-  "written_at_epoch": 1793434526
+  "token_ages": "home:55.7d, west-harlem:51.9d, central-harlem:51.0d, hells-kitchen:52.9d",
+  "run": "5514",
+  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/41215146866",
+  "output_tail": "Store music check, 2026-10-31 11:30\nMode: LIVE, changes will be made\n\n  Home (TV Room + 4)\n    should be: BEETHOVEN  at its own level per speaker   (Daytime, weekend, 10:00 to 18:00, using number 4 of 10 in this round, today)\n    each speaker: Bedroom 20, Dressing Room 25, Kitchen 28, Sunroom 20, TV Room 20\n    actually: Jazz for Autumn  (playing)\n    left as set by hand: Bedroom 11, Dressing Room 11, Kitchen 9, Sunroom 9, TV Room 9\n    'Jazz for Autumn' was put on by hand, so it stays until midnight\n    music: left as chosen by hand\n    volume: all 5 speakers already correct\n\n  West Harlem, 3600 Broadway\n    the group had changed, found it again by its speaker: RINCON_347E5C15456601400:2474565580 is now RINCON_38420B6A9E1001400:731327446\n    should be: Brunch Instrumental Jazz Mix  at its own level per speaker   (Soft open, 11:30 to 12:30, using number 4 of 4 in this round, today)\n    each speaker: Dining Room 2 32\n    actually: Smooth Jazz Chill  (not playing)\n    SILENT during service hours\n    music: changed to 'Brunch Instrumental Jazz Mix', starting from silence\n    faded up over about 20 seconds to: Dining Room 2 32\n    volume: all 1 speakers already correct\n\n  Central Harlem, 370 Malcolm X (one speaker, Dining Room)\n    the group had changed, found it again by its speaker: RINCON_347E5CC00C2401400:608897090 is now RINCON_347E5CC00C2401400:732886639\n    should be: Jazz in the Background  at volume 33   (Soft open, 11:30 to 12:30, using number 1 of 3 in this round, today)\n    actually: Feel Good Instrumental Jazz Mix  (not playing)\n    SILENT during service hours\n    music: changed to 'Jazz in the Background', starting from silence\n    faded up over about 20 seconds to: Dining Room 33\n    volume: already 33\n\n  Hell's Kitchen, 354 West 44th (left and right pair)\n    should be: Brunch Jazz  at its own level per speaker   (Lunch rush, 11:30 to 13:30, using number 4 of 4 in this round, today)\n    each speaker: Dining Room Left Speaker 36, Dining Room Right Speaker 33\n    actually: Feel Good Jazz  (not playing)\n    SILENT during service hours\n    music: changed to 'Brunch Jazz', starting from silence\n    faded up over about 20 seconds to: Dining Room Left Speaker 36, Dining Room Right Speaker 33\n    volume: all 2 speakers already correct\n\nSaved pass ages: home:55.7d, west-harlem:51.9d, central-harlem:51.0d, hells-kitchen:52.9d\nGroup found by speaker for: home, west-harlem, central-harlem, hells-kitchen\nResult: SOMETHING NEEDS ATTENTION",
+  "written_at": "2026-10-31 15:32:18 UTC",
+  "written_at_epoch": 1793460738
 }
