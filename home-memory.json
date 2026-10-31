@@ -1,18 +1,24 @@
 {
   "home": {
     "day": "2026-10-31",
-    "held": {},
-    "morning_done": false,
+    "held": {
+      "Bedroom": 11,
+      "Dressing Room": 11,
+      "Kitchen": 9,
+      "Sunroom": 9,
+      "TV Room": 9
+    },
+    "morning_done": true,
     "music": "A&A Cocktail hour - Wedding",
     "music_held": null,
     "paused_held": false,
     "playing": true,
     "set": {
-      "Bedroom": 41,
-      "Dressing Room": 41,
-      "Kitchen": 37,
-      "Sunroom": 38,
-      "TV Room": 38
+      "Bedroom": 14,
+      "Dressing Room": 14,
+      "Kitchen": 12,
+      "Sunroom": 12,
+      "TV Room": 12
     }
   }
 }
