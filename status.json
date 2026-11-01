@@ -1,17 +1,14 @@
 {
-  "ok": false,
-  "result": "SOMETHING NEEDS ATTENTION",
+  "ok": true,
+  "result": "5 changes made",
   "stores_switched_on_but_unreachable": [],
-  "problems": [
-    "Central Harlem, 370 Malcolm X (one speaker, Dining Room): COULD NOT REACH SONOS",
-    "West Harlem, 3600 Broadway: COULD NOT REACH SONOS"
-  ],
+  "problems": [],
   "group_found_by_speaker": "home, west-harlem, central-harlem, hells-kitchen",
   "not_protected": "",
   "token_ages": "home:56.9d, west-harlem:53.0d, central-harlem:52.2d, hells-kitchen:54.0d",
-  "run": "5631",
-  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/41340774629",
-  "output_tail": "Store music check, 2026-11-01 14:15\nMode: LIVE, changes will be made\n\n  Home (TV Room + 4)\n    could not check the play modes (could not reach https://api.ws.sonos.com/control/api/v1/hous). Nothing changed.\n    should be: HAYDN  at its own level per speaker   (Daytime, weekend, 10:00 to 18:00, using number 5 of 10 in this round, today)\n    each speaker: Bedroom 20, Dressing Room 25, Kitchen 28, Sunroom 20, TV Room 20\n    actually: HAYDN  (playing)\n    left as set by hand: Bedroom 35, Dressing Room 39, Kitchen 41, Sunroom 35, TV Room 35\n    music: already correct\n    volume: all 5 speakers already correct\n\n  West Harlem, 3600 Broadway\n    the group had changed, found it again by its speaker: RINCON_347E5C15456601400:2474565580 is now RINCON_38420B6A9E1001400:731327446\n    should be: Cozy Coffee Shop Jazz  at its own level per speaker   (Dead stretch, 14:00 to 16:00, using number 5 of 5 in this round, today)\n    each speaker: Dining Room 2 32\n    COULD NOT REACH SONOS: could not reach https://api.ws.sonos.com/control/api/v1/groups/RINCON_38420B6A9E1001400:731327446/playbackMetadata: [Errno 104] Connection reset by peer\n\n  Central Harlem, 370 Malcolm X (one speaker, Dining Room)\n    the group had changed, found it again by its speaker: RINCON_347E5CC00C2401400:608897090 is now RINCON_347E5CC00C2401400:732886639\n    should be: Instrumental Jazz Mix  at volume 35   (Dead stretch, 14:00 to 16:00, using number 2 of 3 in this round, today)\n    COULD NOT REACH SONOS: could not reach https://api.ws.sonos.com/control/api/v1/groups/RINCON_347E5CC00C2401400:732886639/playback: [Errno 104] Connection reset by peer\n\n  Hell's Kitchen, 354 West 44th (left and right pair)\n    should be: Ben Webster Radio  at its own level per speaker   (Dead stretch, 13:30 to 16:00, using number 5 of 5 in this round, today)\n    each speaker: Dining Room Left Speaker 30, Dining Room Right Speaker 28\n    actually: Ben Webster Radio  (playing)\n    music: already correct\n    volume: all 2 speakers already correct\n    could not check the rooms: could not reach https://api.ws.sonos.com/control/api/v1/households/Sonos_1u2ZJffndKRirls3DLQmMPKqkB.hUwBGdoRPxIOhgFK3SiQ/groups: [Errno 104] Connection reset by peer\n\n  memory for home not updated: <urlopen error [Errno 104] Connection reset by peer>\nSaved pass ages: home:56.9d, west-harlem:53.0d, central-harlem:52.2d, hells-kitchen:54.0d\nGroup found by speaker for: home, west-harlem, central-harlem, hells-kitchen\nResult: SOMETHING NEEDS ATTENTION",
-  "written_at": "2026-11-01 19:15:29 UTC",
-  "written_at_epoch": 1793560529
+  "run": "5632",
+  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/41342047251",
+  "output_tail": "",
+  "written_at": "2026-11-01 19:30:49 UTC",
+  "written_at_epoch": 1793561449
 }
