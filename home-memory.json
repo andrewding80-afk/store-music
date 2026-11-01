@@ -1,1 +1,18 @@
-{}
+{
+  "home": {
+    "day": "2026-11-01",
+    "held": {},
+    "morning_done": false,
+    "music": "Jazz for Autumn",
+    "music_held": null,
+    "paused_held": false,
+    "playing": false,
+    "set": {
+      "Bedroom": 18,
+      "Dressing Room": 18,
+      "Kitchen": 18,
+      "Sunroom": 18,
+      "TV Room": 18
+    }
+  }
+}
