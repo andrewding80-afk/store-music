@@ -12,7 +12,7 @@
     "music": "BACH",
     "music_held": null,
     "paused_held": true,
-    "playing": true,
+    "playing": false,
     "set": {
       "Bedroom": 20,
       "Dressing Room": 20,
