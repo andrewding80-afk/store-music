@@ -10,6 +10,7 @@
     "set": {
       "Bedroom": 0,
       "Dressing Room": 0,
+      "Kitchen": 9,
       "Sunroom": 0,
       "TV Room": 0
     }
