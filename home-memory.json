@@ -8,11 +8,10 @@
     "paused_held": false,
     "playing": false,
     "set": {
-      "Bedroom": 14,
-      "Dressing Room": 14,
-      "Kitchen": 15,
-      "Sunroom": 13,
-      "TV Room": 13
+      "Bedroom": 16,
+      "Dressing Room": 16,
+      "Kitchen": 17,
+      "TV Room": 15
     }
   }
 }
