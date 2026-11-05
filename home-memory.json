@@ -1,17 +1,1 @@
-{
-  "home": {
-    "day": "2026-11-05",
-    "held": {},
-    "morning_done": false,
-    "music": "Jazz for Autumn",
-    "music_held": null,
-    "paused_held": false,
-    "playing": false,
-    "set": {
-      "Bedroom": 28,
-      "Dressing Room": 28,
-      "Kitchen": 30,
-      "TV Room": 32
-    }
-  }
-}
+{}
