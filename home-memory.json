@@ -10,13 +10,12 @@
     "morning_done": true,
     "music": "Jazz for Autumn",
     "music_held": "Jazz for Autumn",
-    "paused_held": false,
-    "playing": true,
+    "paused_held": true,
+    "playing": false,
     "set": {
       "Bedroom": 28,
       "Dressing Room": 28,
       "Kitchen": 30,
-      "Sunroom": 0,
       "TV Room": 32
     }
   }
