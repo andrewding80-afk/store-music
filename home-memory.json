@@ -1,1 +1,18 @@
-{}
+{
+  "home": {
+    "day": "2026-11-06",
+    "held": {},
+    "morning_done": false,
+    "music": "fall feels",
+    "music_held": null,
+    "paused_held": false,
+    "playing": false,
+    "set": {
+      "Bedroom": 0,
+      "Dressing Room": 18,
+      "Kitchen": 11,
+      "Sunroom": 14,
+      "TV Room": 13
+    }
+  }
+}
