@@ -3,15 +3,15 @@
     "day": "2026-11-08",
     "held": {},
     "morning_done": true,
-    "music": "Classical Romance",
+    "music": "Goodnight Mix",
     "music_held": null,
     "paused_held": false,
     "playing": true,
     "set": {
-      "Bedroom": 13,
-      "Dressing Room": 13,
-      "Kitchen": 15,
-      "Sunroom": 9,
+      "Bedroom": 7,
+      "Dressing Room": 0,
+      "Kitchen": 7,
+      "Sunroom": 0,
       "TV Room": 0
     }
   }
