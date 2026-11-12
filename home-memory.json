@@ -1,11 +1,11 @@
 {
   "home": {
-    "day": "2026-11-11",
+    "day": "2026-11-12",
     "held": {},
-    "morning_done": true,
+    "morning_done": false,
     "music": "HAYDN",
     "music_held": null,
-    "paused_held": true,
+    "paused_held": false,
     "playing": false,
     "set": {
       "Bedroom": 0,
