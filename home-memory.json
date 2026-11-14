@@ -2,7 +2,7 @@
   "home": {
     "day": "2026-11-14",
     "held": {},
-    "morning_done": false,
+    "morning_done": true,
     "music": "HAYDN",
     "music_held": null,
     "paused_held": false,
