@@ -2,7 +2,8 @@
   "home": {
     "day": "2026-11-15",
     "held": {
-      "Sunroom": 26
+      "Sunroom": 26,
+      "TV Room": 20
     },
     "morning_done": true,
     "music": "Peggy Lee Radio",
@@ -14,7 +15,7 @@
       "Dressing Room": 13,
       "Kitchen": 15,
       "Sunroom": 26,
-      "TV Room": 0
+      "TV Room": 20
     }
   }
 }
