@@ -5,16 +5,16 @@
       "Sunroom": 26
     },
     "morning_done": true,
-    "music": "MOZART",
+    "music": "Peggy Lee Radio",
     "music_held": null,
     "paused_held": false,
     "playing": true,
     "set": {
-      "Bedroom": 20,
-      "Dressing Room": 25,
-      "Kitchen": 28,
+      "Bedroom": 13,
+      "Dressing Room": 13,
+      "Kitchen": 15,
       "Sunroom": 26,
-      "TV Room": 20
+      "TV Room": 0
     }
   }
 }
