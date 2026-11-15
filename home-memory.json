@@ -1,7 +1,9 @@
 {
   "home": {
     "day": "2026-11-15",
-    "held": {},
+    "held": {
+      "Sunroom": 26
+    },
     "morning_done": true,
     "music": "MOZART",
     "music_held": null,
@@ -11,7 +13,7 @@
       "Bedroom": 20,
       "Dressing Room": 25,
       "Kitchen": 28,
-      "Sunroom": 20,
+      "Sunroom": 26,
       "TV Room": 20
     }
   }
