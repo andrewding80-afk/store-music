@@ -2,16 +2,16 @@
   "home": {
     "day": "2026-11-16",
     "held": {},
-    "morning_done": false,
-    "music": "Goodnight Mix",
+    "morning_done": true,
+    "music": "VIVALDI",
     "music_held": null,
     "paused_held": false,
-    "playing": false,
+    "playing": true,
     "set": {
-      "Bedroom": 0,
-      "Dressing Room": 0,
-      "Kitchen": 7,
-      "Sunroom": 26,
+      "Bedroom": 25,
+      "Dressing Room": 25,
+      "Kitchen": 28,
+      "Sunroom": 20,
       "TV Room": 20
     }
   }
