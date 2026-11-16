@@ -6,14 +6,14 @@
       "TV Room": 20
     },
     "morning_done": true,
-    "music": "Peggy Lee Radio",
+    "music": "Goodnight Mix",
     "music_held": null,
     "paused_held": false,
     "playing": true,
     "set": {
-      "Bedroom": 13,
-      "Dressing Room": 13,
-      "Kitchen": 15,
+      "Bedroom": 7,
+      "Dressing Room": 0,
+      "Kitchen": 7,
       "Sunroom": 26,
       "TV Room": 20
     }
