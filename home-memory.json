@@ -5,8 +5,8 @@
     "morning_done": true,
     "music": "Jazz in the Rain",
     "music_held": "Jazz in the Rain",
-    "paused_held": false,
-    "playing": true,
+    "paused_held": true,
+    "playing": false,
     "set": {
       "Bedroom": 14,
       "Dressing Room": 0,
