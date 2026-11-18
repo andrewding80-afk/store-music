@@ -1,18 +1,1 @@
-{
-  "home": {
-    "day": "2026-11-18",
-    "held": {},
-    "morning_done": false,
-    "music": "BACH",
-    "music_held": null,
-    "paused_held": false,
-    "playing": false,
-    "set": {
-      "Bedroom": 0,
-      "Dressing Room": 25,
-      "Kitchen": 28,
-      "Sunroom": 0,
-      "TV Room": 20
-    }
-  }
-}
+{}
