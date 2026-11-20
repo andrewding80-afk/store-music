@@ -4,10 +4,11 @@
     "held": {
       "Bedroom": 0,
       "Dressing Room": 0,
-      "Kitchen": 0
+      "Kitchen": 0,
+      "TV Room": 40
     },
     "morning_done": true,
-    "music": "Paul Mauriat and Friends",
+    "music": null,
     "music_held": null,
     "paused_held": true,
     "playing": false,
@@ -16,7 +17,7 @@
       "Dressing Room": 10,
       "Kitchen": 30,
       "Sunroom": 14,
-      "TV Room": 0
+      "TV Room": 40
     }
   }
 }
