@@ -5,16 +5,16 @@
       "Dressing Room": 50
     },
     "morning_done": true,
-    "music": "HANDEL",
+    "music": "Dinah Washington Radio",
     "music_held": null,
     "paused_held": false,
-    "playing": true,
+    "playing": false,
     "set": {
-      "Bedroom": 25,
+      "Bedroom": 18,
       "Dressing Room": 30,
-      "Kitchen": 28,
-      "Sunroom": 20,
-      "TV Room": 20
+      "Kitchen": 20,
+      "Sunroom": 14,
+      "TV Room": 0
     }
   }
 }
