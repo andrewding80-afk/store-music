@@ -9,7 +9,7 @@
     "playing": false,
     "set": {
       "Bedroom": 15,
-      "Dressing Room": 10,
+      "Dressing Room": 0,
       "Kitchen": 30,
       "Sunroom": 14,
       "TV Room": 40
