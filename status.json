@@ -1,14 +1,14 @@
 {
-  "ok": false,
-  "result": "SOMETHING NEEDS ATTENTION",
+  "ok": true,
+  "result": "all stores as expected, nothing to do",
   "stores_switched_on_but_unreachable": [],
   "problems": [],
   "group_found_by_speaker": "home, west-harlem, central-harlem, hells-kitchen",
   "not_protected": "",
   "token_ages": "home:75.1d, west-harlem:71.3d, central-harlem:70.4d, hells-kitchen:72.3d",
-  "run": "7449",
-  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/44657647048",
-  "output_tail": "Store music check, 2026-11-19 21:00\nMode: LIVE, changes will be made\n\n  Home (TV Room + 4)\n    the group had changed, found it again by its speaker: RINCON_B8E937E4BFAE01400:1687050710 is now RINCON_B8E937E49AEE01400:1637517041\n    play modes put back: crossfade should be true, repeat should be true, shuffle should be true\n    should be: Paul Mauriat and Friends  at its own level per speaker   (Evening, 18:00 to 23:00, using the autumn list, dealt from 10)\n    each speaker: Bedroom 18, Dressing Room 18, Kitchen 20, Sunroom 14, TV Room 0\n    actually: nothing  (not playing)\n    Bedroom was set to 0 by hand, so it stays there until midnight\n    Dressing Room was set to 0 by hand, so it stays there until midnight\n    Kitchen was set to 0 by hand, so it stays there until midnight\n    left as set by hand: Bedroom 0, Dressing Room 0, Kitchen 0\n    SILENT during service hours\n    music: changed to 'Paul Mauriat and Friends', starting from silence\n    faded up over about 120 seconds to: Sunroom 14, TV Room 0\n    volume: all 5 speakers already correct\n\n  West Harlem, 3600 Broadway\n    the group had changed, found it again by its speaker: RINCON_347E5C15456601400:2474565580 is now RINCON_38420B6A9E1001400:1628056973\n    should be: THPN-Relax  at its own level per speaker   (Last service, 21:00 to 23:00, using number 3 of 5 in this round, today)\n    each speaker: Dining Room 2 34\n    actually: Dinner Jazz  (playing)\n    faded down over about 10 seconds\n    music: changed to 'THPN-Relax', starting from silence\n    faded up over about 20 seconds to: Dining Room 2 34\n    volume: all 1 speakers already correct\n\n  Central Harlem, 370 Malcolm X (one speaker, Dining Room)\n    the group had changed, found it again by its speaker: RINCON_347E5CC00C2401400:608897090 is now RINCON_347E5CC00C2401400:2510551628\n    should be: Smooth Jazz & Soul R&B Instrumentals  at volume 32   (Last service, 21:00 to 23:00, using number 2 of 3 in this round, today)\n    actually: Date Night Jazz  (playing)\n    faded down over about 10 seconds\n    music: changed to 'Smooth Jazz & Soul R&B Instrumentals', starting from silence\n    faded up over about 20 seconds to: Dining Room 32\n    volume: already 32\n\n  Hell's Kitchen, 354 West 44th (left and right pair)\n    should be: John Coltrane Radio  at its own level per speaker   (Last service, 21:00 to 23:00, using number 3 of 4 in this round, today)\n    each speaker: Dining Room Left Speaker 32, Dining Room Right Speaker 30\n    actually: Jazz Classics Blue Note Edition  (playing)\n    faded down over about 10 seconds\n    music: changed to 'John Coltrane Radio', starting from silence\n    faded up over about 20 seconds to: Dining Room Left Speaker 32, Dining Room Right Speaker 30\n    volume: all 2 speakers already correct\n\nSaved pass ages: home:75.1d, west-harlem:71.3d, central-harlem:70.4d, hells-kitchen:72.3d\nGroup found by speaker for: home, west-harlem, central-harlem, hells-kitchen\nResult: SOMETHING NEEDS ATTENTION",
-  "written_at": "2026-11-20 02:05:11 UTC",
-  "written_at_epoch": 1795140311
+  "run": "7450",
+  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/44659433153",
+  "output_tail": "",
+  "written_at": "2026-11-20 02:15:36 UTC",
+  "written_at_epoch": 1795140936
 }
