@@ -1,18 +1,20 @@
 {
   "home": {
     "day": "2026-11-20",
-    "held": {},
-    "morning_done": false,
-    "music": null,
+    "held": {
+      "Dressing Room": 50
+    },
+    "morning_done": true,
+    "music": "HANDEL",
     "music_held": null,
     "paused_held": false,
-    "playing": false,
+    "playing": true,
     "set": {
-      "Bedroom": 15,
-      "Dressing Room": 40,
-      "Kitchen": 30,
-      "Sunroom": 14,
-      "TV Room": 40
+      "Bedroom": 25,
+      "Dressing Room": 50,
+      "Kitchen": 28,
+      "Sunroom": 20,
+      "TV Room": 20
     }
   }
 }
