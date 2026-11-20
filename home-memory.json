@@ -1,1 +1,18 @@
-{}
+{
+  "home": {
+    "day": "2026-11-19",
+    "held": {},
+    "morning_done": true,
+    "music": "Paul Mauriat and Friends",
+    "music_held": null,
+    "paused_held": false,
+    "playing": false,
+    "set": {
+      "Bedroom": 18,
+      "Dressing Room": 20,
+      "Kitchen": 20,
+      "Sunroom": 14,
+      "TV Room": 0
+    }
+  }
+}
