@@ -1,16 +1,14 @@
 {
-  "ok": false,
-  "result": "SOMETHING NEEDS ATTENTION",
+  "ok": true,
+  "result": "all stores as expected, nothing to do",
   "stores_switched_on_but_unreachable": [],
-  "problems": [
-    "Home (TV Room + 4): COULD NOT REACH SONOS"
-  ],
+  "problems": [],
   "group_found_by_speaker": "home, west-harlem, central-harlem, hells-kitchen",
   "not_protected": "",
   "token_ages": "home:75.1d, west-harlem:71.3d, central-harlem:70.4d, hells-kitchen:72.3d",
-  "run": "7443",
-  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/44648335122",
-  "output_tail": "Store music check, 2026-11-19 19:45\nMode: LIVE, changes will be made\n\n  Home (TV Room + 4)\n    could not ask Sonos which group the speaker is in (GET https://api.ws.sonos.com/control/api/v1/households/Sonos_ReR4TbRaS). Falling back to the stored group.\n    could not check the play modes (GET https://api.ws.sonos.com/control/api/v1/households/Sonos). Nothing changed.\n    should be: Paul Mauriat and Friends  at its own level per speaker   (Evening, 18:00 to 23:00, using the autumn list, dealt from 10)\n    each speaker: Bedroom 18, Dressing Room 18, Kitchen 20, Sunroom 14, TV Room 0\n    COULD NOT REACH SONOS: GET https://api.ws.sonos.com/control/api/v1/groups/RINCON_B8E937E4BFAE01400:1687050710/playbackMetadata -> 404 {\"errorCode\":\"ERROR_RESOURCE_NOT_FOUND\"}\n\n  West Harlem, 3600 Broadway\n    the group had changed, found it again by its speaker: RINCON_347E5C15456601400:2474565580 is now RINCON_38420B6A9E1001400:1628056973\n    should be: Dinner Jazz  at its own level per speaker   (Dinner peak, 18:00 to 21:00, using number 3 of 4 in this round, today)\n    each speaker: Dining Room 2 41\n    actually: Dinner Jazz  (playing)\n    music: already correct\n    volume: all 1 speakers already correct\n\n  Central Harlem, 370 Malcolm X (one speaker, Dining Room)\n    the group had changed, found it again by its speaker: RINCON_347E5CC00C2401400:608897090 is now RINCON_347E5CC00C2401400:2510551628\n    should be: Date Night Jazz  at volume 40   (Dinner peak, 18:00 to 21:00, using number 5 of 6 in this round, today)\n    actually: Date Night Jazz  (playing)\n    music: already correct\n    volume: already 40\n\n  Hell's Kitchen, 354 West 44th (left and right pair)\n    should be: Jazz Classics Blue Note Edition  at its own level per speaker   (Dinner peak, 18:00 to 21:00, using number 2 of 3 in this round, today)\n    each speaker: Dining Room Left Speaker 38, Dining Room Right Speaker 35\n    actually: Jazz Classics Blue Note Edition  (playing)\n    music: already correct\n    volume: all 2 speakers already correct\n\n  memory for home not updated: GET https://api.ws.sonos.com/control/api/v1/households/Sonos_ReR4TbRaSCCxvcec2ISz3jTcUL.Zpw2Aue_mYrbepPN6WcV/groups -> 4\nSaved pass ages: home:75.1d, west-harlem:71.3d, central-harlem:70.4d, hells-kitchen:72.3d\nGroup found by speaker for: home, west-harlem, central-harlem, hells-kitchen\nResult: SOMETHING NEEDS ATTENTION",
-  "written_at": "2026-11-20 00:45:27 UTC",
-  "written_at_epoch": 1795135527
+  "run": "7448",
+  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/44655886907",
+  "output_tail": "",
+  "written_at": "2026-11-20 01:45:56 UTC",
+  "written_at_epoch": 1795139156
 }
