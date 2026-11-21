@@ -6,14 +6,14 @@
       "Kitchen": 38
     },
     "morning_done": true,
-    "music": "BEETHOVEN",
+    "music": "VIVALDI",
     "music_held": null,
     "paused_held": true,
-    "playing": false,
+    "playing": true,
     "set": {
       "Bedroom": 30,
       "Dressing Room": 25,
-      "Kitchen": 38,
+      "Kitchen": 30,
       "Sunroom": 20,
       "TV Room": 20
     }
