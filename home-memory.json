@@ -5,15 +5,15 @@
       "Dressing Room": 50
     },
     "morning_done": true,
-    "music": "Dinah Washington Radio",
+    "music": "Goodnight Mix",
     "music_held": null,
     "paused_held": false,
-    "playing": false,
+    "playing": true,
     "set": {
-      "Bedroom": 18,
+      "Bedroom": 12,
       "Dressing Room": 30,
-      "Kitchen": 20,
-      "Sunroom": 14,
+      "Kitchen": 12,
+      "Sunroom": 0,
       "TV Room": 0
     }
   }
