@@ -1,14 +1,14 @@
 {
-  "ok": false,
-  "result": "SOMETHING NEEDS ATTENTION",
+  "ok": true,
+  "result": "all stores as expected, nothing to do",
   "stores_switched_on_but_unreachable": [],
   "problems": [],
   "group_found_by_speaker": "home, west-harlem, central-harlem, hells-kitchen",
   "not_protected": "",
   "token_ages": "home:76.2d, west-harlem:72.4d, central-harlem:71.5d, hells-kitchen:73.4d",
-  "run": "7556",
-  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/44863905501",
-  "output_tail": "Store music check, 2026-11-20 23:00\nMode: LIVE, changes will be made\n\n  Home (TV Room + 4)\n    the group had changed, found it again by its speaker: RINCON_B8E937E4BFAE01400:1687050710 is now RINCON_B8E937E4BFAE01400:1687050713\n    should be: Goodnight Mix  at its own level per speaker   (Night, 23:00 to 24:00, using number 3 of 3 in this round, today, at its own level of 12)\n    each speaker: Bedroom 12, Dressing Room 0, Kitchen 12, Sunroom 0, TV Room 0\n    actually: Dinah Washington Radio  (not playing)\n    left as set by hand: Dressing Room 50\n    SILENT during service hours\n    music: changed to 'Goodnight Mix', starting from silence\n    faded up over about 120 seconds to: Bedroom 12, Kitchen 12, Sunroom 0, TV Room 0\n    volume: all 5 speakers already correct\n\n  West Harlem, 3600 Broadway: closed, nothing should be playing\n    the group had changed, found it again by its speaker: RINCON_347E5C15456601400:2474565580 is now RINCON_38420B6A9E1001400:1628056973\n    faded down over about 30 seconds: Dining Room 2 from 34\n    stopped it\n    volume put back where it was, ready for the morning\n\n  Central Harlem, 370 Malcolm X (one speaker, Dining Room): closed, nothing should be playing\n    the group had changed, found it again by its speaker: RINCON_347E5CC00C2401400:608897090 is now RINCON_347E5CC00C2401400:2510551628\n    faded down over about 30 seconds: Dining Room from 32\n    stopped it\n    volume put back where it was, ready for the morning\n\n  Hell's Kitchen, 354 West 44th (left and right pair): closed, nothing should be playing\n    faded down over about 30 seconds: Dining Room Left Speaker from 32, Dining Room Right Speaker from 30\n    stopped it\n    volume put back where it was, ready for the morning\n\nSaved pass ages: home:76.2d, west-harlem:72.4d, central-harlem:71.5d, hells-kitchen:73.4d\nGroup found by speaker for: home, west-harlem, central-harlem, hells-kitchen\nResult: SOMETHING NEEDS ATTENTION",
-  "written_at": "2026-11-21 04:04:23 UTC",
-  "written_at_epoch": 1795233863
+  "run": "7557",
+  "run_url": "https://github.com/andrewding80-afk/store-music/actions/runs/44865169321",
+  "output_tail": "",
+  "written_at": "2026-11-21 04:15:28 UTC",
+  "written_at_epoch": 1795234528
 }
