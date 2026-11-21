@@ -2,6 +2,7 @@
   "home": {
     "day": "2026-11-21",
     "held": {
+      "Bedroom": 30,
       "Kitchen": 38
     },
     "morning_done": true,
@@ -10,7 +11,7 @@
     "paused_held": true,
     "playing": false,
     "set": {
-      "Bedroom": 20,
+      "Bedroom": 30,
       "Dressing Room": 25,
       "Kitchen": 38,
       "Sunroom": 20,
