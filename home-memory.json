@@ -7,8 +7,8 @@
     "morning_done": true,
     "music": "BEETHOVEN",
     "music_held": null,
-    "paused_held": false,
-    "playing": true,
+    "paused_held": true,
+    "playing": false,
     "set": {
       "Bedroom": 20,
       "Dressing Room": 25,
