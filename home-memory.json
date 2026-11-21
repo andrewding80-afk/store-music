@@ -1,7 +1,9 @@
 {
   "home": {
     "day": "2026-11-21",
-    "held": {},
+    "held": {
+      "Kitchen": 38
+    },
     "morning_done": true,
     "music": "BEETHOVEN",
     "music_held": null,
@@ -10,7 +12,7 @@
     "set": {
       "Bedroom": 20,
       "Dressing Room": 25,
-      "Kitchen": 28,
+      "Kitchen": 38,
       "Sunroom": 20,
       "TV Room": 20
     }
