@@ -7,9 +7,9 @@
       "TV Room": 29
     },
     "morning_done": true,
-    "music": null,
+    "music": "VIVALDI",
     "music_held": "music picked by hand",
-    "nameless_pending": true,
+    "nameless_pending": false,
     "paused_held": false,
     "playing": true,
     "set": {
