@@ -3,12 +3,13 @@
     "day": "2026-11-22",
     "held": {
       "Bedroom": 30,
-      "Kitchen": 40
+      "Kitchen": 40,
+      "TV Room": 29
     },
     "morning_done": true,
-    "music": null,
+    "music": "VIVALDI",
     "music_held": "music picked by hand",
-    "nameless_pending": true,
+    "nameless_pending": false,
     "paused_held": false,
     "playing": true,
     "set": {
@@ -16,7 +17,7 @@
       "Dressing Room": 25,
       "Kitchen": 30,
       "Sunroom": 20,
-      "TV Room": 20
+      "TV Room": 29
     }
   }
 }
