@@ -61,9 +61,24 @@ def levels_to_set(mem, wanted):
 
 
 def find_hand_music(mem, container, is_playing, want_playlist):
-    """A pause or a playlist the job did not start. Sets music_held or paused_held."""
+    """A pause or a playlist the job did not start. Sets music_held or paused_held.
+
+    Music playing with no playlist name (Home Assistant's voice speakers start songs this
+    way) is held only when seen on two runs in a row; on the first it is left alone for
+    that run (nameless_pending), so a moment where the job's own favourite briefly shows
+    no name cannot freeze the schedule until midnight. Andrew, 2026-11-22: "morning jazz"
+    asked of the kitchen speaker was replaced by the schedule within two minutes.
+    """
+    nameless = bool(is_playing and not container)
+    if nameless and mem.get('nameless_pending'):
+        mem['music_held'] = 'music picked by hand'
+        return
+    mem['nameless_pending'] = False
     if mem.get('music') is None:
         return                          # no evidence of what the job left on
+    if nameless:
+        mem['nameless_pending'] = True
+        return
     if not is_playing:
         if mem.get('playing'):
             mem['paused_held'] = True

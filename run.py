@@ -563,7 +563,7 @@ def check_store(cfg, store, now, live):
     # ---- the music ----
     music_right = bool(is_playing and container
                        and container.strip() == want['playlist'].strip())
-    if mem is not None and live and mem['music_held'] and is_playing:
+    if mem is not None and live and (mem['music_held'] or mem.get('nameless_pending')) and is_playing:
         music_right = True              # not the schedule's, but chosen by hand: leave it
 
     if not is_playing:

@@ -83,6 +83,26 @@ mem['music_held'] = None
 mem['music'] = None
 hand.find_hand_music(mem, 'Some Spotify Thing', True, 'Classical Romance')
 check(mem['music_held'] is None, 'with no memory of the job\'s music there is no evidence')
+mem = {'day': 'd', 'held': {}, 'set': {}, 'music': 'VIVALDI', 'playing': True,
+       'music_held': None, 'paused_held': False, 'morning_done': True}
+hand.find_hand_music(mem, None, True, 'VIVALDI')
+check(mem.get('nameless_pending') and mem['music_held'] is None,
+      'nameless music after the job\'s named music: left alone this run, not yet held (2026-11-22)')
+mem['music'] = None                 # remember() stores no name at the end of that run
+hand.find_hand_music(mem, None, True, 'VIVALDI')
+check(mem['music_held'] == 'music picked by hand', 'still nameless on the next run: held until midnight')
+mem = {'day': 'd', 'held': {}, 'set': {}, 'music': 'VIVALDI', 'playing': True,
+       'music_held': None, 'paused_held': False, 'morning_done': True}
+hand.find_hand_music(mem, None, True, 'VIVALDI')
+mem['music'] = None
+hand.find_hand_music(mem, 'VIVALDI', True, 'VIVALDI')
+check(mem['music_held'] is None and not mem.get('nameless_pending'),
+      'a nameless moment followed by the job\'s own named music is not a hand pick')
+mem = {'day': 'd', 'held': {}, 'set': {}, 'music': None, 'playing': False,
+       'music_held': None, 'paused_held': False, 'morning_done': True}
+hand.find_hand_music(mem, None, True, 'VIVALDI')
+check(mem['music_held'] is None and not mem.get('nameless_pending'),
+      'nameless music with no memory of the job\'s music is no evidence')
 
 print('--- 3: a pause ---')
 mem = {'day': 'd', 'held': {}, 'set': {}, 'music': 'Classical Romance', 'playing': True,
