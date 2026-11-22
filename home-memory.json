@@ -14,9 +14,9 @@
     "playing": true,
     "set": {
       "Bedroom": 30,
-      "Dressing Room": 25,
+      "Dressing Room": 13,
       "Kitchen": 30,
-      "Sunroom": 20,
+      "Sunroom": 9,
       "TV Room": 29
     }
   }
