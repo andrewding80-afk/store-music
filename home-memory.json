@@ -8,6 +8,7 @@
     "morning_done": true,
     "music": "VIVALDI",
     "music_held": null,
+    "nameless_pending": false,
     "paused_held": false,
     "playing": true,
     "set": {
