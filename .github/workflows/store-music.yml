@@ -88,7 +88,7 @@ jobs:
         run: python test_silent_rooms.py
 
       - name: Check hand changes at home are kept until midnight
-        run: python test_hand.py && python test_hand_run.py
+        run: python test_hand.py && python test_hand_run.py && python test_memory_kept.py
 
       - name: Work out the mode
         id: mode

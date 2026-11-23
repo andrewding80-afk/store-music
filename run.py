@@ -689,6 +689,38 @@ def point_at_the_live_group(store):
     return None
 
 
+def remember_house(s):
+    """Record what the house is doing now, for the next run's hand-change checks.
+
+    Returns True when it was read. The group id can die mid-run (a regroup from the Sonos
+    app or Home Assistant): find it again by its speaker and try once more. If it still
+    fails, keep the hand holds this run worked out (held, music_held, paused_held) and clear
+    only the baseline (set, music, playing), so the next run finds no new holds and records a
+    fresh baseline. On 22 Nov 2026 the old code dropped the whole memory on a 404 at 22:00,
+    and the 22:15 run faded the music Andrew had picked by hand over to the schedule's.
+    """
+    for attempt in (1, 2):
+        try:
+            _found, actual = levels_now(s)
+            st = sonos.playback_status(s['id'], s['group'])
+            np = sonos.now_playing(s['id'], s['group'])
+            hand.remember(s['_mem'], actual, (np.get('container') or {}).get('name'),
+                          st.get('playbackState') == 'PLAYBACK_STATE_PLAYING')
+            return True
+        except Exception as exc:
+            if attempt == 1:
+                note = point_at_the_live_group(s)
+                if note:
+                    print(note)
+                continue
+            m = s['_mem']
+            m['set'], m['music'], m['playing'] = {}, None, False
+            m['nameless_pending'] = False
+            print('  memory for %s not refreshed; hand holds kept, baseline cleared: %s'
+                  % (s['id'], str(exc)[:120]))
+            return False
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--live', action='store_true',
@@ -791,17 +823,7 @@ def main():
         for s in enabled:
             if not s.get('_mem') or schedule.not_connected(s):
                 continue
-            try:
-                _found, actual = levels_now(s)
-                st = sonos.playback_status(s['id'], s['group'])
-                np = sonos.now_playing(s['id'], s['group'])
-                hand.remember(s['_mem'], actual, (np.get('container') or {}).get('name'),
-                              st.get('playbackState') == 'PLAYBACK_STATE_PLAYING')
-            except Exception as exc:
-                # Drop this system's memory rather than keep a half-true one: the guards in
-                # hand.py turn an empty memory into the old behaviour, never a frozen house.
-                mem_all.pop(s['id'], None)
-                print('  memory for %s not updated: %s' % (s['id'], str(exc)[:120]))
+            remember_house(s)
         if json.dumps(mem_all, sort_keys=True) != mem_before:
             problem = memory.save(mem_all, mem_sha)
             if problem:
