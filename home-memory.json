@@ -1,7 +1,10 @@
 {
   "home": {
     "day": "2026-11-23",
-    "held": {},
+    "held": {
+      "Bedroom": 13,
+      "Kitchen": 13
+    },
     "morning_done": true,
     "music": "RAMEAU",
     "music_held": null,
@@ -9,9 +12,9 @@
     "paused_held": false,
     "playing": true,
     "set": {
-      "Bedroom": 25,
+      "Bedroom": 13,
       "Dressing Room": 25,
-      "Kitchen": 28,
+      "Kitchen": 13,
       "Sunroom": 20,
       "TV Room": 20
     }
