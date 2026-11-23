@@ -1,1 +1,19 @@
-{}
+{
+  "home": {
+    "day": "2026-11-22",
+    "held": {},
+    "morning_done": true,
+    "music": "Classical Romance",
+    "music_held": null,
+    "nameless_pending": false,
+    "paused_held": false,
+    "playing": true,
+    "set": {
+      "Bedroom": 13,
+      "Dressing Room": 13,
+      "Kitchen": 15,
+      "Sunroom": 9,
+      "TV Room": 0
+    }
+  }
+}
