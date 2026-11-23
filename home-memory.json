@@ -6,17 +6,17 @@
       "Kitchen": 13
     },
     "morning_done": true,
-    "music": "RAMEAU",
+    "music": "fall feels",
     "music_held": null,
     "nameless_pending": false,
     "paused_held": false,
     "playing": true,
     "set": {
       "Bedroom": 13,
-      "Dressing Room": 25,
+      "Dressing Room": 18,
       "Kitchen": 13,
-      "Sunroom": 20,
-      "TV Room": 20
+      "Sunroom": 14,
+      "TV Room": 0
     }
   }
 }
