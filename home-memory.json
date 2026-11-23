@@ -1,19 +1,25 @@
 {
   "home": {
     "day": "2026-11-22",
-    "held": {},
+    "held": {
+      "Bedroom": 27,
+      "Dressing Room": 28,
+      "Kitchen": 27,
+      "Sunroom": 34,
+      "TV Room": 20
+    },
     "morning_done": true,
-    "music": "Classical Romance",
-    "music_held": null,
+    "music": "Symphony Orchestra Christmas Mix",
+    "music_held": "Symphony Orchestra Christmas Mix",
     "nameless_pending": false,
     "paused_held": false,
     "playing": true,
     "set": {
-      "Bedroom": 13,
-      "Dressing Room": 13,
-      "Kitchen": 15,
-      "Sunroom": 9,
-      "TV Room": 0
+      "Bedroom": 27,
+      "Dressing Room": 28,
+      "Kitchen": 27,
+      "Sunroom": 34,
+      "TV Room": 20
     }
   }
 }
