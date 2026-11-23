@@ -1,19 +1,12 @@
 {
   "home": {
-    "day": "2026-11-22",
-    "held": {
-      "Bedroom": 27,
-      "Dressing Room": 28,
-      "Kitchen": 27,
-      "Sunroom": 34,
-      "TV Room": 20
-    },
-    "morning_done": true,
+    "day": "2026-11-23",
+    "held": {},
+    "morning_done": false,
     "music": "Symphony Orchestra Christmas Mix",
-    "music_held": "Symphony Orchestra Christmas Mix",
-    "nameless_pending": false,
+    "music_held": null,
     "paused_held": false,
-    "playing": true,
+    "playing": false,
     "set": {
       "Bedroom": 27,
       "Dressing Room": 28,
