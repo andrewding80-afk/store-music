@@ -15,11 +15,11 @@
     "paused_held": false,
     "playing": true,
     "set": {
-      "Bedroom": 54,
-      "Dressing Room": 55,
-      "Kitchen": 54,
-      "Sunroom": 54,
-      "TV Room": 54
+      "Bedroom": 32,
+      "Dressing Room": 33,
+      "Kitchen": 32,
+      "Sunroom": 45,
+      "TV Room": 25
     }
   }
 }
