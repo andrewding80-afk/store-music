@@ -3,20 +3,23 @@
     "day": "2026-11-23",
     "held": {
       "Bedroom": 13,
-      "Kitchen": 13
+      "Dressing Room": 41,
+      "Kitchen": 13,
+      "Sunroom": 45,
+      "TV Room": 45
     },
     "morning_done": true,
-    "music": "fall feels",
+    "music": null,
     "music_held": null,
-    "nameless_pending": false,
+    "nameless_pending": true,
     "paused_held": true,
-    "playing": false,
+    "playing": true,
     "set": {
-      "Bedroom": 13,
-      "Dressing Room": 18,
-      "Kitchen": 13,
-      "Sunroom": 14,
-      "TV Room": 0
+      "Bedroom": 39,
+      "Dressing Room": 41,
+      "Kitchen": 44,
+      "Sunroom": 45,
+      "TV Room": 45
     }
   }
 }
