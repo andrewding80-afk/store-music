@@ -1,18 +1,22 @@
 {
   "home": {
     "day": "2026-11-24",
-    "held": {},
+    "held": {
+      "Bedroom": 20,
+      "Kitchen": 20,
+      "Sunroom": 20
+    },
     "morning_done": true,
-    "music": "MOZART",
+    "music": null,
     "music_held": null,
-    "nameless_pending": false,
+    "nameless_pending": true,
     "paused_held": false,
-    "playing": false,
+    "playing": true,
     "set": {
-      "Bedroom": 25,
+      "Bedroom": 20,
       "Dressing Room": 25,
-      "Kitchen": 28,
-      "Sunroom": 0,
+      "Kitchen": 20,
+      "Sunroom": 20,
       "TV Room": 20
     }
   }
