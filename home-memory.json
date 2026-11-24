@@ -10,7 +10,7 @@
     },
     "morning_done": true,
     "music": null,
-    "music_held": null,
+    "music_held": "music picked by hand",
     "nameless_pending": true,
     "paused_held": true,
     "playing": true,
