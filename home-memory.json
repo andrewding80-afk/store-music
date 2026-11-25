@@ -2,9 +2,10 @@
   "home": {
     "day": "2026-11-25",
     "held": {},
-    "morning_done": false,
+    "morning_done": true,
     "music": "MOZART",
     "music_held": null,
+    "nameless_pending": false,
     "paused_held": false,
     "playing": false,
     "set": {
