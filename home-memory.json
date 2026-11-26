@@ -6,8 +6,8 @@
     "music": "Classical Romance",
     "music_held": null,
     "nameless_pending": false,
-    "paused_held": false,
-    "playing": true,
+    "paused_held": true,
+    "playing": false,
     "set": {
       "Bedroom": 18,
       "Dressing Room": 18,
